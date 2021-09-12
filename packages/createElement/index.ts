@@ -1,10 +1,10 @@
 import { convertObjectToAttrStringArray, getNode, kebabCase } from './tool'
+export * from './tool'
+export type TChildren = any[]
 
-type TChildren = any[]
+export type TElementTagNameMap = HTMLElementTagNameMap
 
-type TElementTagNameMap = HTMLElementTagNameMap
-
-type TClassType = string | { [key: string]: boolean }
+export type TClassType = string | { [key: string]: boolean }
 
 export function createElement<K extends keyof TElementTagNameMap>(
   tag: K,
