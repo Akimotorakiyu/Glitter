@@ -6,19 +6,14 @@ export type TElementTagNameMap = HTMLElementTagNameMap
 
 export type TClassType = string | { [key: string]: boolean }
 
-export function createElement<K extends keyof TElementTagNameMap>(
-  tag: K,
-  attrs: TElementTagNameMap[K],
-  childNodes: TChildren = [],
-): TElementTagNameMap[K] {
-  const element = document.createElement(tag)
+export const setAttrs = (element: HTMLElement, attrs: object) => {
   if (attrs) {
     Object.entries(attrs).forEach(([key, value]) => {
       // 防止修改原生的函数
       if (
         typeof element[key as keyof (HTMLElement | SVGAElement)] === 'function'
       ) {
-        console.error('incorrect key', tag)
+        console.error('incorrect key', key)
         throw new Error('incorrect key')
       }
 
@@ -49,13 +44,22 @@ export function createElement<K extends keyof TElementTagNameMap>(
             .join(';')
         } else {
           realValue = tempValue
-
-          // 设置普通属性
-          element.setAttribute(key, realValue)
         }
+        // 设置普通属性
+        element.setAttribute(key, realValue)
       }
     })
   }
+}
+
+export function createElement<K extends keyof TElementTagNameMap>(
+  tag: K,
+  attrs: TElementTagNameMap[K],
+  childNodes: TChildren = [],
+): TElementTagNameMap[K] {
+  const element = document.createElement(tag)
+
+  setAttrs(element, attrs)
 
   // 添加子元素
   childNodes
