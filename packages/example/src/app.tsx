@@ -2,12 +2,14 @@ import { useUpdater } from '@shrio/tsx'
 
 const Clock = () => {
   const updater = useUpdater()
-  const rendom0To255 = () => {
-    return Math.floor(Math.random() * 255).toString(16)
+  const random0To255 = () => {
+    return Math.floor(Math.random() * 255)
+      .toString(16)
+      .padStart(2, '0')
   }
 
   const hexColor = () => {
-    return `#${rendom0To255()}${rendom0To255()}${rendom0To255()}`
+    return `#${random0To255()}${random0To255()}${random0To255()}${random0To255()}`
   }
 
   setInterval(() => {
