@@ -6,6 +6,7 @@ export interface Context {
   onConnected: ((target: Element[]) => void)[]
   onDisonnected: ((target: Element[]) => void)[]
   updater: () => JSX.Element
+  render: () => JSX.Element
   props: any
   nodeInfo: {
     list: Node[]
@@ -50,9 +51,8 @@ export function popContext() {
 const commonUpdater = <P>(comCtx: Context) => {
   pushContext(comCtx)
   comCtx.nodeInfo.current = 0
-  const _ = comCtx.tag(comCtx.props, comCtx.children, comCtx)
+  const _ = comCtx.render()
   popContext()
-
   return _
 }
 
@@ -62,6 +62,7 @@ export function createContext<P>(
 ) {
   const comCtx: Context = {
     tag,
+    render: null as any,
     provider: Object.create(lastContext?.provider || null),
     onResize: [],
     isConnected: false,
