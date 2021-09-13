@@ -1,7 +1,6 @@
-import { getCurrentCtx } from './tsx'
-
+import { getCurrentContext } from './tsx/context'
 export function useUpdater() {
-  const ctx = getCurrentCtx()
+  const ctx = getCurrentContext()
   return () => {
     ctx.updater?.()
   }

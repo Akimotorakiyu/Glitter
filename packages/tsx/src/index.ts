@@ -1,3 +1,3 @@
 import './tsxDeclare'
-export * from './tsx'
+export * from './tsx/tsx'
 export * from './hooks'
