@@ -1,5 +1,6 @@
 export interface Context {
-  provides: Record<KeyType, unknown>
+  tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
+  provider: Record<KeyType, unknown>
   onResize: ((target: Element[]) => void)[]
   isConnected: boolean
   onConnected: ((target: Element[]) => void)[]
@@ -11,6 +12,7 @@ export interface Context {
     current: 0
     first: boolean
   }
+  children: JSX.Element[]
 }
 
 let ctxStack: Context[] = []
@@ -20,13 +22,15 @@ export function getCurrentContext() {
   return currentCtx!
 }
 
-export function createAndPushContext<P>(props: P) {
+export function createAndPushContext<P>(
+  tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>,
+) {
   const lastContext = currentCtx
   if (lastContext) {
     ctxStack.push(lastContext)
   }
 
-  currentCtx = createContext(props, lastContext)
+  currentCtx = createContext(tag, lastContext)
 
   return currentCtx
 }
@@ -43,20 +47,36 @@ export function popContext() {
   currentCtx = ctxStack.pop() || null
 }
 
-export function createContext<P>(props: P, lastContext: Context | null) {
+const commonUpdater = <P>(comCtx: Context) => {
+  pushContext(comCtx)
+  comCtx.nodeInfo.current = 0
+  const _ = comCtx.tag(comCtx.props, comCtx.children, comCtx)
+  popContext()
+
+  return _
+}
+
+export function createContext<P>(
+  tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>,
+  lastContext: Context | null,
+) {
   const comCtx: Context = {
-    provides: Object.create(lastContext?.provides || null),
+    tag,
+    provider: Object.create(lastContext?.provider || null),
     onResize: [],
     isConnected: false,
     onConnected: [],
     onDisonnected: [],
-    updater: null as unknown as any,
-    props,
+    updater: () => {
+      return commonUpdater(comCtx)
+    },
+    props: null,
     nodeInfo: {
       first: true,
       current: 0,
       list: [],
     },
+    children: [],
   }
   return comCtx
 }

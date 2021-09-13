@@ -44,7 +44,7 @@ declare type JsxFunctionComponent<P> = (
   props: P,
   children: JSX.Element[],
   ctx: {
-    provide: Record<string, any>
+    provider: Record<string, any>
   },
 ) => JSX.Element
 
@@ -52,7 +52,7 @@ declare type JsxFactoryComponent<P> = (
   props: P,
   children: JSX.Element[],
   ctx: {
-    provide: Record<string, any>
+    provider: Record<string, any>
   },
 ) => JSX.ElementClass
 

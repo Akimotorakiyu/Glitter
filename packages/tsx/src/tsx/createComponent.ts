@@ -1,41 +1,17 @@
 import { isElementClassInstance } from '../tool'
-import { createAndPushContext, popContext, pushContext } from './context'
+import { createAndPushContext, popContext } from './context'
 
 export const createComponent = <P extends {}>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
   children: JSX.Element[],
 ): JSX.Element => {
-  const comCtx = createAndPushContext(props)
-  const res = tag(props, children, { provide: {} })
+  const comCtx = createAndPushContext(tag)
 
-  if (isElementClassInstance(res)) {
-    comCtx.updater = () => {
-      pushContext(comCtx)
-      comCtx.nodeInfo.current = 0
-      const _ = res.render()
-      popContext()
+  const res = tag(props, children, comCtx)
+  const ele = isElementClassInstance(res) ? res.render() : res
 
-      return _
-    }
-    const ele = res.render()
-
-    popContext()
-    comCtx.nodeInfo.first = false
-
-    return ele
-  } else {
-    comCtx.updater = () => {
-      pushContext(comCtx)
-
-      comCtx.nodeInfo.current = 0
-      const _ = tag(props, children, { provide: {} })
-      popContext()
-      return _
-    }
-
-    popContext()
-    comCtx.nodeInfo.first = false
-    return res
-  }
+  popContext()
+  comCtx.nodeInfo.first = false
+  return ele
 }
