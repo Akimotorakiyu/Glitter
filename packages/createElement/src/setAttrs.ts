@@ -1,10 +1,5 @@
-import { convertObjectToAttrStringArray, getNode, kebabCase } from './tool'
-export * from './tool'
-export type TChildren = any[]
-
-export type TElementTagNameMap = HTMLElementTagNameMap
-
-export type TClassType = string | { [key: string]: boolean }
+import { convertObjectToAttrStringArray, kebabCase } from './tool'
+import { TClassType } from './type'
 
 export const setAttrs = (element: HTMLElement, attrs: object) => {
   if (attrs) {
@@ -50,24 +45,4 @@ export const setAttrs = (element: HTMLElement, attrs: object) => {
       }
     })
   }
-}
-
-export function createElement<K extends keyof TElementTagNameMap>(
-  tag: K,
-  attrs: TElementTagNameMap[K],
-  childNodes: TChildren = [],
-): TElementTagNameMap[K] {
-  const element = document.createElement(tag)
-
-  setAttrs(element, attrs)
-
-  // 添加子元素
-  childNodes
-    .flat(Infinity)
-    .map((child) => getNode(child))
-    .forEach((child) => {
-      element.appendChild(child)
-    })
-
-  return element as unknown as TElementTagNameMap[K]
 }
