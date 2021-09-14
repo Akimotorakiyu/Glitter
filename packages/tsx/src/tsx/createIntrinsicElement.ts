@@ -11,7 +11,6 @@ export const createIntrinsicElement = <P extends {}>(
 
   if (currentCtx?.created) {
     const ele = currentCtx?.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
-    console.log(ele, children)
     setAttrs(ele as HTMLElement, props)
 
     // todo

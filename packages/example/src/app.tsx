@@ -13,7 +13,6 @@ const Clock = () => {
   }
 
   setInterval(() => {
-    console.log('update')
     updater()
   }, 1000)
 
@@ -63,7 +62,6 @@ export function User() {
           <button
             onclick={() => {
               user.age++
-              console.log('++')
               updater()
             }}
           >
@@ -76,7 +74,6 @@ export function User() {
 }
 
 export function Welcome(...args: unknown[]) {
-  console.log('root')
   return (
     <>
       <h2>hello world</h2>
