@@ -51,9 +51,9 @@ export function popContext() {
 const commonUpdater = <P>(comCtx: Context) => {
   pushContext(comCtx)
   comCtx.nodeInfo.current = 0
-  const _ = comCtx.render()
+  const ele = comCtx.render()
   popContext()
-  return _
+  return ele
 }
 
 export function createContext<P>(

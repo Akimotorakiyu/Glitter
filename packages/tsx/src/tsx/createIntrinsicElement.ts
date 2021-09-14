@@ -1,5 +1,5 @@
 import { createElement, setAttrs } from '@shiro/create-element'
-import { getCurrentContext, popContext } from './context'
+import { getCurrentContext } from './context'
 
 export const createIntrinsicElement = <P extends {}>(
   tag: keyof HTMLElementTagNameMap,
@@ -20,9 +20,18 @@ export const createIntrinsicElement = <P extends {}>(
     setAttrs(ele as HTMLElement, props)
 
     // todo
-    // 设置文字节点，需要额外的处理逻辑，以为只有一个节点更新逻辑，此处为了demo 快速跑通，这里先直接设置上去
-    if (typeof children[0] === 'string') {
-      ;(ele as HTMLDivElement).innerText = children[0] as string
+    // 设置文字节点，需要额外的处理逻辑
+    // 此处为了demo 快速跑通, 文字节点同级无node节点，这里先直接将文字设置上去
+    {
+      const stringContent = children
+        .map((child) => {
+          return typeof child === 'string' ? child : ''
+        })
+        .join('')
+
+      if (stringContent.length) {
+        ;(ele as HTMLDivElement).innerText = children[0] as string
+      }
     }
 
     currentCtx!.nodeInfo.current++
