@@ -16,6 +16,7 @@ const Clock = () => {
     console.log('update')
     updater()
   }, 1000)
+
   return {
     render() {
       return (
@@ -37,11 +38,49 @@ const Clock = () => {
   }
 }
 
+export function UserCard(props: { name: string; age: number }) {
+  return (
+    <div>
+      <h3>{props.name}</h3>
+      <h6>{props.age}</h6>
+    </div>
+  )
+}
+
+export function User() {
+  const user = {
+    name: '湫曗',
+    age: 18,
+  }
+
+  const updater = useUpdater()
+
+  return {
+    render() {
+      return (
+        <div>
+          <UserCard name={user.name} age={user.age}></UserCard>
+          <button
+            onclick={() => {
+              user.age++
+              console.log('++')
+              updater()
+            }}
+          >
+            ++
+          </button>
+        </div>
+      )
+    },
+  }
+}
+
 export function Welcome(...args: unknown[]) {
   console.log('root')
   return (
     <>
       <h2>hello world</h2>
+      <User></User>
       <Clock></Clock>
     </>
   )

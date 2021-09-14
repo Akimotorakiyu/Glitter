@@ -9,13 +9,8 @@ export const createIntrinsicElement = <P extends {}>(
   // create and push
   const currentCtx = getCurrentContext()
 
-  if (currentCtx?.nodeInfo.first) {
-    const ele = createElement(tag, props as any, children)
-
-    currentCtx?.nodeInfo.list.push(ele)
-    return ele
-  } else {
-    const ele = currentCtx?.nodeInfo.list[currentCtx?.nodeInfo.current]!
+  if (currentCtx?.created) {
+    const ele = currentCtx?.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
     console.log(ele, children)
     setAttrs(ele as HTMLElement, props)
 
@@ -25,7 +20,19 @@ export const createIntrinsicElement = <P extends {}>(
     {
       const stringContent = children
         .map((child) => {
-          return typeof child === 'string' ? child : ''
+          const type = typeof child
+          switch (type) {
+            case 'boolean':
+            case 'bigint':
+            case 'number':
+            case 'string':
+              return child
+              break
+
+            default:
+              return ''
+              break
+          }
         })
         .join('')
 
@@ -34,8 +41,13 @@ export const createIntrinsicElement = <P extends {}>(
       }
     }
 
-    currentCtx!.nodeInfo.current++
+    currentCtx!.domNodeInfo.current++
     // just update props
+    return ele
+  } else {
+    const ele = createElement(tag, props as any, children)
+
+    currentCtx?.domNodeInfo.list.push(ele)
     return ele
   }
 }

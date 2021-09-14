@@ -4,14 +4,14 @@ import { TClassType } from './type'
 export const setAttrs = (element: HTMLElement, attrs: object) => {
   if (attrs) {
     Object.entries(attrs).forEach(([key, value]) => {
-      // 防止修改原生的函数
-      if (
-        typeof element[key as keyof (HTMLElement | SVGAElement)] === 'function'
-      ) {
-        console.error('incorrect key', key)
-        throw new Error('incorrect key')
+      if (key.startsWith('on')) {
+        if (typeof value === 'function') {
+          Reflect.set(element, key, value)
+        } else {
+          console.error('incorrect event listener', key, value)
+          throw new Error('incorrect event listener')
+        }
       }
-
       // 设置普通属性
       else {
         const tempValue: any = value

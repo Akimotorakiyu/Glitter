@@ -7,12 +7,17 @@ export interface Context {
   onDisonnected: ((target: Element[]) => void)[]
   updater: () => JSX.Element
   render: () => JSX.Element
-  props: any
-  nodeInfo: {
+  props: Record<string, unknown>
+  created: boolean
+  domNodeInfo: {
     list: Node[]
     current: 0
-    first: boolean
   }
+  comNodeInfo: {
+    list: Context[]
+    current: 0
+  }
+
   children: JSX.Element[]
 }
 
@@ -24,14 +29,15 @@ export function getCurrentContext() {
 }
 
 export function createAndPushContext<P>(
-  tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>,
+  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
+  props: P,
 ) {
   const lastContext = currentCtx
   if (lastContext) {
     ctxStack.push(lastContext)
   }
 
-  currentCtx = createContext(tag, lastContext)
+  currentCtx = createContext(tag, props, lastContext)
 
   return currentCtx
 }
@@ -50,14 +56,16 @@ export function popContext() {
 
 const commonUpdater = <P>(comCtx: Context) => {
   pushContext(comCtx)
-  comCtx.nodeInfo.current = 0
+  comCtx.domNodeInfo.current = 0
+  comCtx.comNodeInfo.current = 0
   const ele = comCtx.render()
   popContext()
   return ele
 }
 
 export function createContext<P>(
-  tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>,
+  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
+  props: P,
   lastContext: Context | null,
 ) {
   const comCtx: Context = {
@@ -71,9 +79,13 @@ export function createContext<P>(
     updater: () => {
       return commonUpdater(comCtx)
     },
-    props: null,
-    nodeInfo: {
-      first: true,
+    props: props as any,
+    created: false,
+    domNodeInfo: {
+      current: 0,
+      list: [],
+    },
+    comNodeInfo: {
       current: 0,
       list: [],
     },
