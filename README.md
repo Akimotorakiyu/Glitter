@@ -3,6 +3,7 @@
 the next generation front-end framework demo, there is no need to diff
 
 - [x] basic no need to diff demo
+- [x] child component update
 - [ ] condition
 - [ ] list
 
