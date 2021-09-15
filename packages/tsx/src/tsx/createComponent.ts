@@ -1,23 +1,5 @@
-import { isElementClassInstance } from './tool'
+import { isElementClassInstance, updateProps } from './tool'
 import { createAndPushContext, getCurrentContext, popContext } from './context'
-
-const updateProps = (
-  props: Record<string, any>,
-  newProps: Record<string, any>,
-) => {
-  const keys = Object.keys(newProps)
-  Object.keys(props).forEach((key) => {
-    if (!keys.includes(key)) {
-      delete props[key]
-    }
-  })
-
-  Object.entries(newProps).forEach(([key, value]) => {
-    if (props[key] !== value) {
-      props[key] = value
-    }
-  })
-}
 
 export const createComponent = <P extends {}>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
