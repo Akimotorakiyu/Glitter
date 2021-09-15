@@ -1,4 +1,4 @@
-import { isElementClassInstance } from '../tool'
+import { isElementClassInstance } from './tool'
 import { createAndPushContext, getCurrentContext, popContext } from './context'
 
 const updateProps = (
