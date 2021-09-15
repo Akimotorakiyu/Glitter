@@ -42,6 +42,8 @@ export function UserCard(props: { name: string; age: number }) {
     <div>
       <h3>{props.name}</h3>
       <h6>{props.age}</h6>
+      <span if={props.age % 2 === 0}>偶数</span>
+      <span if={props.age % 2 === 1}>奇数</span>
     </div>
   )
 }
