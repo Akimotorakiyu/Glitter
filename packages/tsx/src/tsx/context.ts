@@ -1,3 +1,6 @@
+interface VDomNode {
+  node: Node
+}
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
   provider: Record<KeyType, unknown>
@@ -10,7 +13,7 @@ export interface Context {
   props: Record<string, unknown>
   created: boolean
   domNodeInfo: {
-    list: Node[]
+    list: VDomNode[]
     current: 0
   }
   comNodeInfo: {

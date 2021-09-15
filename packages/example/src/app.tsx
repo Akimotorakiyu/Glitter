@@ -1,7 +1,6 @@
 import { useUpdater } from '@shrio/tsx'
 
 const Clock = () => {
-  const updater = useUpdater()
   const random0To255 = () => {
     return Math.floor(Math.random() * 255)
       .toString(16)
@@ -12,9 +11,10 @@ const Clock = () => {
     return `#${random0To255()}${random0To255()}${random0To255()}${random0To255()}`
   }
 
-  setInterval(() => {
-    updater()
-  }, 1000)
+  // const updater = useUpdater()
+  // setInterval(() => {
+  //   updater()
+  // }, 1000)
 
   return {
     render() {

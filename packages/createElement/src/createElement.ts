@@ -1,6 +1,6 @@
 import { setAttrs } from './setAttrs'
-import { getNode } from './tool'
 import { TChildren, TElementTagNameMap } from './type'
+import { addChild } from './addChild'
 
 export function createElement<K extends keyof TElementTagNameMap>(
   tag: K,
@@ -11,13 +11,7 @@ export function createElement<K extends keyof TElementTagNameMap>(
 
   setAttrs(element, attrs)
 
-  // 添加子元素
-  childNodes
-    .flat(Infinity)
-    .map((child) => getNode(child))
-    .forEach((child) => {
-      element.appendChild(child)
-    })
+  addChild(element, childNodes)
 
   return element as unknown as TElementTagNameMap[K]
 }

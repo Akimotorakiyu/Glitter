@@ -8,9 +8,9 @@ export const htsx = <HTSX>{
     ...children: JSX.Element[]
   ): JSX.Element {
     if (typeof tag === 'function') {
-      return createComponent(tag, props, children)
+      return createComponent(tag, props ?? {}, children)
     } else {
-      return createIntrinsicElement(tag, props, children)
+      return createIntrinsicElement(tag, props ?? {}, children)
     }
   },
   Fragment,

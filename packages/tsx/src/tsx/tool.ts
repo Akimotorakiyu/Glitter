@@ -22,3 +22,7 @@ export const updateProps = (
     }
   })
 }
+
+export const shouldShowComponent = <P>(props: P) => {
+  return !('if' in props && !Boolean((props as { if?: any })?.if))
+}
