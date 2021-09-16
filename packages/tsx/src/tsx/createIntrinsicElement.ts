@@ -58,9 +58,9 @@ export const createIntrinsicElement = <P extends {}>(
           // 这里为了快速跑通，先直接整体替换
           replaceChildren(vDomNode.node, children as Node[])
         }
-        currentCtx!.domNodeInfo.current++
-        // just update props
       }
+
+      currentCtx!.domNodeInfo.current++
 
       return vDomNode.node
     } else {

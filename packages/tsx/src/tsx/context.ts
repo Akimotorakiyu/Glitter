@@ -1,6 +1,9 @@
 interface VDomNode {
   node: Element
 }
+interface VComNode {
+  node: Context
+}
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
   provider: Record<KeyType, unknown>

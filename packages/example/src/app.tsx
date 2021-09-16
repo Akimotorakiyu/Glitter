@@ -37,6 +37,17 @@ const Clock = () => {
   }
 }
 
+export function Mael(props: { if?: any }) {
+  return {
+    render() {
+      return <div>男性</div>
+    },
+  }
+}
+export function Femael(props: { if?: any }) {
+  return <div>女性</div>
+}
+
 export function UserCard(props: { name: string; age: number }) {
   return (
     <div>
@@ -44,6 +55,8 @@ export function UserCard(props: { name: string; age: number }) {
       <h6>{props.age}</h6>
       <span if={props.age % 2 === 0}>偶数</span>
       <span if={props.age % 2 === 1}>奇数</span>
+      <Mael if={props.age % 2 === 0}></Mael>
+      <Femael if={props.age % 2 === 1}></Femael>
     </div>
   )
 }
