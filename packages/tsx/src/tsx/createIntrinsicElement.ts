@@ -46,6 +46,11 @@ export const createIntrinsicElement = <P extends {}>(
         if (stringContent.length) {
           ;(vDomNode.node as HTMLDivElement).innerText = children[0] as string
         } else {
+          // todo
+          // 若有新加入的节点，只需要将新加入的节点插入对应位置即可
+          // 在domNode中标记出来，节点是新加入的这样就非常的容易处理了
+          // 若没有新加入的节点，则什么都不需要做
+          // 这里为了快速跑通，先直接整体替换
           addChild(vDomNode.node, children as Node[])
         }
         currentCtx!.domNodeInfo.current++
