@@ -1,6 +1,6 @@
 import { setAttrs } from './setAttrs'
 import { TChildren, TElementTagNameMap } from './type'
-import { addChild } from './addChild'
+import { replaceChildren } from './children'
 
 export function createElement<K extends keyof TElementTagNameMap>(
   tag: K,
@@ -11,7 +11,7 @@ export function createElement<K extends keyof TElementTagNameMap>(
 
   setAttrs(element, attrs)
 
-  addChild(element, childNodes)
+  replaceChildren(element, childNodes)
 
   return element as unknown as TElementTagNameMap[K]
 }

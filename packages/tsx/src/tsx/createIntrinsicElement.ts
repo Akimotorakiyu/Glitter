@@ -1,4 +1,9 @@
-import { createElement, setAttrs, addChild } from '@shiro/create-element'
+import {
+  createElement,
+  setAttrs,
+  replaceChildren,
+  emptyNode,
+} from '@shiro/create-element'
 import { getCurrentContext } from './context'
 import { shouldShowComponent } from './tool'
 
@@ -51,7 +56,7 @@ export const createIntrinsicElement = <P extends {}>(
           // 在domNode中标记出来，节点是新加入的这样就非常的容易处理了
           // 若没有新加入的节点，则什么都不需要做
           // 这里为了快速跑通，先直接整体替换
-          addChild(vDomNode.node, children as Node[])
+          replaceChildren(vDomNode.node, children as Node[])
         }
         currentCtx!.domNodeInfo.current++
         // just update props
@@ -63,32 +68,24 @@ export const createIntrinsicElement = <P extends {}>(
         ;(vDomNode.node as ChildNode).remove()
         vDomNode.node = null as any
       }
-      return null as unknown as Node
+      return emptyNode
     }
   } else {
-    // if (shouldShowComponent(props)) {
-    //   const ele = createElement(tag, props as any, children)
-    //   const vDomNode = {
-    //     node: ele,
-    //   }
+    if (shouldShowComponent(props)) {
+      const ele = createElement(tag, props as any, children)
+      const vDomNode = {
+        node: ele,
+      }
 
-    //   currentCtx?.domNodeInfo.list.push(vDomNode)
-    //   return vDomNode.node
-    // } else {
-    //   const vDomNode = {
-    //     node: null as any,
-    //   }
+      currentCtx?.domNodeInfo.list.push(vDomNode)
+      return vDomNode.node
+    } else {
+      const vDomNode = {
+        node: null as any,
+      }
 
-    //   currentCtx?.domNodeInfo.list.push(vDomNode)
-    //   return vDomNode.node
-    // }
-
-    const ele = createElement(tag, props as any, children)
-    const vDomNode = {
-      node: ele,
+      currentCtx?.domNodeInfo.list.push(vDomNode)
+      return emptyNode
     }
-
-    currentCtx?.domNodeInfo.list.push(vDomNode)
-    return vDomNode.node
   }
 }

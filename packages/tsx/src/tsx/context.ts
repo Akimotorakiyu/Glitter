@@ -1,5 +1,5 @@
 interface VDomNode {
-  node: Node
+  node: Element
 }
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
