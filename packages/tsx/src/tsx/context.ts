@@ -20,7 +20,7 @@ export interface Context {
     current: 0
   }
   comNodeInfo: {
-    list: Context[]
+    list: VComNode[]
     current: 0
   }
 
@@ -31,7 +31,11 @@ let ctxStack: Context[] = []
 let currentCtx: Context | null = null
 
 export function getCurrentContext() {
-  return currentCtx!
+  if (currentCtx) {
+    return currentCtx
+  } else {
+    return createContext(() => '<This is fake root!>', null, null)
+  }
 }
 
 export function createAndPushContext<P>(
