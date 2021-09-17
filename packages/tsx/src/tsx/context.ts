@@ -54,6 +54,21 @@ export const getCurrentVDomNode = () => {
   return vDomNode
 }
 
+export const getCurrentVComNode = () => {
+  const parentCtx = getCurrentContext()
+
+  if (!parentCtx.created) {
+    const vComNode = <VComNode>{
+      node: null,
+    }
+    parentCtx.comNodeInfo.list.push(vComNode)
+  }
+
+  const vComNode = parentCtx.comNodeInfo.list[parentCtx.comNodeInfo.current]
+  parentCtx!.comNodeInfo.current++
+  return vComNode
+}
+
 export function createAndPushContext<P>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
