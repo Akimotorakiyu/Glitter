@@ -1,4 +1,4 @@
-import { Fragment } from './Fragment'
+import { createFragment } from './createFragment'
 import { createIntrinsicElement } from './createIntrinsicElement'
 import { createComponent } from './createComponent'
 export const htsx = <HTSX>{
@@ -13,7 +13,7 @@ export const htsx = <HTSX>{
       return createIntrinsicElement(tag, props ?? {}, children)
     }
   },
-  Fragment,
+  Fragment: createFragment,
 }
 
 Reflect.set(window, 'htsx', htsx)
