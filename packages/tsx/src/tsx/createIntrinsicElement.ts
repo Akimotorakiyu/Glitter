@@ -4,7 +4,7 @@ import {
   replaceChildren,
   emptyNode,
 } from '@shiro/create-element'
-import { getCurrentContext, VDomNode } from './context'
+import { getCurrentVDomNode } from './context'
 import { shouldShowComponent } from './tool'
 
 export const createIntrinsicElement = <P extends {}>(
@@ -13,18 +13,8 @@ export const createIntrinsicElement = <P extends {}>(
   children: JSX.Element[],
 ): Node => {
   // create and push
-  const currentCtx = getCurrentContext()
   const shouldShow = shouldShowComponent(props)
-
-  if (!currentCtx.created) {
-    const vDomNode = <VDomNode>{
-      node: null,
-    }
-    currentCtx?.domNodeInfo.list.push(vDomNode)
-  }
-
-  const vDomNode = currentCtx.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
-  currentCtx!.domNodeInfo.current++
+  const vDomNode = getCurrentVDomNode()
 
   if (shouldShow) {
     if (!vDomNode.node) {

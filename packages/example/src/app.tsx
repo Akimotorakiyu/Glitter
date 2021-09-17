@@ -16,12 +16,15 @@ const Clock = () => {
   //   updater()
   // }, 1000)
 
+  const randomState = Math.random()
+
   return {
     render() {
       return (
         <div>
           <h1>你好世界,无 diff 更新实现</h1>
           <h2>{Date()}</h2>
+          <h3>random state: {randomState} gen by Math.random</h3>
           <div
             style={{
               height: '100px',
@@ -82,6 +85,7 @@ export function User() {
           >
             ++
           </button>
+          <Clock></Clock>
         </div>
       )
     },
@@ -93,7 +97,6 @@ export function Welcome(...args: unknown[]) {
     <>
       <h2>hello world</h2>
       <User></User>
-      <Clock></Clock>
     </>
   )
 }

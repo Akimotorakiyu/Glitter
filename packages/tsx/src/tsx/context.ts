@@ -38,6 +38,22 @@ export function getCurrentContext() {
   }
 }
 
+export const getCurrentVDomNode = () => {
+  const currentCtx = getCurrentContext()
+
+  if (!currentCtx.created) {
+    const vDomNode = <VDomNode>{
+      node: null,
+    }
+    currentCtx?.domNodeInfo.list.push(vDomNode)
+  }
+
+  const vDomNode = currentCtx.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
+  currentCtx!.domNodeInfo.current++
+
+  return vDomNode
+}
+
 export function createAndPushContext<P>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
