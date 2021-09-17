@@ -19,6 +19,7 @@ export const createIntrinsicElement = <P extends {}>(
   if (currentCtx.created) {
     const vDomNode =
       currentCtx.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
+    currentCtx!.domNodeInfo.current++
 
     if (shouldShow) {
       if (!vDomNode.node) {
@@ -59,8 +60,6 @@ export const createIntrinsicElement = <P extends {}>(
           }
         }
       }
-
-      currentCtx!.domNodeInfo.current++
 
       return vDomNode.node
     } else {
