@@ -39,17 +39,17 @@ export function getCurrentContext() {
 }
 
 export const getCurrentVDomNode = () => {
-  const currentCtx = getCurrentContext()
+  const parentCtx = getCurrentContext()
 
-  if (!currentCtx.created) {
+  if (!parentCtx.created) {
     const vDomNode = <VDomNode>{
       node: null,
     }
-    currentCtx?.domNodeInfo.list.push(vDomNode)
+    parentCtx?.domNodeInfo.list.push(vDomNode)
   }
 
-  const vDomNode = currentCtx.domNodeInfo.list[currentCtx?.domNodeInfo.current]!
-  currentCtx!.domNodeInfo.current++
+  const vDomNode = parentCtx.domNodeInfo.list[parentCtx?.domNodeInfo.current]!
+  parentCtx!.domNodeInfo.current++
 
   return vDomNode
 }
