@@ -1,7 +1,7 @@
-interface VDomNode {
+export interface VDomNode {
   node: Element | null
 }
-interface VComNode {
+export interface VComNode {
   node: Context | null
 }
 export interface Context {
