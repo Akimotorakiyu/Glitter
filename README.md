@@ -1,11 +1,12 @@
 # SHRIO (WIP)
 
-An othter front-end framework demo, there is no need to diff
+An othter front-end framework demo
 
 - [x] basic no need to diff demo
 - [x] child component update
-- [ ] condition **WIP has demo**
-- [ ] list
+- [x] intrinsic element condition
+- [x] custom component condition
+- [ ] list support
 
 ## dev
 
