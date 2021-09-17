@@ -19,12 +19,14 @@ declare type JsxElementTagNameMap = {
 type DomElement = Element
 
 declare namespace JSX {
+  // The Intrinsic Elements Type Map
   type IntrinsicElements = JsxElementTagNameMap
 
+  // The Class Component Instance Type or Factory Return Value Type
   interface ElementClass {
     render: () => Element
   }
-
+  // The JSX result type
   type Element =
     | ElementClass
     | HTMLElement
