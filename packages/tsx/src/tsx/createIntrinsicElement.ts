@@ -66,7 +66,7 @@ export const createIntrinsicElement = <P extends {}>(
     } else {
       if (vDomNode.node) {
         ;(vDomNode.node as ChildNode).remove()
-        vDomNode.node = null as any
+        vDomNode.node = null
       }
       return emptyNode
     }
@@ -81,7 +81,7 @@ export const createIntrinsicElement = <P extends {}>(
       return vDomNode.node
     } else {
       const vDomNode = {
-        node: null as any,
+        node: null,
       }
 
       currentCtx?.domNodeInfo.list.push(vDomNode)

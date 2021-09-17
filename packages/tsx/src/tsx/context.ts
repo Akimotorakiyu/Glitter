@@ -1,8 +1,8 @@
 interface VDomNode {
-  node: Element
+  node: Element | null
 }
 interface VComNode {
-  node: Context
+  node: Context | null
 }
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
