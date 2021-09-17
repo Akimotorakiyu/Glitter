@@ -44,7 +44,7 @@ export const createIntrinsicElement = <P extends {}>(
           .join('')
 
         if (stringContent.length) {
-          ;(vDomNode.node as HTMLDivElement).innerText = children[0] as string
+          ;(vDomNode.node as HTMLDivElement).innerText = stringContent as string
         } else {
           // todo
           // 若有新加入的节点，只需要将新加入的节点插入对应位置即可
