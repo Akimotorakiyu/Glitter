@@ -1,9 +1,9 @@
 import { ContentNodeInfo, Context, VComNode, VDomNode } from './context/type'
 
-let ctxStack: Context[] = []
-let currentCtx: Context | null = null
+const ctxStack: Context[] = []
 
 export function getCurrentContext() {
+  const currentCtx = ctxStack[ctxStack.length - 1]
   if (currentCtx) {
     return currentCtx
   } else {
@@ -52,26 +52,21 @@ export function createAndPushContext<P>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
 ) {
-  const lastContext = currentCtx
-  if (lastContext) {
-    ctxStack.push(lastContext)
-  }
+  const lastContext = getCurrentContext()
 
-  currentCtx = createContext(tag, props, lastContext)
+  const currentCtx = createContext(tag, props, lastContext)
+
+  ctxStack.push(currentCtx)
 
   return currentCtx
 }
 
 export function pushContext(context: Context) {
-  const lastContext = currentCtx
-  if (lastContext) {
-    ctxStack.push(lastContext)
-  }
-  currentCtx = context
+  ctxStack.push(context)
 }
 
 export function popContext() {
-  currentCtx = ctxStack.pop() || null
+  ctxStack.pop()
 }
 
 const commonUpdater = <P>(comCtx: Context) => {
