@@ -1,5 +1,4 @@
 import { useUpdater } from '@shrio/tsx'
-
 const Clock = () => {
   const random0To255 = () => {
     return Math.floor(Math.random() * 255)
@@ -64,12 +63,7 @@ export function UserCard(props: { name: string; age: number }) {
   )
 }
 
-export function User() {
-  const user = {
-    name: '湫曗',
-    age: 18,
-  }
-
+export function User(user: { key: string; name: string; age: number }) {
   const updater = useUpdater()
 
   return {
@@ -93,10 +87,39 @@ export function User() {
 }
 
 export function Welcome(...args: unknown[]) {
+  const users = [
+    {
+      name: '湫曗',
+      age: 18,
+      id: 'qiuye',
+    },
+    {
+      name: '星痕',
+      age: 19,
+      id: 'xinghen',
+    },
+  ]
+
+  const updater = useUpdater()
+
   return (
     <>
       <h2>hello world</h2>
-      <User></User>
+      <button
+        onclick={() => {
+          updater()
+        }}
+      >
+        fresh
+      </button>
+      {users
+        .filter(() => {
+          return Math.random() > 0.5
+        })
+        .map((user) => {
+          return <User {...user} key={user.id}></User>
+        })}
+      <p>----------</p>
     </>
   )
 }
