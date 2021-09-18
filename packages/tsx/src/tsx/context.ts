@@ -4,6 +4,17 @@ export interface VDomNode {
 export interface VComNode {
   node: Context | null
 }
+
+interface ContentNodeInfo {
+  domNodeInfo: {
+    list: VDomNode[]
+    current: 0
+  }
+  comNodeInfo: {
+    list: VComNode[]
+    current: 0
+  }
+}
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
   provider: Record<KeyType, unknown>
@@ -15,13 +26,11 @@ export interface Context {
   render: () => JSX.Element
   props: Record<string, unknown>
   created: boolean
-  domNodeInfo: {
-    list: VDomNode[]
-    current: 0
-  }
-  comNodeInfo: {
-    list: VComNode[]
-    current: 0
+  staticContentNodeInfo: ContentNodeInfo
+
+  dynamicContentNodeInfo: {
+    map: Map<string, ContentNodeInfo>
+    index: string
   }
 
   children: JSX.Element[]
@@ -45,11 +54,14 @@ export const getCurrentVDomNode = () => {
     const vDomNode = <VDomNode>{
       node: null,
     }
-    parentCtx?.domNodeInfo.list.push(vDomNode)
+    parentCtx.staticContentNodeInfo.domNodeInfo.list.push(vDomNode)
   }
 
-  const vDomNode = parentCtx.domNodeInfo.list[parentCtx?.domNodeInfo.current]!
-  parentCtx!.domNodeInfo.current++
+  const vDomNode =
+    parentCtx.staticContentNodeInfo.domNodeInfo.list[
+      parentCtx.staticContentNodeInfo.domNodeInfo.current
+    ]!
+  parentCtx.staticContentNodeInfo.domNodeInfo.current++
 
   return vDomNode
 }
@@ -61,11 +73,14 @@ export const getCurrentVComNode = () => {
     const vComNode = <VComNode>{
       node: null,
     }
-    parentCtx.comNodeInfo.list.push(vComNode)
+    parentCtx.staticContentNodeInfo.comNodeInfo.list.push(vComNode)
   }
 
-  const vComNode = parentCtx.comNodeInfo.list[parentCtx.comNodeInfo.current]
-  parentCtx!.comNodeInfo.current++
+  const vComNode =
+    parentCtx.staticContentNodeInfo.comNodeInfo.list[
+      parentCtx.staticContentNodeInfo.comNodeInfo.current
+    ]
+  parentCtx.staticContentNodeInfo.comNodeInfo.current++
   return vComNode
 }
 
@@ -97,8 +112,8 @@ export function popContext() {
 
 const commonUpdater = <P>(comCtx: Context) => {
   pushContext(comCtx)
-  comCtx.domNodeInfo.current = 0
-  comCtx.comNodeInfo.current = 0
+  comCtx.staticContentNodeInfo.domNodeInfo.current = 0
+  comCtx.staticContentNodeInfo.comNodeInfo.current = 0
   const ele = comCtx.render()
   popContext()
   return ele
@@ -122,13 +137,19 @@ export function createContext<P>(
     },
     props: props as any,
     created: false,
-    domNodeInfo: {
-      current: 0,
-      list: [],
+    staticContentNodeInfo: {
+      domNodeInfo: {
+        current: 0,
+        list: [],
+      },
+      comNodeInfo: {
+        current: 0,
+        list: [],
+      },
     },
-    comNodeInfo: {
-      current: 0,
-      list: [],
+    dynamicContentNodeInfo: {
+      map: new Map<string, ContentNodeInfo>(),
+      index: '',
     },
     children: [],
   }
