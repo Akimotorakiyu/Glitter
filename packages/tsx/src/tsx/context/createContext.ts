@@ -32,7 +32,8 @@ export const createContextWithUpdater = <P>(
     },
     dynamicContentNodeInfo: {
       map: new Map<string, ContentNodeInfo>(),
-      index: '',
+      index: [],
+      depth: 0,
     },
     children: [],
   }

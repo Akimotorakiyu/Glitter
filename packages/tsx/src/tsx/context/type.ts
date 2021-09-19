@@ -13,7 +13,8 @@ export interface Context {
 
   dynamicContentNodeInfo: {
     map: Map<string, ContentNodeInfo>
-    index: string
+    index: string[]
+    depth: number
   }
 
   children: JSX.Element[]
