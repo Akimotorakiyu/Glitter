@@ -3,8 +3,9 @@ import {
   shouldShowComponent,
   updateProps,
 } from './tool'
-import { createAndPushContext, getCurrentVComNode, popContext } from './context'
+import { createAndPushContext, getCurrentVComNode } from './context'
 import { emptyNode } from '@shiro/create-element'
+import { popContext } from './context/content'
 
 export const createComponent = <P extends {}>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,

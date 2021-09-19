@@ -1,16 +1,9 @@
-import { createContextWithUpdater } from './context/createContext'
-import { Context, VComNode, VDomNode } from './context/type'
-
-const ctxStack: Context[] = []
-
-export function getCurrentContext() {
-  const currentCtx = ctxStack[ctxStack.length - 1]
-  if (currentCtx) {
-    return currentCtx
-  } else {
-    return createContext(() => '<This is fake root!>', null, null)
-  }
-}
+import {
+  createContext,
+  getCurrentContext,
+  pushContext,
+} from './context/content'
+import { VComNode, VDomNode } from './context/type'
 
 export const getCurrentVDomNode = () => {
   const parentCtx = getCurrentContext()
@@ -57,24 +50,7 @@ export function createAndPushContext<P>(
 
   const currentCtx = createContext(tag, props, lastContext)
 
-  ctxStack.push(currentCtx)
+  pushContext(currentCtx)
 
   return currentCtx
-}
-
-export function pushContext(context: Context) {
-  ctxStack.push(context)
-}
-
-export function popContext() {
-  ctxStack.pop()
-}
-
-export function createContext<P>(
-  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
-  props: P,
-  lastContext: Context | null,
-) {
-  const comCtx = createContextWithUpdater(tag, props, lastContext, ctxStack)
-  return comCtx
 }
