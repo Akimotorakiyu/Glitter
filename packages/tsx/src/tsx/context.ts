@@ -1,3 +1,4 @@
+import { commonUpdater } from './context/commonUpdater'
 import { ContentNodeInfo, Context, VComNode, VDomNode } from './context/type'
 
 const ctxStack: Context[] = []
@@ -69,15 +70,6 @@ export function popContext() {
   ctxStack.pop()
 }
 
-const commonUpdater = <P>(comCtx: Context) => {
-  pushContext(comCtx)
-  comCtx.staticContentNodeInfo.domNodeInfo.current = 0
-  comCtx.staticContentNodeInfo.comNodeInfo.current = 0
-  const ele = comCtx.render()
-  popContext()
-  return ele
-}
-
 export function createContext<P>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
@@ -92,7 +84,7 @@ export function createContext<P>(
     onConnected: [],
     onDisonnected: [],
     updater: () => {
-      return commonUpdater(comCtx)
+      return commonUpdater(ctxStack, comCtx)
     },
     props: props as any,
     created: false,
