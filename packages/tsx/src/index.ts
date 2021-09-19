@@ -1,4 +1,4 @@
 import './tsxDeclare'
 export * from './tsx/tsx'
-export * from './tsx/dynamicNodeWraper'
+export * from './tsx/dynamicWraper'
 export * from './hooks'

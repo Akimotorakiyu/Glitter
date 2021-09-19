@@ -1,4 +1,4 @@
-import { useUpdater } from '@shrio/tsx'
+import { useUpdater, dynamic } from '@shrio/tsx'
 const Clock = () => {
   const random0To255 = () => {
     return Math.floor(Math.random() * 255)
@@ -116,9 +116,12 @@ export function Welcome(...args: unknown[]) {
         .filter(() => {
           return Math.random() > 0.5
         })
-        .map((user) => {
-          return <User {...user} key={user.id}></User>
-        })}
+        .map(
+          dynamic((setKey, user) => {
+            setKey(user.id)
+            return <User {...user} key={user.id}></User>
+          }),
+        )}
       <p>----------</p>
     </>
   )
