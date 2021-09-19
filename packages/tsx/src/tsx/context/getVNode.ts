@@ -1,9 +1,5 @@
-import {
-  createContext,
-  getCurrentContext,
-  pushContext,
-} from './context/content'
-import { VComNode, VDomNode } from './context/type'
+import { getCurrentContext } from './content'
+import { VComNode, VDomNode } from './type'
 
 export const getCurrentVDomNode = () => {
   const parentCtx = getCurrentContext()
@@ -40,17 +36,4 @@ export const getCurrentVComNode = () => {
     ]
   parentCtx.staticContentNodeInfo.comNodeInfo.current++
   return vComNode
-}
-
-export function createAndPushContext<P>(
-  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
-  props: P,
-) {
-  const lastContext = getCurrentContext()
-
-  const currentCtx = createContext(tag, props, lastContext)
-
-  pushContext(currentCtx)
-
-  return currentCtx
 }

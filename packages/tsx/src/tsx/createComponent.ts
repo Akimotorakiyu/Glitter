@@ -3,9 +3,13 @@ import {
   shouldShowComponent,
   updateProps,
 } from './tool'
-import { createAndPushContext, getCurrentVComNode } from './context'
+import {
+  createComponentContext,
+  getCurrentVComNode,
+  popContext,
+  pushContext,
+} from './context'
 import { emptyNode } from '@shiro/create-element'
-import { popContext } from './context/content'
 
 export const createComponent = <P extends {}>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
@@ -17,21 +21,24 @@ export const createComponent = <P extends {}>(
 
   if (shouldShow) {
     if (!vComNode.node) {
-      const comCtx = createAndPushContext(tag, props || ({} as any))
-      vComNode.node = comCtx
+      const context = (vComNode.node = createComponentContext(
+        tag,
+        props || ({} as any),
+      ))
+      pushContext(context)
 
-      const res = tag(props, children, comCtx)
+      const res = tag(props, children, context)
       const isElementClassInstanceRes = isElementClassInstance(res)
       const ele = isElementClassInstanceRes ? res.render() : res
-      comCtx.render = isElementClassInstanceRes
+      context.render = isElementClassInstanceRes
         ? () => {
             return res.render()
           }
         : () => {
-            return tag(props, children, comCtx)
+            return tag(props, children, context)
           }
       popContext()
-      comCtx.created = true
+      vComNode.node.created = true
       return ele
     } else {
       updateProps(vComNode.node.props, props)
