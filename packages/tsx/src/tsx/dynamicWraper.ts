@@ -2,7 +2,7 @@ import { getCurrentContext } from './context'
 
 const setKey = (key: string) => {
   const parentCtx = getCurrentContext()
-  parentCtx.dynamicContentNodeInfo.index.push(key)
+  parentCtx.dynamicContentNodeInfo.keyStack.push(key)
 }
 
 export const dynamic = <T>(
@@ -19,6 +19,7 @@ export const dynamic = <T>(
 
     const ele = dynamicRender(setKey, item, index, arr)
 
+    parentCtx.dynamicContentNodeInfo.keyStack.pop()
     parentCtx.dynamicContentNodeInfo.depth--
     return ele
   }

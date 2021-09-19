@@ -13,7 +13,7 @@ export interface Context {
 
   dynamicContentNodeInfo: {
     map: Map<string, ContentNodeInfo>
-    index: string[]
+    keyStack: string[]
     depth: number
   }
 
