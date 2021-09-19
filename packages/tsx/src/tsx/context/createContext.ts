@@ -1,3 +1,4 @@
+import { commonUpdater } from './commonUpdater'
 import { ContentNodeInfo, Context } from './type'
 
 export const createContextWithUpdater = <P>(
@@ -5,7 +6,6 @@ export const createContextWithUpdater = <P>(
   props: P,
   lastContext: Context | null,
   contextStack: Context[],
-  commonUpdater: (contextStack: Context[], comCtx: Context) => JSX.Element,
 ) => {
   const comCtx: Context = {
     tag,

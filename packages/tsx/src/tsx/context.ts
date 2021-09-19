@@ -1,5 +1,5 @@
-import { commonUpdater } from './context/commonUpdater'
-import { ContentNodeInfo, Context, VComNode, VDomNode } from './context/type'
+import { createContextWithUpdater } from './context/createContext'
+import { Context, VComNode, VDomNode } from './context/type'
 
 const ctxStack: Context[] = []
 
@@ -75,34 +75,6 @@ export function createContext<P>(
   props: P,
   lastContext: Context | null,
 ) {
-  const comCtx: Context = {
-    tag,
-    render: null as any,
-    provider: Object.create(lastContext?.provider || null),
-    onResize: [],
-    isConnected: false,
-    onConnected: [],
-    onDisonnected: [],
-    updater: () => {
-      return commonUpdater(ctxStack, comCtx)
-    },
-    props: props as any,
-    created: false,
-    staticContentNodeInfo: {
-      domNodeInfo: {
-        current: 0,
-        list: [],
-      },
-      comNodeInfo: {
-        current: 0,
-        list: [],
-      },
-    },
-    dynamicContentNodeInfo: {
-      map: new Map<string, ContentNodeInfo>(),
-      index: '',
-    },
-    children: [],
-  }
+  const comCtx = createContextWithUpdater(tag, props, lastContext, ctxStack)
   return comCtx
 }
