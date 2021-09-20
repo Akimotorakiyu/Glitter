@@ -7,6 +7,8 @@ An othter front-end framework demo
 - [x] intrinsic element condition
 - [x] custom component condition
 - [x] dynamic list support
+- [x] common fragment support
+- [ ] root fragment support **WIP**
 
 ## dev
 
