@@ -10,6 +10,7 @@ export const createContextWithUpdater = <P>(
   const comCtx: Context = {
     tag,
     render: null as any,
+    parent: lastContext,
     provider: Object.create(lastContext?.provider || null),
     onResize: [],
     isConnected: false,

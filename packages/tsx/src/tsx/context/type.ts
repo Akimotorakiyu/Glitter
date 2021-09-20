@@ -1,6 +1,7 @@
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
   provider: Record<KeyType, unknown>
+  parent: Context | null
   onResize: ((target: Element[]) => void)[]
   isConnected: boolean
   onConnected: ((target: Element[]) => void)[]
