@@ -3,6 +3,19 @@ import { getCurrentContext } from './context'
 const setKey = (key: string) => {
   const parentCtx = getCurrentContext()
   parentCtx.dynamicContentNodeInfo.keyStack.push(key)
+  if (!parentCtx.dynamicContentNodeInfo.map.has(key)) {
+    parentCtx.dynamicContentNodeInfo.map.set(key, {
+      isDynamic: true,
+      domNodeInfo: {
+        current: 0,
+        list: [],
+      },
+      comNodeInfo: {
+        current: 0,
+        list: [],
+      },
+    })
+  }
 }
 
 export const dynamic = <T>(

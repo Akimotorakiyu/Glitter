@@ -5,6 +5,12 @@ export const commonUpdater = <P>(contextStack: Context[], comCtx: Context) => {
 
   comCtx.staticContentNodeInfo.domNodeInfo.current = 0
   comCtx.staticContentNodeInfo.comNodeInfo.current = 0
+
+  comCtx.dynamicContentNodeInfo.map.forEach((contentNodeInfo) => {
+    contentNodeInfo.comNodeInfo.current = 0
+    contentNodeInfo.domNodeInfo.current = 0
+  })
+
   const ele = comCtx.render()
 
   contextStack.pop()

@@ -103,7 +103,7 @@ export function Welcome(...args: unknown[]) {
   const updater = useUpdater()
 
   return (
-    <>
+    <div>
       <h2>hello world</h2>
       <button
         onclick={() => {
@@ -119,10 +119,11 @@ export function Welcome(...args: unknown[]) {
         .map(
           dynamic((setKey, user) => {
             setKey(user.id)
+            // return <div>{user.name}</div>
             return <User {...user} key={user.id}></User>
           }),
         )}
       <p>----------</p>
-    </>
+    </div>
   )
 }

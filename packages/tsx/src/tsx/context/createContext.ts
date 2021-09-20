@@ -21,6 +21,7 @@ export const createContextWithUpdater = <P>(
     props: props as any,
     created: false,
     staticContentNodeInfo: {
+      isDynamic: false,
       domNodeInfo: {
         current: 0,
         list: [],

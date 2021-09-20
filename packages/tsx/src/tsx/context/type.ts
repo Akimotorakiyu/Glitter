@@ -28,6 +28,7 @@ export interface VComNode {
 }
 
 export interface ContentNodeInfo {
+  isDynamic: boolean
   domNodeInfo: {
     list: VDomNode[]
     current: 0
