@@ -6,7 +6,7 @@ An othter front-end framework demo
 - [x] child component update
 - [x] intrinsic element condition
 - [x] custom component condition
-- [ ] list support
+- [x] dynamic list support
 
 ## dev
 
