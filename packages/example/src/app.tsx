@@ -20,7 +20,7 @@ const Clock = () => {
   return {
     render() {
       return (
-        <div>
+        <>
           <h1>你好世界,无 diff 更新实现</h1>
           <h2>{Date()}</h2>
           <h3>random state: {randomState} gen by Math.random</h3>
@@ -33,7 +33,7 @@ const Clock = () => {
               borderRadius: '16px',
             }}
           ></div>
-        </div>
+        </>
       )
     },
   }
@@ -52,14 +52,14 @@ export function Femael(props: { if?: any }) {
 
 export function UserCard(props: { name: string; age: number }) {
   return (
-    <div>
+    <>
       <h3>{props.name}</h3>
       <h6>{props.age}</h6>
       <span if={props.age % 2 === 0}>偶数</span>
       <span if={props.age % 2 === 1}>奇数</span>
       <Mael if={props.age % 2 === 0}></Mael>
       <Femael if={props.age % 2 === 1}></Femael>
-    </div>
+    </>
   )
 }
 
