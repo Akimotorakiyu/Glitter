@@ -35,6 +35,7 @@ export const createContextWithUpdater = <P>(
       map: new Map<string, ContentNodeInfo>(),
       keyStack: [],
       depth: 0,
+      markSet: new Set(),
     },
     children: [],
   }

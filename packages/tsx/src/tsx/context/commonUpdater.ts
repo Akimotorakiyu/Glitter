@@ -6,12 +6,20 @@ export const commonUpdater = <P>(contextStack: Context[], comCtx: Context) => {
   comCtx.staticContentNodeInfo.domNodeInfo.current = 0
   comCtx.staticContentNodeInfo.comNodeInfo.current = 0
 
-  comCtx.dynamicContentNodeInfo.map.forEach((contentNodeInfo) => {
+  comCtx.dynamicContentNodeInfo.markSet.clear()
+
+  comCtx.dynamicContentNodeInfo.map.forEach((contentNodeInfo, key) => {
     contentNodeInfo.comNodeInfo.current = 0
     contentNodeInfo.domNodeInfo.current = 0
+
+    comCtx.dynamicContentNodeInfo.markSet.add(key)
   })
 
   const ele = comCtx.render()
+
+  comCtx.dynamicContentNodeInfo.markSet.forEach((key) => {
+    comCtx.dynamicContentNodeInfo.map.delete(key)
+  })
 
   contextStack.pop()
 

@@ -15,6 +15,7 @@ export interface Context {
     map: Map<string, ContentNodeInfo>
     keyStack: string[]
     depth: number
+    markSet: Set<string>
   }
 
   children: JSX.Element[]
