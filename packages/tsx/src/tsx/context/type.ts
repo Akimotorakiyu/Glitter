@@ -28,6 +28,9 @@ export interface VDomNode {
 export interface VComNode {
   node: Context | null
 }
+export interface VFragmentNode {
+  node: DocumentFragment
+}
 
 export interface ContentNodeInfo {
   isDynamic: boolean
@@ -37,6 +40,10 @@ export interface ContentNodeInfo {
   }
   comNodeInfo: {
     list: VComNode[]
+    current: 0
+  }
+  fragmentNodeInfo: {
+    list: VFragmentNode[]
     current: 0
   }
 }

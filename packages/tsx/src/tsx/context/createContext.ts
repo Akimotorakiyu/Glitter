@@ -31,6 +31,10 @@ export const createContextWithUpdater = <P>(
         current: 0,
         list: [],
       },
+      fragmentNodeInfo: {
+        current: 0,
+        list: [],
+      },
     },
     dynamicContentNodeInfo: {
       map: new Map<string, ContentNodeInfo>(),

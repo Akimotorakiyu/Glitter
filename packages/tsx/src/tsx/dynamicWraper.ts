@@ -15,6 +15,10 @@ const setKey = (key: string) => {
         current: 0,
         list: [],
       },
+      fragmentNodeInfo: {
+        list: [],
+        current: 0,
+      },
     })
   }
 }
