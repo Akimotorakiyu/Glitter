@@ -29,7 +29,7 @@ export interface VComNode {
   node: Context | null
 }
 export interface VFragmentNode {
-  node: DocumentFragment
+  node: DocumentFragment | null
 }
 
 export interface ContentNodeInfo {

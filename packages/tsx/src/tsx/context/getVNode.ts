@@ -1,5 +1,5 @@
 import { getCurrentContext } from './content'
-import { VComNode, VDomNode } from './type'
+import { VComNode, VDomNode, VFragmentNode } from './type'
 
 const getContentNodeInfo = () => {
   const parentCtx = getCurrentContext()
@@ -50,6 +50,39 @@ export const getCurrentVDomNode = () => {
   contentNodeInfo.domNodeInfo.current++
 
   return vDomNode
+}
+export const getCurrentVFragmentNode = () => {
+  const parentCtx = getCurrentContext()
+
+  const contentNodeInfo = getContentNodeInfo()
+
+  if (contentNodeInfo.isDynamic) {
+    if (
+      !contentNodeInfo.fragmentNodeInfo.list[
+        contentNodeInfo.fragmentNodeInfo.current
+      ]
+    ) {
+      const vFragmentNode = <VFragmentNode>{
+        node: null,
+      }
+      contentNodeInfo.fragmentNodeInfo.list.push(vFragmentNode)
+    }
+  }
+
+  if (!parentCtx.created) {
+    const vFragmentNode = <VFragmentNode>{
+      node: null,
+    }
+    contentNodeInfo.fragmentNodeInfo.list.push(vFragmentNode)
+  }
+
+  const vFragmentNode =
+    contentNodeInfo.fragmentNodeInfo.list[
+      contentNodeInfo.fragmentNodeInfo.current
+    ]!
+  contentNodeInfo.fragmentNodeInfo.current++
+
+  return vFragmentNode
 }
 
 export const getCurrentVComNode = () => {
