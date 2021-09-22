@@ -1,6 +1,6 @@
 # SHRIO (WIP)
 
-An othter front-end framework demo
+✨Shrio is a vanilla front-end framework, for building UI on the web.
 
 - [x] basic no need to diff demo
 - [x] child component update
@@ -18,3 +18,5 @@ yarn
 # serve
 yarn serve
 ```
+
+## LICENSE
