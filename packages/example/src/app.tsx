@@ -10,7 +10,7 @@ const Clock = () => {
     return `#${random0To255()}${random0To255()}${random0To255()}${random0To255()}`
   }
 
-  // const updater = useUpdater()
+  const updater = useUpdater()
   // setInterval(() => {
   //   updater()
   // }, 1000)
@@ -24,6 +24,13 @@ const Clock = () => {
           <h1>你好世界,无 diff 更新实现</h1>
           <h2>{Date()}</h2>
           <h3>random state: {randomState} gen by Math.random</h3>
+          <button
+            onclick={() => {
+              updater()
+            }}
+          >
+            manuel update
+          </button>
           <div
             style={{
               height: '100px',
@@ -69,7 +76,7 @@ export function User(user: { key: string; name: string; age: number }) {
   return {
     render() {
       return (
-        <div>
+        <>
           <UserCard name={user.name} age={user.age}></UserCard>
           <button
             onclick={() => {
@@ -80,7 +87,7 @@ export function User(user: { key: string; name: string; age: number }) {
             ++
           </button>
           <Clock></Clock>
-        </div>
+        </>
       )
     },
   }

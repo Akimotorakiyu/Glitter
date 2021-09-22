@@ -8,7 +8,7 @@ An othter front-end framework demo
 - [x] custom component condition
 - [x] dynamic list support
 - [x] common fragment support
-- [ ] root fragment support **WIP**
+- [x] root fragment support
 
 ## dev
 

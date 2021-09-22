@@ -1,5 +1,5 @@
 import { getNode } from './tool'
-
+import { ShrioFragment } from './shrioFragment'
 // 不应该给这个节点加子节点
 export const emptyNode = new DocumentFragment()
 
@@ -12,11 +12,38 @@ export const flatenChildren = (childNodes: unknown[]) => {
   return children
 }
 
+const generateAndApplyReMounter = (
+  parentElement: Element | DocumentFragment,
+  children: Node[],
+) => {
+  const shrioFragmentNodes = children.filter(
+    (child) => child instanceof ShrioFragment,
+  ) as ShrioFragment[]
+
+  const reMount = () => {
+    if (parentElement instanceof ShrioFragment) {
+      parentElement.reMount!()
+    } else {
+      shrioFragmentNodes.forEach((fragment) => {
+        fragment.reloadChildren!()
+      })
+      parentElement.replaceChildren(...children)
+    }
+  }
+
+  shrioFragmentNodes.forEach((fragment) => {
+    fragment.reMount = reMount
+  })
+}
+
 export const replaceChildren = (
   parentElement: Element,
   childNodes: unknown[],
 ) => {
   const children = flatenChildren(childNodes)
+
+  generateAndApplyReMounter(parentElement, children)
+
   parentElement.replaceChildren(...children)
 }
 
@@ -25,5 +52,6 @@ export const appendChildren = (
   childNodes: unknown[],
 ) => {
   const children = flatenChildren(childNodes)
+  generateAndApplyReMounter(parentElement, children)
   parentElement.append(...children)
 }

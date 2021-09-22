@@ -1,3 +1,4 @@
+import { ShrioFragment } from '@shiro/create-element'
 export interface Context {
   tag: JsxFunctionComponent<any> | JsxFactoryComponent<any>
   provider: Record<KeyType, unknown>
@@ -29,7 +30,9 @@ export interface VComNode {
   node: Context | null
 }
 export interface VFragmentNode {
-  node: DocumentFragment | null
+  node: ShrioFragment | null
+  reloadChildren?: () => ShrioFragment
+  reMount?: () => ShrioFragment
 }
 
 export interface ContentNodeInfo {
