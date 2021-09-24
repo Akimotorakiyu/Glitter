@@ -1,14 +1,13 @@
-import { useUpdater, dynamic } from '@shrio/tsx'
 import { Header } from './pages/header'
 import { Body } from './pages/body'
+import { Footer } from './pages/footer'
 export function Welcome(...args: unknown[]) {
-  const updater = useUpdater()
-
   return (
     <>
       <div class="">
         <Header></Header>
         <Body></Body>
+        <Footer></Footer>
       </div>
     </>
   )

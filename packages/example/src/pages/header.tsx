@@ -1,6 +1,6 @@
 export const Header = () => {
   return (
-    <div class="text-3xl text-gray-500 font-medium  shadow-dark-200 shadow px-12 py-4 flex justify-around sticky top-0 bg-gray-50">
+    <div class=" text-gray-700 font-medium  shadow-dark-200 shadow px-12 py-4 flex justify-around sticky top-0 bg-gray-50">
       <div class="flex-1">
         <span class="hover:text-gray-900">Shrio</span>
       </div>

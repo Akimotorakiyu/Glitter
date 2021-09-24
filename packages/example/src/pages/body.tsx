@@ -1,6 +1,6 @@
 export const Body = () => {
   return (
-    <div class="">
+    <div class=" mx-4">
       <div class=" py-36">
         <h1 class=" text-center text-5xl font-extrabold my-4">Shrio</h1>
         <h2 class=" text-center text-2xl font-light my-4">
