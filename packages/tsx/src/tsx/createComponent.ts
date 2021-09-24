@@ -14,7 +14,7 @@ import { emptyNode } from '@shiro/create-element'
 export const createComponent = <P extends {}>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
-  children: JSX.Element[],
+  childNodes: Node[],
 ): JSX.Element => {
   const shouldShow = shouldShowComponent(props)
   const vComNode = getCurrentVComNode()
@@ -27,7 +27,7 @@ export const createComponent = <P extends {}>(
       ))
       pushContext(context)
 
-      const res = tag(props, children, context)
+      const res = tag(props, childNodes, context)
       const isElementClassInstanceRes = isElementClassInstance(res)
       const ele = isElementClassInstanceRes ? res.render() : res
       context.render = isElementClassInstanceRes
@@ -35,7 +35,7 @@ export const createComponent = <P extends {}>(
             return res.render()
           }
         : () => {
-            return tag(props, children, context)
+            return tag(props, childNodes, context)
           }
       popContext()
       vComNode.node.created = true
@@ -44,7 +44,7 @@ export const createComponent = <P extends {}>(
       updateProps(vComNode.node.props, props)
       vComNode.node.children.length = 0
 
-      children.forEach((child) => {
+      childNodes.forEach((child) => {
         vComNode.node!.children.push(child)
       })
 

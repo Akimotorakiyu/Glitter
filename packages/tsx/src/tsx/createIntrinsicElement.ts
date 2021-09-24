@@ -10,7 +10,7 @@ import { shouldShowComponent } from './tool'
 export const createIntrinsicElement = <P extends {}>(
   tag: keyof HTMLElementTagNameMap,
   props: P,
-  children: JSX.Element[],
+  childNodes: Node[],
 ): Node => {
   // create and push
   const shouldShow = shouldShowComponent(props)
@@ -18,14 +18,14 @@ export const createIntrinsicElement = <P extends {}>(
 
   if (shouldShow) {
     if (!vDomNode.node) {
-      vDomNode.node = createElement(tag, props as any, children)
+      vDomNode.node = createElement(tag, props as any, childNodes)
     } else {
       setAttrs(vDomNode.node as HTMLElement, props)
       // todo
       // 设置文字节点，需要额外的处理逻辑
       // 此处为了demo 快速跑通, 文字节点同级无node节点，这里先直接将文字设置上去
       {
-        const stringContent = children
+        const stringContent = childNodes
           .map((child) => {
             const type = typeof child
             switch (type) {
@@ -51,7 +51,7 @@ export const createIntrinsicElement = <P extends {}>(
           // 在domNode中标记出来，节点是新加入的这样就非常的容易处理了
           // 若没有新加入的节点，则什么都不需要做
           // 这里为了快速跑通，先直接整体替换
-          replaceChildren(vDomNode.node, children as Node[])
+          replaceChildren(vDomNode.node, childNodes as Node[])
         }
       }
     }

@@ -3,13 +3,13 @@ import { ShrioFragment } from './shrioFragment'
 // 不应该给这个节点加子节点
 export const emptyNode = new DocumentFragment()
 
-export const flatenChildren = (childNodes: unknown[]) => {
-  const children = childNodes
+export const flatenChildren = (children: unknown[]) => {
+  const childNodes = children
     .flat(Infinity)
     // .filter((e) => Boolean(e))
     .map((child) => getNode(child))
 
-  return children
+  return childNodes
 }
 
 const generateAndApplyReMounter = (
@@ -42,20 +42,16 @@ const generateAndApplyReMounter = (
 
 export const replaceChildren = (
   parentElement: Element | DocumentFragment,
-  childNodes: unknown[],
+  childNodes: Node[],
 ) => {
-  const children = flatenChildren(childNodes)
-
-  generateAndApplyReMounter(parentElement, children)
-
-  parentElement.replaceChildren(...children)
+  generateAndApplyReMounter(parentElement, childNodes)
+  parentElement.replaceChildren(...childNodes)
 }
 
 export const appendChildren = (
   parentElement: Element | DocumentFragment,
-  childNodes: unknown[],
+  childNodes: Node[],
 ) => {
-  const children = flatenChildren(childNodes)
-  generateAndApplyReMounter(parentElement, children)
-  parentElement.append(...children)
+  generateAndApplyReMounter(parentElement, childNodes)
+  parentElement.append(...childNodes)
 }
