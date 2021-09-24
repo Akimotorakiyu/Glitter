@@ -1,3 +1,4 @@
+import { TodoApp } from './todoApp/todoList'
 export const Body = () => {
   return (
     <div class=" mx-4">
@@ -9,9 +10,12 @@ export const Body = () => {
           for <strong class="font-semibold">building UI</strong> on the web.
         </h2>
         <div class="text-center">
-          <button class="text-lg my-8 animate-pulse hover:(bg-green-600) shadow-lg rounded-full bg-green-500  px-4 py-2 text-white">
+          <button class="text-lg my-8 animate-pulse transition-colors duration-300 ease hover:(bg-green-600) shadow-lg rounded-full bg-green-500  px-4 py-2 text-white">
             Get Started
           </button>
+        </div>
+        <div class="flex justify-center">
+          <TodoApp></TodoApp>
         </div>
       </div>
     </div>
