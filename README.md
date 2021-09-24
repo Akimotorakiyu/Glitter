@@ -1,4 +1,4 @@
-# SHRIO (WIP)
+# Shrio (WIP)
 
 ✨Shrio is a vanilla front-end framework, for building UI on the web.
 
@@ -9,14 +9,3 @@
 - [x] dynamic list support
 - [x] common fragment support
 - [x] root fragment support
-
-## dev
-
-```
-# install dep
-yarn
-# serve
-yarn serve
-```
-
-## LICENSE
