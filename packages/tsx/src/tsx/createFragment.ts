@@ -1,4 +1,8 @@
-import { replaceChildren, ShrioFragment } from '@shiro/create-element'
+import {
+  replaceChildren,
+  ShrioFragment,
+  flatenChildren,
+} from '@shiro/create-element'
 import { getCurrentVFragmentNode } from './context'
 export const createFragment = (props: null, children: JSX.Element[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
@@ -6,7 +10,7 @@ export const createFragment = (props: null, children: JSX.Element[]) => {
     vFragmentNode.node = new ShrioFragment()
   }
 
-  const shrioFragmentChildrenNodes = children.filter(
+  const shrioFragmentChildrenNodes = flatenChildren(children).filter(
     (child) => child instanceof ShrioFragment,
   ) as ShrioFragment[]
 
