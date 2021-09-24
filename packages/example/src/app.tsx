@@ -110,7 +110,7 @@ export function Welcome(...args: unknown[]) {
   const updater = useUpdater()
 
   return (
-    <div>
+    <>
       <h2>hello world</h2>
       <button
         onclick={() => {
@@ -131,6 +131,6 @@ export function Welcome(...args: unknown[]) {
           }),
         )}
       <p>----------</p>
-    </div>
+    </>
   )
 }

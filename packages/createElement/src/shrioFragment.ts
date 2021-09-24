@@ -1,4 +1,4 @@
 export class ShrioFragment extends DocumentFragment {
-  reMount: (() => void) | null = null
+  reMount: ((shrioFragment?: ShrioFragment) => void) | null = null
   reloadChildren: (() => DocumentFragment) | null = null
 }

@@ -20,12 +20,14 @@ const generateAndApplyReMounter = (
     (child) => child instanceof ShrioFragment,
   ) as ShrioFragment[]
 
-  const reMount = () => {
+  const reMount = (shrioFragment?: ShrioFragment) => {
     if (parentElement instanceof ShrioFragment) {
       parentElement.reMount!()
     } else {
       shrioFragmentNodes.forEach((fragment) => {
-        fragment.reloadChildren!()
+        if (fragment !== shrioFragment) {
+          fragment.reloadChildren!()
+        }
       })
       parentElement.replaceChildren(...children)
     }

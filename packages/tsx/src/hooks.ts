@@ -5,7 +5,7 @@ export function useUpdater() {
   return () => {
     const res = ctx.updater?.()
     if (res instanceof ShrioFragment) {
-      res.reMount!()
+      res.reMount!(res)
     }
   }
 }

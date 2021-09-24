@@ -1,4 +1,4 @@
-import { appendChildren, ShrioFragment } from '@shiro/create-element'
+import { replaceChildren, ShrioFragment } from '@shiro/create-element'
 import { getCurrentVFragmentNode } from './context'
 export const createFragment = (props: null, children: JSX.Element[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
@@ -14,11 +14,11 @@ export const createFragment = (props: null, children: JSX.Element[]) => {
     shrioFragmentChildrenNodes.forEach((fragment) => {
       fragment.reloadChildren!()
     })
-    appendChildren(vFragmentNode.node!, children)
+    replaceChildren(vFragmentNode.node!, children)
     return vFragmentNode.node!
   }
 
-  appendChildren(vFragmentNode.node, children)
+  replaceChildren(vFragmentNode.node, children)
 
   return vFragmentNode.node
 }
