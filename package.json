@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "serve": "yarn workspace example serve"
+    "serve": "yarn workspace example serve",
+    "build": "yarn workspace example build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
