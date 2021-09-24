@@ -34,10 +34,12 @@ const generateAndApplyReMounter = (
   shrioFragmentNodes.forEach((fragment) => {
     fragment.reMount = reMount
   })
+
+  return shrioFragmentNodes
 }
 
 export const replaceChildren = (
-  parentElement: Element,
+  parentElement: Element | DocumentFragment,
   childNodes: unknown[],
 ) => {
   const children = flatenChildren(childNodes)

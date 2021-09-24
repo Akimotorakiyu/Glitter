@@ -1,5 +1,5 @@
-import '@shrio/tsx'
+import { mount } from '@shrio/tsx'
 import { Welcome } from './app'
 
 const root = document.getElementById('app')
-root?.appendChild((<Welcome></Welcome>) as Node)
+mount(root!, <Welcome></Welcome>)
