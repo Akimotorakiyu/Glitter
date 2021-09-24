@@ -2,7 +2,7 @@
   "name": "shrio",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Akimotorakiyu/delta-editor.git",
+  "repository": "https://github.com/Akimotorakiyu/shrio.git",
   "author": "湫曗 <autumnsilverleaves@gmail.com>",
   "license": "MIT",
   "private": true,
