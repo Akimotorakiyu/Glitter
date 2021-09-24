@@ -21,7 +21,9 @@ const Clock = () => {
     render() {
       return (
         <>
-          <h1>你好世界,无 diff 更新实现</h1>
+          <h1>
+            你好世界,<span style={{ color: 'green' }}>无 diff </span>更新实现
+          </h1>
           <h2>{Date()}</h2>
           <h3>random state: {randomState} gen by Math.random</h3>
           <button
