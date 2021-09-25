@@ -54,8 +54,9 @@ const TodoItemAdd = ({
   return (
     <div class="flex items-center">
       <input
-        class="outline-none text-gray-700 w-full overflow-ellipsis"
+        class="outline-none text-gray-700 w-full"
         placeholder="Add a task"
+        maxLength="16"
         onkeydown={(e: KeyboardEvent) => {
           if (e.key.toLowerCase() === 'enter') {
             const inputNode = e.currentTarget as HTMLInputElement
