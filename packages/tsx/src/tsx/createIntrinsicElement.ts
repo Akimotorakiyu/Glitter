@@ -19,8 +19,10 @@ export const createIntrinsicElement = <P extends {}>(
   if (shouldShow) {
     if (!vDomNode.node) {
       vDomNode.node = createElement(tag, props as any, childNodes)
+      vDomNode.props = props
     } else {
-      setAttrs(vDomNode.node as HTMLElement, props)
+      setAttrs(vDomNode.node as HTMLElement, props, vDomNode.props)
+      vDomNode.props = props
       replaceChildren(vDomNode.node, childNodes)
     }
 

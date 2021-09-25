@@ -1,9 +1,21 @@
 import { convertObjectToAttrStringArray, kebabCase } from './tool'
 import { TClassType } from './type'
 
-export const setAttrs = (element: HTMLElement, attrs: object) => {
-  if (attrs) {
-    Object.entries(attrs).forEach(([key, value]) => {
+export const setAttrs = (
+  element: HTMLElement,
+  newProps: Record<string, any>,
+  oldProps: Record<string, any>,
+) => {
+  const newPropsKeys = Object.keys(newProps)
+
+  Object.keys(oldProps).forEach((key) => {
+    if (!newPropsKeys.includes(key)) {
+      element.removeAttribute(key)
+    }
+  })
+
+  Object.entries(newProps).forEach(([key, value]) => {
+    if (oldProps[key] !== value) {
       if (key.startsWith('on')) {
         if (typeof value === 'function') {
           Reflect.set(element, key, value)
@@ -43,6 +55,6 @@ export const setAttrs = (element: HTMLElement, attrs: object) => {
         // 设置普通属性
         element.setAttribute(key, realValue)
       }
-    })
-  }
+    }
+  })
 }

@@ -6,19 +6,19 @@ export const isElementClassInstance = (
 }
 
 export const updateProps = (
-  props: Record<string, any>,
+  targetProps: Record<string, any>,
   newProps: Record<string, any>,
 ) => {
   const keys = Object.keys(newProps)
-  Object.keys(props).forEach((key) => {
+  Object.keys(targetProps).forEach((key) => {
     if (!keys.includes(key)) {
-      delete props[key]
+      delete targetProps[key]
     }
   })
 
   Object.entries(newProps).forEach(([key, value]) => {
-    if (props[key] !== value) {
-      props[key] = value
+    if (targetProps[key] !== value) {
+      targetProps[key] = value
     }
   })
 }

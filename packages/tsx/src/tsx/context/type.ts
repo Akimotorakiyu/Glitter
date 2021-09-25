@@ -23,6 +23,7 @@ export interface Context {
 
 export interface VDomNode {
   node: Element | null
+  props: Record<string, unknown>
 }
 export interface VComNode {
   node: Context | null

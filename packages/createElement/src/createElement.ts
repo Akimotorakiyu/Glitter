@@ -9,7 +9,7 @@ export function createElement<K extends keyof TElementTagNameMap>(
 ): TElementTagNameMap[K] {
   const element = document.createElement(tag)
 
-  setAttrs(element, attrs)
+  setAttrs(element, attrs, {})
 
   replaceChildren(element, childNodes)
 
