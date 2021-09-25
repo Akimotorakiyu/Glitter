@@ -19,8 +19,6 @@ export interface Context {
     depth: number
     markSet: Set<string>
   }
-
-  children: JSX.Element[]
 }
 
 export interface VDomNode {

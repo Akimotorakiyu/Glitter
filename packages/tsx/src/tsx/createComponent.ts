@@ -42,11 +42,6 @@ export const createComponent = <P extends {}>(
       return ele
     } else {
       updateProps(vComNode.node.props, props)
-      vComNode.node.children.length = 0
-
-      childNodes.forEach((child) => {
-        vComNode.node!.children.push(child)
-      })
 
       const ele = vComNode.node.updater()
 
