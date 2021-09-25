@@ -12,25 +12,37 @@ interface ITodoItem {
 const TodoItemView = ({
   todoItem,
   completeTask,
+  deleteTask,
 }: {
   todoItem: ITodoItem
   completeTask: (todoItem: ITodoItem) => void
+  deleteTask: (todoItem: ITodoItem) => void
 }) => {
   return (
-    <div class="flex items-center">
+    <div class="flex items-center justify-between hover:bg-gray-100 px-4 rounded transition-colors duration-300 ease">
+      <div class="flex items-center ">
+        <button
+          class={[
+            `w-4 h-4 rounded-full outline-none border-none hover:shadow`,
+            {
+              'bg-green-200': todoItem.status === 'Completed',
+              'bg-blue-200': todoItem.status === 'Pending',
+            },
+          ]}
+          onclick={() => {
+            completeTask(todoItem)
+          }}
+        ></button>
+        <span class="ml-4 text-gray-700">{todoItem.desc}</span>
+      </div>
       <button
         class={[
-          `w-4 h-4 rounded-full bg-gray-200 outline-none border-none`,
-          {
-            'bg-green-200': todoItem.status === 'Completed',
-            'bg-blue-200': todoItem.status === 'Pending',
-          },
+          `w-4 h-4 rounded-full bg-red-200 outline-none border-none hover:shadow`,
         ]}
         onclick={() => {
-          completeTask(todoItem)
+          deleteTask(todoItem)
         }}
       ></button>
-      <span class="ml-4">{todoItem.desc}</span>
     </div>
   )
 }
@@ -42,7 +54,7 @@ const TodoItemAdd = ({
   return (
     <div class="flex items-center">
       <input
-        class="outline-none "
+        class="outline-none text-gray-700 w-full overflow-ellipsis"
         placeholder="Add a task"
         onkeydown={(e: KeyboardEvent) => {
           if (e.key.toLowerCase() === 'enter') {
@@ -70,14 +82,16 @@ const Kanban = ({
   status,
   todoList,
   completeTask,
+  deleteTask,
 }: {
   status: ITodoItemStatus
   todoList: ITodoItem[]
   completeTask: (todoItem: ITodoItem) => void
+  deleteTask: (todoItem: ITodoItem) => void
 }) => {
   return (
     <div class="my-2">
-      <h2 class="text-gray-600">{status}</h2>
+      <h2 class="text-gray-500 select-none">{status}</h2>
       <div class="mx-2">
         {todoList
           .filter((item) => item.status === status)
@@ -86,6 +100,7 @@ const Kanban = ({
               setKey(item.id)
               return (
                 <TodoItemView
+                  deleteTask={deleteTask}
                   completeTask={completeTask}
                   todoItem={item}
                 ></TodoItemView>
@@ -100,19 +115,19 @@ const Kanban = ({
 export const TodoApp = ({}: {}) => {
   const todoList: ITodoItem[] = [
     {
-      desc: '吃饭',
+      desc: 'coding',
       id: '1',
       status: 'Pending',
       importat: true,
     },
     {
-      desc: '睡觉',
+      desc: 'sleeping',
       id: '2',
       status: 'Completed',
       importat: true,
     },
     {
-      desc: '喝水',
+      desc: 'learning',
       id: '3',
       status: 'Pending',
       importat: true,
@@ -131,20 +146,28 @@ export const TodoApp = ({}: {}) => {
     todoItem.status = todoItem.status === 'Completed' ? 'Pending' : 'Completed'
     updater()
   }
+  const deleteTask = (todoItem: ITodoItem) => {
+    todoItem.status = todoItem.status === 'Completed' ? 'Pending' : 'Completed'
+    const index = todoList.findIndex((e) => e === todoItem)
+    todoList.splice(index, 1)
+    updater()
+  }
 
   return {
     render() {
       return (
         <>
           <div class=" w-80 shadow-lg p-6 rounded-lg">
-            <h1 class="my-4">A simple todo list.</h1>
+            <h1 class="my-4 select-none">A simple todo list.</h1>
             <div class="h-50 overflow-y-auto shadow-inner px-4 py-2 rounded-md">
               <Kanban
                 status="Pending"
+                deleteTask={deleteTask}
                 todoList={todoList}
                 completeTask={completeTask}
               ></Kanban>
               <Kanban
+                deleteTask={deleteTask}
                 status="Completed"
                 todoList={todoList}
                 completeTask={completeTask}
