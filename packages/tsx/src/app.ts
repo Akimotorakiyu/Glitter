@@ -1,5 +1,5 @@
-import { getNode, replaceChildren } from '@shiro/create-element'
+import { getNode, reRankChildren } from '@shiro/create-element'
 
 export const mount = (root: HTMLElement, child: JSX.Element) => {
-  replaceChildren(root, [getNode(child)])
+  reRankChildren(root, [getNode(child)])
 }
