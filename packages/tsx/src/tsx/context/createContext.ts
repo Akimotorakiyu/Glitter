@@ -42,7 +42,6 @@ export const createContextWithUpdater = <P>(
       depth: 0,
       markSet: new Set(),
     },
-    children: [],
   }
   return comCtx
 }

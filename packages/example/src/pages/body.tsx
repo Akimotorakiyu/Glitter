@@ -5,7 +5,7 @@ export const Body = () => {
       <div class=" py-16">
         <h1 class=" text-center text-5xl font-extrabold my-4">Shrio</h1>
         <h2 class=" text-center text-2xl font-light my-4">
-          A <strong class="font-semibold">morden</strong>{' '}
+          A <strong class="font-semibold">modern</strong>{' '}
           <strong class="font-semibold">vanilla</strong> front-end framework,
           for <strong class="font-semibold">building UI</strong> on the web.
         </h2>
