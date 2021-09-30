@@ -5,9 +5,17 @@ export const Footer = () => {
         <div class="flex justify-center mb-8">
           <img src="/netlify.svg" alt="netlify" />
         </div>
-        <span class="text-gray-600 text-sm">
-          MIT Licensed | Copyright © 2021-2021 湫曗 Contributors
-        </span>
+        <p>
+          <span class="text-gray-600 text-sm">
+            Released under the MIT License
+          </span>
+        </p>
+        <p>
+          <span class="text-gray-600 text-sm">Power by Shrio</span>
+        </p>
+        <p>
+          <span class="text-gray-600 text-sm">Copyright © 2021-2021 湫曗</span>
+        </p>
       </div>
     </div>
   )
