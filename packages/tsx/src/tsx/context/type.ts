@@ -12,7 +12,7 @@ export interface Context {
   props: Record<string, unknown>
   created: boolean
   staticContentNodeInfo: ContentNodeInfo
-
+  childNodes: Node[]
   dynamicContentNodeInfo: {
     map: Map<string, ContentNodeInfo>
     keyStack: string[]

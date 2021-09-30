@@ -2,6 +2,7 @@ import {
   isElementClassInstance,
   shouldShowComponent,
   updateProps,
+  updateChildNodes,
 } from './tool'
 import {
   createComponentContext,
@@ -25,6 +26,7 @@ export const createComponent = <P extends {}>(
         tag,
         props || ({} as any),
       ))
+      context.childNodes = childNodes
       pushContext(context)
 
       const res = tag(props, childNodes, context)
@@ -39,12 +41,12 @@ export const createComponent = <P extends {}>(
           }
       popContext()
       vComNode.node.created = true
+
       return ele
     } else {
       updateProps(vComNode.node.props, props)
-
+      updateChildNodes(vComNode.node.childNodes, childNodes)
       const ele = vComNode.node.updater()
-
       return ele
     }
   } else {

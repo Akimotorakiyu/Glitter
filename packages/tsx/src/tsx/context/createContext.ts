@@ -36,6 +36,7 @@ export const createContextWithUpdater = <P>(
         list: [],
       },
     },
+    childNodes: [],
     dynamicContentNodeInfo: {
       map: new Map<string, ContentNodeInfo>(),
       keyStack: [],

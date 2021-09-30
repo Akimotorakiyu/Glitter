@@ -79,6 +79,22 @@ const TodoItemAdd = ({
   )
 }
 
+const KanbanContainer = (
+  { title }: { title: string },
+  childNodes: JSX.Element[],
+) => {
+  return (
+    <>
+      <div class="my-2">
+        <>
+          <h2 class="text-gray-500 select-none">{title}</h2>
+          <div class="mx-2">{childNodes}</div>
+        </>
+      </div>
+    </>
+  )
+}
+
 const Kanban = ({
   status,
   todoList,
@@ -91,9 +107,8 @@ const Kanban = ({
   deleteTask: (todoItem: ITodoItem) => void
 }) => {
   return (
-    <div class="my-2">
-      <h2 class="text-gray-500 select-none">{status}</h2>
-      <div class="mx-2">
+    <KanbanContainer title={status}>
+      <>
         {todoList
           .filter((item) => item.status === status)
           .map(
@@ -108,8 +123,8 @@ const Kanban = ({
               )
             }),
           )}
-      </div>
-    </div>
+      </>
+    </KanbanContainer>
   )
 }
 

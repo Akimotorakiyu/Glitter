@@ -23,6 +23,16 @@ export const updateProps = (
   })
 }
 
+export const updateChildNodes = (
+  targetChildNodes: Node[],
+  newChildNodes: Node[],
+) => {
+  targetChildNodes.length = 0
+  newChildNodes.forEach((child) => {
+    targetChildNodes.push(child)
+  })
+}
+
 export const shouldShowComponent = <P>(props: P) => {
   return !('if' in props && !Boolean((props as { if?: any })?.if))
 }
