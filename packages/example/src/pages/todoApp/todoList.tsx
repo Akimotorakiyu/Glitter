@@ -1,4 +1,4 @@
-import { dynamic, useUpdater } from '@shrio/tsx'
+import { dynamic, useUpdater, createProviderInjector } from '@shrio/tsx'
 
 type ITodoItemStatus = 'Pending' | 'Completed'
 
@@ -9,6 +9,11 @@ interface ITodoItem {
   importat: boolean
 }
 
+const portal = createProviderInjector<{
+  completeTask: (todoItem: ITodoItem) => void
+  deleteTask: (todoItem: ITodoItem) => void
+}>()
+
 const TodoItemView = ({
   todoItem,
   completeTask,
@@ -18,6 +23,7 @@ const TodoItemView = ({
   completeTask: (todoItem: ITodoItem) => void
   deleteTask: (todoItem: ITodoItem) => void
 }) => {
+  const operation = portal.inject()
   return (
     <div class="flex items-center justify-between hover:bg-gray-100 px-4 rounded transition-colors duration-300 ease">
       <div class="flex items-center ">
@@ -30,7 +36,12 @@ const TodoItemView = ({
             },
           ]}
           onclick={() => {
-            completeTask(todoItem)
+            // they are the same
+            if (Math.random() > 0.5) {
+              completeTask(todoItem)
+            } else {
+              operation.completeTask(todoItem)
+            }
           }}
         ></button>
         <span class="ml-4 text-gray-700">{todoItem.desc}</span>
@@ -40,7 +51,12 @@ const TodoItemView = ({
           `w-4 h-4 rounded-full bg-red-200 outline-none border-none hover:shadow`,
         ]}
         onclick={() => {
-          deleteTask(todoItem)
+          // they are the same
+          if (Math.random() > 0.5) {
+            deleteTask(todoItem)
+          } else {
+            operation.deleteTask(todoItem)
+          }
         }}
       ></button>
     </div>
@@ -168,6 +184,11 @@ export const TodoApp = ({}: {}) => {
     todoList.splice(index, 1)
     updater()
   }
+
+  portal.provide({
+    completeTask,
+    deleteTask,
+  })
 
   return {
     render() {
