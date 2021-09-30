@@ -15,3 +15,4 @@
 ### for component
 
 - composition api
+- provide-inject
