@@ -4,15 +4,15 @@
 
 [Netlify](https://clever-rosalind-9cee08.netlify.app/) | [国内网站](https://shrio-8gz68v9mba15d6fa-1259330986.ap-shanghai.app.tcloudbase.com/)
 
-## features
+## Features
 
-### for vanilla
+### Vanilla
 
-- if condition
+- `if` condition
 - dynamic list
 - fragment
 
-### for component
+### Composition-Api
 
-- composition api
+- useUpdater
 - provide-inject
