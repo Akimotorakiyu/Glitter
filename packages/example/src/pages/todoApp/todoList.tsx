@@ -144,7 +144,7 @@ const Kanban = ({
   )
 }
 
-export const TodoApp = ({}: { if?: boolean }) => {
+export const TodoApp = ({ title }: { if?: boolean; title?: string }) => {
   const todoList: ITodoItem[] = [
     {
       desc: 'coding',
@@ -199,7 +199,7 @@ export const TodoApp = ({}: { if?: boolean }) => {
       return (
         <>
           <div class=" w-80 shadow-lg p-6 rounded-lg">
-            <h1 class="my-4 select-none">A simple todo list.</h1>
+            <h1 class="my-4 select-none">{title} A simple todo list.</h1>
             <div class="h-50 overflow-y-auto shadow-inner px-4 py-2 rounded-md">
               <Kanban
                 status="Pending"

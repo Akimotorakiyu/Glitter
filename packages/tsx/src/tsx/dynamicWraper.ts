@@ -44,14 +44,16 @@ export const dynamic = <T>(
   }
 }
 
-export const Component = <P>(
-  props: { is: JsxTagType<P> } & P,
-  ...children: JSX.Element[]
+export const Component = <P extends Record<string, unknown>>(
+  props: { is: JsxTagType<P>; key?: string } & P,
+  children: JSX.Element[],
 ) => {
   const parentCtx = getCurrentContext()
   parentCtx.dynamicContentNodeInfo.depth++
-  setKey(props.is as string)
-  const ele = createElement(props.is, props, ...children)
+  setKey(props.key || (props.is as string))
+  const { is, key, ...p } = props
+  console.log('Component', is, children)
+  const ele = createElement(is, p as any, ...children)
 
   parentCtx.dynamicContentNodeInfo.keyStack.pop()
   parentCtx.dynamicContentNodeInfo.depth--

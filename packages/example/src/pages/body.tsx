@@ -11,7 +11,10 @@ export const Body = () => {
             <h2 class=" text-center text-2xl font-light my-4">
               A <strong class="font-semibold">modern</strong>{' '}
               <strong class="font-semibold">vanilla</strong> front-end
-              framework, for <strong class="font-semibold">building UI</strong>{' '}
+              framework, for{' '}
+              <Component is="strong" class="font-semibold">
+                building UI
+              </Component>{' '}
               on the web.
             </h2>
             <div class="text-center">
@@ -23,9 +26,8 @@ export const Body = () => {
               </button>
             </div>
             <div class="flex justify-center">
-              <TodoApp></TodoApp>
+              <Component is={TodoApp} if={true} title="☃️"></Component>
             </div>
-            <Component is={TodoApp}></Component>
           </div>
         </div>
       )

@@ -3,7 +3,7 @@ import { createIntrinsicElement } from './createIntrinsicElement'
 import { createComponent } from './createComponent'
 import { flatenChildren } from '@shiro/create-element'
 
-export const createElement = <P extends {}>(
+export const createElement = <P extends Record<string, unknown>>(
   tag: JsxTagType<P>,
   props: P,
   ...children: JSX.Element[]
