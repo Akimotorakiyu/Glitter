@@ -1,6 +1,7 @@
 import { getCurrentContext } from './context'
+import { createElement } from './createElement'
 
-const setKey = (key: string) => {
+export const setKey = (key: string) => {
   const parentCtx = getCurrentContext()
   parentCtx.dynamicContentNodeInfo.keyStack.push(key)
   parentCtx.dynamicContentNodeInfo.markSet.delete(key)
@@ -41,4 +42,18 @@ export const dynamic = <T>(
     parentCtx.dynamicContentNodeInfo.depth--
     return ele
   }
+}
+
+export const Component = <P>(
+  props: { is: JsxTagType<P> } & P,
+  ...children: JSX.Element[]
+) => {
+  const parentCtx = getCurrentContext()
+  parentCtx.dynamicContentNodeInfo.depth++
+  setKey(props.is as string)
+  const ele = createElement(props.is, props, ...children)
+
+  parentCtx.dynamicContentNodeInfo.keyStack.pop()
+  parentCtx.dynamicContentNodeInfo.depth--
+  return ele
 }

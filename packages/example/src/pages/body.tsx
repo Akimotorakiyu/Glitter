@@ -1,4 +1,4 @@
-import { createRef } from '@shrio/tsx'
+import { createRef, Component } from '@shrio/tsx'
 import { TodoApp } from './todoApp/todoList'
 export const Body = () => {
   const buttonRef = createRef<HTMLButtonElement>()
@@ -25,6 +25,7 @@ export const Body = () => {
             <div class="flex justify-center">
               <TodoApp></TodoApp>
             </div>
+            <Component is={TodoApp}></Component>
           </div>
         </div>
       )
