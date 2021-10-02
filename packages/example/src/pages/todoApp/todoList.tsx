@@ -144,7 +144,7 @@ const Kanban = ({
   )
 }
 
-export const TodoApp = ({}: {}) => {
+export const TodoApp = ({}: { if?: boolean }) => {
   const todoList: ITodoItem[] = [
     {
       desc: 'coding',
@@ -191,6 +191,10 @@ export const TodoApp = ({}: {}) => {
   })
 
   return {
+    greeting() {
+      console.log('hello world')
+      updater()
+    },
     render() {
       return (
         <>

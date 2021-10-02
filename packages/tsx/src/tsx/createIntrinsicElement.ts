@@ -7,7 +7,7 @@ import {
 import { getCurrentVDomNode } from './context'
 import { shouldShowComponent } from './tool'
 
-export const createIntrinsicElement = <P extends {}>(
+export const createIntrinsicElement = <P extends Record<string, any>>(
   tag: keyof HTMLElementTagNameMap,
   props: P,
   childNodes: Node[],
@@ -26,11 +26,18 @@ export const createIntrinsicElement = <P extends {}>(
       reRankChildren(vDomNode.node, childNodes)
     }
 
+    if ('ref' in props) {
+      props.ref.current = vDomNode.node
+    }
+
     return vDomNode.node
   } else {
     if (vDomNode.node) {
       ;(vDomNode.node as ChildNode).remove()
       vDomNode.node = null
+      if ('ref' in props) {
+        props.ref.current = null
+      }
     }
     return emptyNode
   }
