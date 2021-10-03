@@ -1,7 +1,9 @@
-import { createRef, Component } from '@shrio/tsx'
+import { createRef, Component, useUpdater } from '@shrio/tsx'
 import { TodoApp } from './todoApp/todoList'
 export const Body = () => {
+  const updater = useUpdater()
   const buttonRef = createRef<HTMLButtonElement>()
+  let show = true
   return {
     render() {
       return (
@@ -20,13 +22,22 @@ export const Body = () => {
             <div class="text-center">
               <button
                 ref={buttonRef}
+                onclick={() => {
+                  show = !show
+                  updater()
+                }}
                 class="text-lg my-8 animate-pulse transition-colors duration-300 ease hover:(bg-green-600) shadow-lg rounded-full bg-green-500  px-4 py-2 text-white"
               >
                 Get Started
               </button>
             </div>
-            <div class="flex justify-center">
-              <Component is={TodoApp} if={true} title="☃️"></Component>
+            <div class="flex  flex-col items-center">
+              <Component
+                is={TodoApp}
+                if={show}
+                title="☃️"
+                keepAlive={true}
+              ></Component>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
 
     return vDomNode.node
   } else {
-    if (vDomNode.node) {
+    if (!props?.keepAlive && vDomNode.node) {
       ;(vDomNode.node as ChildNode).remove()
       vDomNode.node = null
       if ('ref' in props) {

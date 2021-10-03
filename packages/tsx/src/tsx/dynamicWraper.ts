@@ -45,7 +45,7 @@ export const dynamic = <T>(
 }
 
 export const Component = <P extends Record<string, unknown>>(
-  props: { is: JsxTagType<P>; key?: string } & P,
+  props: { is: JsxTagType<P>; key?: string; keepAlive?: boolean } & P,
   children: JSX.Element[],
 ) => {
   const parentCtx = getCurrentContext()

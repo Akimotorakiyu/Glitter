@@ -12,7 +12,7 @@ import {
 } from './context'
 import { emptyNode } from '@shiro/create-element'
 
-export const createComponent = <P extends {}>(
+export const createComponent = <P extends Record<string, any>>(
   tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
   props: P,
   childNodes: Node[],
@@ -50,7 +50,9 @@ export const createComponent = <P extends {}>(
       return ele
     }
   } else {
-    vComNode.node = null
+    if (!props?.keepAlive) {
+      vComNode.node = null
+    }
     return emptyNode
   }
 }
