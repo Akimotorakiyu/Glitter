@@ -52,7 +52,6 @@ export const Component = <P extends Record<string, unknown>>(
   parentCtx.dynamicContentNodeInfo.depth++
   setKey(props.key || (props.is as string))
   const { is, key, ...p } = props
-  console.log('Component', is, children)
   const ele = createElement(is, p as any, ...children)
 
   parentCtx.dynamicContentNodeInfo.keyStack.pop()
