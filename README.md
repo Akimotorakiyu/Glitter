@@ -11,9 +11,10 @@
 ### Component
 
 - fragment
-- `if` condition
 - dynamic list
 - dynamic component
+- if condition
+- keep alive
 
 ### Composition-Api
 
