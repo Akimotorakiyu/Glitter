@@ -8,11 +8,12 @@
 
 ## Features
 
-### Vanilla
+### Component
 
+- fragment
 - `if` condition
 - dynamic list
-- fragment
+- dynamic component
 
 ### Composition-Api
 
