@@ -1,4 +1,4 @@
-import { createFragment } from './createFragment'
+import { Fragment } from './fragment'
 import { createIntrinsicElement } from './createIntrinsicElement'
 import { createComponent } from './createComponent'
 import { flatenChildren } from '@shiro/create-element'
@@ -11,8 +11,8 @@ export const createElement = <P extends Record<string, unknown>>(
   const childnodes = flatenChildren(children)
 
   if (typeof tag === 'function') {
-    if ((tag as unknown) === createFragment) {
-      return createFragment(null, childnodes)
+    if ((tag as unknown) === Fragment) {
+      return Fragment(null, childnodes)
     } else {
       return createComponent(tag, props ?? {}, childnodes)
     }

@@ -1,6 +1,6 @@
 import { reRankChildren, ShrioFragment } from '@shiro/create-element'
 import { getCurrentVFragmentNode } from './context'
-export const createFragment = (props: null, childNodes: Node[]) => {
+export const Fragment = (props: null, childNodes: Node[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
   if (!vFragmentNode.node) {
     vFragmentNode.node = new ShrioFragment()

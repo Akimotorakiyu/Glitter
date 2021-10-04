@@ -1,10 +1,10 @@
 import { createElement } from './createElement'
-import { createFragment } from './createFragment'
+import { Fragment } from './fragment'
 export * from './createElement'
-export * from './createFragment'
+export * from './fragment'
 export const htsx = <HTSX>{
-  createElement: createElement,
-  Fragment: createFragment,
+  createElement,
+  Fragment,
 }
 
 Reflect.set(window, 'htsx', htsx)
