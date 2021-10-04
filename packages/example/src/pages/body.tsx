@@ -3,6 +3,8 @@ import { TodoApp } from './todoApp/todoList'
 export const Body = () => {
   const updater = useUpdater()
   const buttonRef = createRef<HTMLButtonElement>()
+  const todoAppRef = createRef(TodoApp)
+
   let show = true
   return {
     render() {
@@ -37,6 +39,7 @@ export const Body = () => {
                 if={show}
                 title="☃️"
                 keepAlive={true}
+                ref={todoAppRef}
               ></Component>
             </div>
           </div>

@@ -1,4 +1,9 @@
-import { dynamic, useUpdater, createProviderInjector } from '@shrio/tsx'
+import {
+  ShrioRef,
+  dynamic,
+  useUpdater,
+  createProviderInjector,
+} from '@shrio/tsx'
 
 type ITodoItemStatus = 'Pending' | 'Completed'
 
@@ -144,7 +149,13 @@ const Kanban = ({
   )
 }
 
-export const TodoApp = ({ title }: { if?: boolean; title?: string }) => {
+export const TodoApp = ({
+  title,
+}: {
+  if?: boolean
+  title?: string
+  ref?: ShrioRef<any>
+}) => {
   const todoList: ITodoItem[] = [
     {
       desc: 'coding',
@@ -193,7 +204,6 @@ export const TodoApp = ({ title }: { if?: boolean; title?: string }) => {
   return {
     greeting() {
       console.log('hello world')
-      updater()
     },
     render() {
       return (

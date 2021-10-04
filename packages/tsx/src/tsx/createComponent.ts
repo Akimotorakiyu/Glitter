@@ -42,6 +42,10 @@ export const createComponent = <P extends Record<string, any>>(
       popContext()
       vComNode.node.created = true
 
+      if (isElementClassInstanceRes && 'ref' in props) {
+        props.ref.current = res
+      }
+
       return ele
     } else {
       updateProps(vComNode.node.props, props)
@@ -52,6 +56,9 @@ export const createComponent = <P extends Record<string, any>>(
   } else {
     if (!props?.keepAlive) {
       vComNode.node = null
+      if ('ref' in props) {
+        props.ref.current = null
+      }
     }
     return emptyNode
   }

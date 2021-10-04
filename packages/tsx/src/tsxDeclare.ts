@@ -12,7 +12,7 @@ declare type JsxElementTagNameMap = {
       class: TClassType | TClassType[]
       style: Partial<TElementTagNameMap[tag]['style']>
       if: any
-      ref: { current?: TElementTagNameMap[tag] }
+      ref: { current: null | TElementTagNameMap[tag] }
     }
   >
 }
