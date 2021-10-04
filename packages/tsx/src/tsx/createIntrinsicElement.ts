@@ -1,7 +1,7 @@
 import {
   createElement,
   setAttrs,
-  reRankChildren,
+  arrangeChildren,
   emptyNode,
 } from '@shiro/create-element'
 import { getCurrentVDomNode } from './context'
@@ -23,7 +23,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
     } else {
       setAttrs(vDomNode.node as HTMLElement, props, vDomNode.props)
       vDomNode.props = props
-      reRankChildren(vDomNode.node, childNodes)
+      arrangeChildren(vDomNode.node, childNodes)
     }
 
     if ('ref' in props) {

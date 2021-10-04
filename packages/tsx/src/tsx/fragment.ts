@@ -1,4 +1,4 @@
-import { reRankChildren, ShrioFragment } from '@shiro/create-element'
+import { arrangeChildren, ShrioFragment } from '@shiro/create-element'
 import { getCurrentVFragmentNode } from './context'
 export const Fragment = (props: null, childNodes: Node[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
@@ -14,11 +14,11 @@ export const Fragment = (props: null, childNodes: Node[]) => {
     shrioFragmentChildrenNodes.forEach((fragment) => {
       fragment.reloadChildren!()
     })
-    reRankChildren(vFragmentNode.node!, childNodes)
+    arrangeChildren(vFragmentNode.node!, childNodes)
     return vFragmentNode.node!
   }
 
-  reRankChildren(vFragmentNode.node, childNodes)
+  arrangeChildren(vFragmentNode.node, childNodes)
 
   return vFragmentNode.node
 }

@@ -8,7 +8,7 @@ export const flatenChildren = (children: unknown[]) => {
   return childNodes
 }
 
-export const reRankChildren = (
+export const arrangeChildren = (
   parentElement: Element | DocumentFragment,
   childNodes: Node[],
 ) => {

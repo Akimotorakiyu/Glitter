@@ -1,6 +1,6 @@
 import { setAttrs } from './setAttrs'
 import { TChildren, TElementTagNameMap } from './type'
-import { reRankChildren } from './children'
+import { arrangeChildren } from './children'
 
 export function createElement<K extends keyof TElementTagNameMap>(
   tag: K,
@@ -11,7 +11,7 @@ export function createElement<K extends keyof TElementTagNameMap>(
 
   setAttrs(element, attrs, {})
 
-  reRankChildren(element, childNodes)
+  arrangeChildren(element, childNodes)
 
   return element as unknown as TElementTagNameMap[K]
 }
