@@ -1,5 +1,4 @@
-import { getCurrentContext } from './tsx/context/content'
-import { ShrioFragment } from '@shiro/create-element'
+import { getCurrentContext, ShrioFragment } from '@shiro/create-element'
 export function useUpdater() {
   const ctx = getCurrentContext()
   return () => {

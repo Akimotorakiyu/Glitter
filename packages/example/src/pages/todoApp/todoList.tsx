@@ -3,7 +3,7 @@ import {
   dynamic,
   useUpdater,
   createProviderInjector,
-} from '@shrio/tsx'
+} from '@shrio/shrio'
 
 type ITodoItemStatus = 'Pending' | 'Completed'
 

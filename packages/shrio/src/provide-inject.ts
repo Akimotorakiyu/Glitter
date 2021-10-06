@@ -1,4 +1,4 @@
-import { getCurrentContext } from './tsx/context/content'
+import { getCurrentContext } from '@shiro/create-element'
 
 export type KeyType = number | symbol | string
 

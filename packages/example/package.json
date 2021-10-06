@@ -12,7 +12,7 @@
     "vite-plugin-windicss": "^1.4.5"
   },
   "dependencies": {
-    "@shrio/tsx": "^1.0.0",
+    "@shrio/shrio": "^1.0.0",
     "windicss": "^3.1.7"
   }
 }

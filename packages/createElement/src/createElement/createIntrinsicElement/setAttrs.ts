@@ -1,4 +1,4 @@
-import { convertObjectToAttrStringArray, kebabCase } from './tool'
+import { convertObjectToAttrStringArray, kebabCase } from './util'
 import { TClassType } from './type'
 
 export const setAttrs = (

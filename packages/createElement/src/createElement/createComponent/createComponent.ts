@@ -1,22 +1,24 @@
 import {
-  isElementClassInstance,
+  isElementStructInstance,
   shouldShowComponent,
   updateProps,
   updateChildNodes,
-} from './tool'
+} from '../createIntrinsicElement/tool'
+import { getNode } from '../createIntrinsicElement/util'
 import {
   createComponentContext,
   getCurrentVComNode,
   popContext,
   pushContext,
-} from './context'
-import { emptyNode } from '@shiro/create-element'
+} from './componentContext'
+import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
+import { emptyNode } from './emptyNode'
 
 export const createComponent = <P extends Record<string, any>>(
-  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
+  tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
   childNodes: Node[],
-): JSX.Element => {
+): Node => {
   const shouldShow = shouldShowComponent(props)
   const vComNode = getCurrentVComNode()
 
@@ -30,14 +32,14 @@ export const createComponent = <P extends Record<string, any>>(
       pushContext(context)
 
       const res = tag(props, childNodes, context)
-      const isElementClassInstanceRes = isElementClassInstance(res)
-      const ele = isElementClassInstanceRes ? res.render() : res
+      const isElementClassInstanceRes = isElementStructInstance(res)
+      const ele = getNode(isElementClassInstanceRes ? res.render() : res)
       context.render = isElementClassInstanceRes
         ? () => {
-            return res.render()
+            return getNode(res.render())
           }
         : () => {
-            return tag(props, childNodes, context)
+            return getNode(tag(props, childNodes, context))
           }
       popContext()
       vComNode.node.created = true

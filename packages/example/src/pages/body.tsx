@@ -1,4 +1,4 @@
-import { createRef, Component, useUpdater } from '@shrio/tsx'
+import { createRef, Component, useUpdater } from '@shrio/shrio'
 import { TodoApp } from './todoApp/todoList'
 export const Body = () => {
   const updater = useUpdater()

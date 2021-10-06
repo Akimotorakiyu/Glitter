@@ -1,8 +1,13 @@
 import { commonUpdater } from './commonUpdater'
-import { ContentNodeInfo, Context } from './type'
+import {
+  ContentNodeInfo,
+  Context,
+  IFactoryComponent,
+  IFunctionComponent,
+} from './type'
 
-export const createContextWithUpdater = <P>(
-  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
+export const createContextWithUpdater = <P extends Record<string, unknown>>(
+  tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
   lastContext: Context | null,
   contextStack: Context[],

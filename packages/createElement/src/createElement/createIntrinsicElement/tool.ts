@@ -1,6 +1,10 @@
-export const isElementClassInstance = (
-  com: JSX.Element,
-): com is JSX.ElementClass => {
+import {
+  IElementStruct,
+  TElementValue,
+} from '../createComponent/componentContext'
+export const isElementStructInstance = (
+  com: TElementValue,
+): com is IElementStruct => {
   const _ = com as any
   return _.render ? true : false
 }

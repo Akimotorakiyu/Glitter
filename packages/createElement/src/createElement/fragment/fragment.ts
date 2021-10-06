@@ -1,5 +1,6 @@
-import { arrangeChildren, ShrioFragment } from '@shiro/create-element'
-import { getCurrentVFragmentNode } from './context'
+import { arrangeChildren } from '../arrangeChildren'
+import { getCurrentVFragmentNode } from '../createComponent/componentContext'
+import { ShrioFragment } from './shrioFragment/shrioFragment'
 export const Fragment = (props: null, childNodes: Node[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
   if (!vFragmentNode.node) {

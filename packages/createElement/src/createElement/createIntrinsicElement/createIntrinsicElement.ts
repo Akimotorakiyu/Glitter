@@ -1,10 +1,8 @@
-import {
-  createElement,
-  setAttrs,
-  arrangeChildren,
-  emptyNode,
-} from '@shiro/create-element'
-import { getCurrentVDomNode } from './context'
+import { arrangeChildren } from '../arrangeChildren'
+import { getCurrentVDomNode } from '../createComponent/componentContext'
+import { emptyNode } from '../createComponent/emptyNode'
+import { createElement } from './createElement'
+import { setAttrs } from './setAttrs'
 import { shouldShowComponent } from './tool'
 
 export const createIntrinsicElement = <P extends Record<string, any>>(

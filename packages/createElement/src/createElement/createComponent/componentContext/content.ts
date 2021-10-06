@@ -1,5 +1,5 @@
 import { createContextWithUpdater } from './createContext'
-import { Context } from './type'
+import { Context, IFactoryComponent, IFunctionComponent } from './type'
 
 const ctxStack: Context[] = []
 
@@ -8,7 +8,7 @@ export function getCurrentContext() {
   if (currentCtx) {
     return currentCtx
   } else {
-    return createContext(() => '<This is fake root!>', null, null)
+    return createContext(() => '<This is root!>', {}, null)
   }
 }
 
@@ -20,8 +20,8 @@ export function popContext() {
   ctxStack.pop()
 }
 
-export function createContext<P>(
-  tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
+export function createContext<P extends Record<string, unknown>>(
+  tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
   lastContext: Context | null,
 ) {

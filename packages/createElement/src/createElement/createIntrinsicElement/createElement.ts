@@ -1,6 +1,6 @@
 import { setAttrs } from './setAttrs'
 import { TChildren, TElementTagNameMap } from './type'
-import { arrangeChildren } from './children'
+import { arrangeChildren } from '../arrangeChildren'
 
 export function createElement<K extends keyof TElementTagNameMap>(
   tag: K,

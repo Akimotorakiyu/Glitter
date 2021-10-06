@@ -1,8 +1,0 @@
-import './tsxDeclare'
-export * from './tsx/tsx'
-export * from './tsx/dynamicWraper'
-export * from './hooks'
-export * from './app'
-export * from './provide-inject'
-export * from './ref'
-export { arrangeChildren, getNode } from '@shiro/create-element'

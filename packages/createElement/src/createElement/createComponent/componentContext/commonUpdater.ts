@@ -1,6 +1,6 @@
 import { Context } from './type'
 
-export const commonUpdater = <P>(contextStack: Context[], comCtx: Context) => {
+export const commonUpdater = (contextStack: Context[], comCtx: Context) => {
   contextStack.push(comCtx)
 
   comCtx.staticContentNodeInfo.domNodeInfo.current = 0
