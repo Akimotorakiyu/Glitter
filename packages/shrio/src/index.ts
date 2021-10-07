@@ -1,8 +1,7 @@
 import './tsxDeclare'
 export * from './tsx'
-export * from './hooks'
-export * from './app'
-export * from './provide-inject'
+export * from './compositionApi/hooks'
+export * from './compositionApi/provide-inject'
 export * from './ref'
 export {
   arrangeChildren,

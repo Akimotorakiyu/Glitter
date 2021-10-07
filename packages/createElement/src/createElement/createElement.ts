@@ -1,13 +1,16 @@
 import { Fragment } from './fragment/fragment'
 import { createIntrinsicElement } from './createIntrinsicElement/createIntrinsicElement'
 import { createComponent } from './createComponent/createComponent'
-import { TCompontentType } from './createComponent/componentContext'
+import {
+  TCompontentType,
+  TElementValue,
+} from './createComponent/componentContext'
 import { flatenChildren } from './flatenChildren'
 
 export const createElement = <P extends Record<string, unknown>>(
   tag: TCompontentType<P> | string,
   props: P,
-  ...children: Node[]
+  ...children: TElementValue[]
 ): Node => {
   const childnodes = flatenChildren(children)
 
