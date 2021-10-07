@@ -8,6 +8,11 @@
 
 ## Features
 
+### Vanilla
+
+- no runtime
+- vanilla element
+
 ### Component
 
 - fragment
