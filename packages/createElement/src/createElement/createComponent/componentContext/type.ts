@@ -1,5 +1,5 @@
 import { ShrioFragment } from '../../fragment/shrioFragment/shrioFragment'
-
+import { TContextHub } from './event/eventTarget'
 export interface IElementStruct {
   render: () => TElementValue
 }
@@ -38,6 +38,7 @@ export interface Context {
     depth: number
     markSet: Set<string>
   }
+  hub: TContextHub
 }
 
 export interface VDomNode {

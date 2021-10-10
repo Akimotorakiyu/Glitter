@@ -48,6 +48,8 @@ export const createComponent = <P extends Record<string, any>>(
         props.ref.current = res
       }
 
+      vComNode.node.hub.dispatch('created')
+
       return ele
     } else {
       updateProps(vComNode.node.props, props)

@@ -8,3 +8,8 @@ export function useUpdater() {
     }
   }
 }
+
+export function onCreated(fn: () => void) {
+  const ctx = getCurrentContext()
+  ctx.hub.addAction('created', fn)
+}

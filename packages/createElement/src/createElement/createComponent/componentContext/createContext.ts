@@ -5,7 +5,7 @@ import {
   IFactoryComponent,
   IFunctionComponent,
 } from './type'
-
+import { createContextHub } from './event/eventTarget'
 export const createContextWithUpdater = <P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -48,6 +48,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
       depth: 0,
       markSet: new Set(),
     },
+    hub: createContextHub(),
   }
   return comCtx
 }
