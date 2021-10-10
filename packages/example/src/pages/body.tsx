@@ -34,13 +34,12 @@ export const Body = () => {
               </button>
             </div>
             <div class="flex  flex-col items-center">
-              <Component
-                is={TodoApp}
+              <TodoApp
                 if={show}
                 title="☃️"
-                keepAlive={true}
+                keepAlive
                 ref={todoAppRef}
-              ></Component>
+              ></TodoApp>
             </div>
           </div>
         </div>

@@ -48,20 +48,36 @@ export const createComponent = <P extends Record<string, any>>(
         props.ref.current = res
       }
 
+      vComNode.node.active = true
+      vComNode.node.hub.dispatch('active')
       vComNode.node.hub.dispatch('created')
-
       return ele
     } else {
+      vComNode.node.hub.dispatch('beforeUpdated')
       updateProps(vComNode.node.props, props)
       updateChildNodes(vComNode.node.childNodes, childNodes)
       const ele = vComNode.node.updater()
+      if (!vComNode.node.active) {
+        vComNode.node.active = true
+        vComNode.node.hub.dispatch('active')
+      }
+      vComNode.node.hub.dispatch('updated')
+
       return ele
     }
   } else {
     if (!props?.keepAlive) {
-      vComNode.node = null
+      if (vComNode.node) {
+        vComNode.node.hub.dispatch('destory')
+        vComNode.node = null
+      }
       if ('ref' in props) {
         props.ref.current = null
+      }
+    } else {
+      if (vComNode.node?.active) {
+        vComNode.node.active = false
+        vComNode.node.hub.dispatch('inactive')
       }
     }
     return emptyNode

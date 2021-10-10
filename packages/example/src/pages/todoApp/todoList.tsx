@@ -3,6 +3,12 @@ import {
   dynamic,
   useUpdater,
   createProviderInjector,
+  onActive,
+  onCreated,
+  onBeforeUpdated,
+  onUpdated,
+  onInactive,
+  onDestory,
 } from '@shrio/shrio'
 
 type ITodoItemStatus = 'Pending' | 'Completed'
@@ -155,6 +161,7 @@ export const TodoApp = ({
   if?: boolean
   title?: string
   ref?: ShrioRef<any>
+  keepAlive: boolean
 }) => {
   const todoList: ITodoItem[] = [
     {
@@ -199,6 +206,28 @@ export const TodoApp = ({
   portal.provide({
     completeTask,
     deleteTask,
+  })
+
+  onActive(() => {
+    console.log('onActive')
+  })
+
+  onInactive(() => {
+    console.log('onInactive')
+  })
+
+  onCreated(() => {
+    console.log('onCreated')
+  })
+
+  onBeforeUpdated(() => {
+    console.log('onBeforeUpdated')
+  })
+  onDestory(() => {
+    console.log('onDestory')
+  })
+  onDestory(() => {
+    console.log('onDestory')
   })
 
   return {

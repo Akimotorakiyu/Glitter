@@ -20,6 +20,7 @@ export type TCompontentType<P extends Record<string, unknown>> =
 
 export interface Context {
   tag: IFunctionComponent<any> | IFactoryComponent<any>
+  active: boolean
   provider: Record<string, unknown>
   parent: Context | null
   onResize: ((target: Element[]) => void)[]

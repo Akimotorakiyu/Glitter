@@ -25,4 +25,4 @@
 
 - useUpdater
 - provide-inject
-- lifecycle: created
+- lifecycle: created,beforeUpdated,updated,active,inactive,destory

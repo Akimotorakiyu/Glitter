@@ -1,12 +1,12 @@
 import { createMessageCenter } from './event'
 
 type LifeCircle = {
-  mounted: []
   created: []
   beforeUpdated: []
-  Updated: []
-  beforeDestory: []
-  destoryed: []
+  updated: []
+  destory: []
+  inactive: []
+  active: []
 }
 
 export const createContextHub = () => {

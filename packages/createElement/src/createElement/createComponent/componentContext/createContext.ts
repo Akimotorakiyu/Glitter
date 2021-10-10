@@ -24,6 +24,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
     updater: () => {
       return commonUpdater(contextStack, comCtx)
     },
+    active: true,
     props: props as any,
     created: false,
     staticContentNodeInfo: {
