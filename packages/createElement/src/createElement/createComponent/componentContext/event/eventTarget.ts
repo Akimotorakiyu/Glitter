@@ -1,6 +1,6 @@
-import { createMessageCenter } from './event'
+import { createMessageCenter, MessageCenter } from './event'
 
-type LifeCircle = {
+export type LifeCircle = {
   created: []
   beforeUpdated: []
   updated: []
@@ -14,4 +14,4 @@ export const createContextHub = () => {
   return hub
 }
 
-export type TContextHub = ReturnType<typeof createContextHub>
+export type TContextHub = MessageCenter<LifeCircle>

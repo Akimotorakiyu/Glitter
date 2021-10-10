@@ -208,26 +208,39 @@ export const TodoApp = ({
     deleteTask,
   })
 
-  onActive(() => {
-    console.log('onActive')
+  onCreated(() => {
+    console.log('onCreated')
+
+    return () => {
+      console.log('clean onCreated')
+    }
+  })
+
+  onDestory(() => {
+    console.log('onDestory')
   })
 
   onInactive(() => {
     console.log('onInactive')
+
+    return () => {
+      console.log('clean onActive')
+    }
   })
 
-  onCreated(() => {
-    console.log('onCreated')
+  onActive(() => {
+    console.log('onActive')
   })
 
   onBeforeUpdated(() => {
     console.log('onBeforeUpdated')
+    return () => {
+      console.log('clean onBeforeUpdated')
+    }
   })
-  onDestory(() => {
-    console.log('onDestory')
-  })
-  onDestory(() => {
-    console.log('onDestory')
+
+  onUpdated(() => {
+    console.log('onUpdated')
   })
 
   return {

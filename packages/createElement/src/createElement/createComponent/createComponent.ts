@@ -49,19 +49,20 @@ export const createComponent = <P extends Record<string, any>>(
       }
 
       vComNode.node.active = true
-      vComNode.node.hub.dispatch('active')
       vComNode.node.hub.dispatch('created')
+      vComNode.node.hub.dispatch('active')
       return ele
     } else {
       vComNode.node.hub.dispatch('beforeUpdated')
       updateProps(vComNode.node.props, props)
       updateChildNodes(vComNode.node.childNodes, childNodes)
       const ele = vComNode.node.updater()
+
+      vComNode.node.hub.dispatch('updated')
       if (!vComNode.node.active) {
         vComNode.node.active = true
         vComNode.node.hub.dispatch('active')
       }
-      vComNode.node.hub.dispatch('updated')
 
       return ele
     }
