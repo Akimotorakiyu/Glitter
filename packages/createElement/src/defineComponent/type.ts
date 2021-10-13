@@ -1,5 +1,5 @@
 export interface ShrioProps {
-  if: any
-  keepAlive: any
-  ref: any
+  if?: any
+  keepAlive?: any
+  ref?: any
 }
