@@ -18,6 +18,7 @@
 #### Compose
 
 - defineFactory
+- definePortal
 
 ## Features
 

@@ -1,7 +1,7 @@
 import {
   dynamic,
   useUpdater,
-  createProviderInjector,
+  definePortal,
   onActive,
   onCreated,
   onBeforeUpdated,
@@ -22,7 +22,7 @@ interface ITodoItem {
   importat: boolean
 }
 
-const portal = createProviderInjector<{
+const portal = definePortal<{
   completeTask: (todoItem: ITodoItem) => void
   deleteTask: (todoItem: ITodoItem) => void
   addTask: (todoItem: ITodoItem, callBack: () => void) => void

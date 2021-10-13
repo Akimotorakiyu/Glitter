@@ -12,7 +12,7 @@ export function inject<T>(key: KeyType): T {
   return Reflect.get(ctx.provider, key) as T
 }
 
-export function createProviderInjector<D, K extends KeyType = symbol>(key?: K) {
+export function definePortal<D, K extends KeyType = symbol>(key?: K) {
   const _key = key || Symbol()
   return {
     provide(data: D) {
