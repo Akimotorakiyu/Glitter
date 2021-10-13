@@ -1,4 +1,6 @@
-export const Header = () => {
+import { defineView } from '@shrio/shrio'
+
+export const Header = defineView(() => {
   return (
     <div class=" z-10 text-gray-700 font-medium  shadow-dark-200 shadow px-12 py-4 flex justify-around sticky top-0 bg-gray-50">
       <div class="flex-1">
@@ -17,4 +19,4 @@ export const Header = () => {
       </div>
     </div>
   )
-}
+})

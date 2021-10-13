@@ -1,10 +1,5 @@
 import { IFunctionComponent } from '../createElement/createComponent/componentContext/type'
-
-interface ShrioProps {
-  if: any
-  keepAlive: any
-  ref: any
-}
+import { ShrioProps } from './type'
 
 /**
  * for define pure function component

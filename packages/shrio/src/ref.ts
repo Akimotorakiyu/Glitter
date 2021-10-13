@@ -2,7 +2,7 @@ export interface ShrioRef<T> {
   current: null | T
 }
 
-type ShrioRefType<T> = T extends (...arg: any[]) => infer R
+export type ShrioRefType<T> = T extends (...arg: any[]) => infer R
   ? ShrioRef<R>
   : ShrioRef<T>
 

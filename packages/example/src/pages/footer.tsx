@@ -1,4 +1,6 @@
-export const Footer = () => {
+import { defineView } from '@shrio/shrio'
+
+export const Footer = defineView(() => {
   return (
     <div class="mb-16">
       <div class="text-center">
@@ -19,4 +21,4 @@ export const Footer = () => {
       </div>
     </div>
   )
-}
+})
