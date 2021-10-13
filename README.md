@@ -26,3 +26,16 @@
 - useUpdater
 - provide-inject
 - lifecycle: created,beforeUpdated,updated,active,inactive,destory
+
+## Philosophy
+
+### Maintainability
+
+#### Isolate
+
+- defineView
+- defineState
+
+#### Compose
+
+- defineFactory
