@@ -6,20 +6,6 @@
 
 [Netlify](https://clever-rosalind-9cee08.netlify.app/) | [国内网站](https://shrio-8gz68v9mba15d6fa-1259330986.ap-shanghai.app.tcloudbase.com/)
 
-## Philosophy
-
-### Maintainability
-
-#### Isolate
-
-- defineView
-- defineState
-
-#### Compose
-
-- defineFactory
-- definePortal
-
 ## Features
 
 ### Vanilla
@@ -40,3 +26,17 @@
 - useUpdater
 - provide-inject
 - lifecycle: created,beforeUpdated,updated,active,inactive,destory
+
+## Philosophy
+
+### Maintainability
+
+#### Isolate
+
+- defineView
+- defineState
+
+#### Compose
+
+- defineFactory
+- definePortal
