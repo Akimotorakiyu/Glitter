@@ -24,8 +24,9 @@
 ### Composition-Api
 
 - useUpdater
+- useAsyncUpdater with arrangeAndRunUpdateFlow
 - provide-inject
-- lifecycle: created,beforeUpdated,updated,active,inactive,destory
+- lifecycle
 
 ## Philosophy
 
