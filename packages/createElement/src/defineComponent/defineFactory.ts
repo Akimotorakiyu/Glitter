@@ -4,6 +4,7 @@ import {
   IFunctionComponent,
   IFactoryComponent,
 } from '../createElement/createComponent/componentContext/type'
+import { ShrioProps } from './type'
 export interface IFactoryState<
   P extends Record<string, unknown>,
   S extends Record<string, unknown>,
@@ -33,7 +34,7 @@ export const defineFactory = <
 >(
   stateFactory: IFactoryState<P, S>,
   view: IFunctionComponent<S>,
-): IFactoryComponent<S> => {
+): IFactoryComponent<P & ShrioProps> => {
   const factory = (props: any, children: any, context: any) => {
     const [_state, _children, _context] = stateFactory(props, children, context)
     if (typeof _state !== 'object') {
