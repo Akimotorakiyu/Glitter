@@ -11,6 +11,8 @@ import {
   defineView,
   defineState,
   defineFactory,
+  arrangeAndRunUpdateFlow,
+  useAsyncUpdater,
 } from '@shrio/shrio'
 
 type ITodoItemStatus = 'Pending' | 'Completed'
@@ -26,6 +28,7 @@ const portal = definePortal<{
   completeTask: (todoItem: ITodoItem) => void
   deleteTask: (todoItem: ITodoItem) => void
   addTask: (todoItem: ITodoItem, callBack: () => void) => void
+  asyncAddTask: (todoItem: ITodoItem) => void
 }>()
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
@@ -85,6 +88,39 @@ const TodoItemAdd = defineView(() => {
           }
         }}
       ></input>
+    </div>
+  )
+})
+const AsyncTodoItemAdd = defineView(() => {
+  const operation = portal.inject()
+
+  return (
+    <div class="flex items-center">
+      <input
+        class="outline-none text-gray-700 w-full"
+        placeholder="Async add task"
+        maxLength="16"
+        onkeydown={(e: KeyboardEvent) => {
+          if (e.key.toLowerCase() === 'enter') {
+            const inputNode = e.currentTarget as HTMLInputElement
+            operation.asyncAddTask({
+              desc: inputNode.value || '',
+              status: 'Pending',
+              importat: false,
+              id: Date.now() + '',
+            })
+
+            inputNode.value = ''
+            inputNode.focus()
+          }
+        }}
+      ></input>
+      <button
+        onclick={arrangeAndRunUpdateFlow}
+        class="whitespace-nowrap text-green-200"
+      >
+        🍄
+      </button>
     </div>
   )
 })
@@ -189,6 +225,7 @@ const todoAppStateFactory = defineState(
       },
     ]
 
+    const asyncUpdater = useAsyncUpdater()
     const updater = useUpdater()
 
     const addTask = (todoItem: ITodoItem, callBack: () => void) => {
@@ -196,13 +233,18 @@ const todoAppStateFactory = defineState(
       updater()
       callBack()
     }
+    const asyncAddTask = async (todoItem: ITodoItem) => {
+      todoList.push(todoItem)
+      await asyncUpdater()
+      console.log('added', todoItem.desc)
+    }
 
-    const completeTask = (todoItem: ITodoItem) => {
+    const completeTask = async (todoItem: ITodoItem) => {
       todoItem.status =
         todoItem.status === 'Completed' ? 'Pending' : 'Completed'
       updater()
     }
-    const deleteTask = (todoItem: ITodoItem) => {
+    const deleteTask = async (todoItem: ITodoItem) => {
       todoItem.status =
         todoItem.status === 'Completed' ? 'Pending' : 'Completed'
       const index = todoList.findIndex((e) => e === todoItem)
@@ -216,7 +258,12 @@ const todoAppStateFactory = defineState(
       completeTask,
       deleteTask,
       addTask,
+      asyncAddTask,
     })
+
+    const manulUpdate = () => {
+      arrangeAndRunUpdateFlow()
+    }
 
     return [
       {
@@ -226,6 +273,7 @@ const todoAppStateFactory = defineState(
         addTask,
         deleteTask,
         completeTask,
+        manulUpdate,
       },
       children,
       context,
@@ -234,7 +282,7 @@ const todoAppStateFactory = defineState(
 )
 
 export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
-  const { title, todoList } = props
+  const { title, todoList, manulUpdate } = props
   return (
     <>
       <div class=" w-80 shadow-lg p-6 rounded-lg">
@@ -245,6 +293,7 @@ export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
         </div>
         <div class="my-4">
           <TodoItemAdd></TodoItemAdd>
+          <AsyncTodoItemAdd></AsyncTodoItemAdd>
         </div>
       </div>
     </>

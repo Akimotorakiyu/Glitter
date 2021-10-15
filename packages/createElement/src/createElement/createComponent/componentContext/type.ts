@@ -29,6 +29,8 @@ export interface Context {
   onDisonnected: ((target: Element[]) => void)[]
   updater: () => Node
   render: () => Node
+  syncUpdater: () => void
+  asyncUpdater: () => Promise<void>
   props: Record<string, unknown>
   created: boolean
   staticContentNodeInfo: ContentNodeInfo
