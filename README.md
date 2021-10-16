@@ -1,6 +1,6 @@
 # Shrio (WIP)
 
-![license](https://img.shields.io/github/license/Akimotorakiyu/shrio)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://github.com/Akimotorakiyu/shrio) ![license](https://img.shields.io/github/license/Akimotorakiyu/shrio)
 
 ✨Shrio is a modern vanilla front-end framework, for building UI on the web.
 
