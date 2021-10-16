@@ -11,7 +11,7 @@ import {
   defineView,
   defineState,
   defineFactory,
-  arrangeAndRunUpdateFlow,
+  runAsyncUpdateFlow,
   useAsyncUpdater,
 } from '@shrio/shrio'
 
@@ -116,7 +116,7 @@ const AsyncTodoItemAdd = defineView(() => {
         }}
       ></input>
       <button
-        onclick={arrangeAndRunUpdateFlow}
+        onclick={runAsyncUpdateFlow}
         class="whitespace-nowrap text-green-200"
       >
         🍄
@@ -261,10 +261,6 @@ const todoAppStateFactory = defineState(
       asyncAddTask,
     })
 
-    const manulUpdate = () => {
-      arrangeAndRunUpdateFlow()
-    }
-
     return [
       {
         ...props,
@@ -273,7 +269,6 @@ const todoAppStateFactory = defineState(
         addTask,
         deleteTask,
         completeTask,
-        manulUpdate,
       },
       children,
       context,
@@ -282,7 +277,7 @@ const todoAppStateFactory = defineState(
 )
 
 export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
-  const { title, todoList, manulUpdate } = props
+  const { title, todoList } = props
   return (
     <>
       <div class=" w-80 shadow-lg p-6 rounded-lg">

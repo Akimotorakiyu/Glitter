@@ -11,7 +11,7 @@ import { ShrioFragment } from '../../..'
 export const updateStack: Map<Context, (() => void)[]> = new Map()
 export const updateRootList: Set<Context> = new Set()
 
-export const runAsyncUpdate = () => {
+export const executeAsyncUpdateFlow = () => {
   updateRootList.forEach((ctx) => {
     ctx.syncUpdater()
   })
@@ -24,7 +24,7 @@ export const runAsyncUpdate = () => {
   updateStack.clear()
 }
 
-export const arrangeUpdateFlow = () => {
+export const arrangeAsyncUpdateFlow = () => {
   updateStack.forEach((value, key) => {
     updateRootList.add(key)
   })
@@ -35,9 +35,9 @@ export const arrangeUpdateFlow = () => {
   })
 }
 
-export const arrangeAndRunUpdateFlow = () => {
-  arrangeUpdateFlow()
-  runAsyncUpdate()
+export const runAsyncUpdateFlow = () => {
+  arrangeAsyncUpdateFlow()
+  executeAsyncUpdateFlow()
 }
 
 const hasParent = (ctx: Context): boolean => {
