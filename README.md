@@ -42,3 +42,4 @@
 
 - defineFactory
 - definePortal
+- defineStatePortal

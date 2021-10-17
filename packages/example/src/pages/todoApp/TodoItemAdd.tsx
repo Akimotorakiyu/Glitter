@@ -1,5 +1,5 @@
 import { defineView, runAsyncUpdateFlow } from '@shrio/shrio'
-import { portal } from './portal'
+import { portal } from './state'
 
 export const TodoItemAdd = defineView(() => {
   const operation = portal.inject()

@@ -9,7 +9,7 @@ export const defineFactory = <
   S extends Record<string, unknown>,
 >(
   stateFactory: IFactoryState<P, S>,
-  view: IFunctionComponent<S>,
+  view: IFunctionComponent<S | (S & ShrioProps)>,
 ): IFactoryComponent<P & ShrioProps> => {
   const factory = (props: any, children: any, context: any) => {
     const [_state, _children, _context] = stateFactory(props, children, context)
