@@ -11,6 +11,7 @@ import {
   defineView,
   defineState,
   defineFactory,
+  defineStateView,
   runAsyncUpdateFlow,
   useAsyncUpdater,
 } from '@shrio/shrio'
@@ -276,7 +277,7 @@ const todoAppStateFactory = defineState(
   },
 )
 
-export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
+export const TodoAppView = defineStateView(todoAppStateFactory, (props) => {
   const { title, todoList } = props
   return (
     <>
@@ -293,4 +294,8 @@ export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
       </div>
     </>
   )
+})
+
+export const TodoApp = defineFactory(todoAppStateFactory, (props) => {
+  return <TodoAppView {...props}></TodoAppView>
 })
