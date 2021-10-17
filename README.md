@@ -36,6 +36,7 @@
 
 - defineView
 - defineState
+- defineStateView
 
 #### Compose
 

@@ -1,32 +1,8 @@
 import {
-  Context,
-  TElementValue,
   IFunctionComponent,
   IFactoryComponent,
 } from '../createElement/createComponent/componentContext/type'
-import { ShrioProps } from './type'
-export interface IFactoryState<
-  P extends Record<string, unknown>,
-  S extends Record<string, unknown>,
-> {
-  (props: P, children: Node[], ctx: Context): [
-    props: S,
-    children: Node[],
-    ctx: Context,
-  ]
-}
-export interface IFactoryView<F, S> {
-  (state: S, children: Node[], ctx: Context): TElementValue
-}
-
-export const defineState = <
-  P extends Record<string, unknown>,
-  S extends Record<string, unknown>,
->(
-  state: IFactoryState<P, S>,
-): IFactoryState<P, S> => {
-  return state
-}
+import { ShrioProps, IFactoryState } from './type'
 
 export const defineFactory = <
   P extends Record<string, unknown>,
