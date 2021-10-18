@@ -50,6 +50,16 @@ const hasParent = (ctx: Context): boolean => {
   }
 }
 
+let requestAnimationFrameId = 0
+const scheduleRunAsyncUpdateFlow = () => {
+  if (!requestAnimationFrameId) {
+    requestAnimationFrameId = requestAnimationFrame(() => {
+      runAsyncUpdateFlow()
+      requestAnimationFrameId = 0
+    })
+  }
+}
+
 export const createContextWithUpdater = <P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -84,6 +94,8 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
           updateStack.set(comCtx, [r])
         }
       })
+
+      scheduleRunAsyncUpdateFlow()
       return p
     },
     active: true,

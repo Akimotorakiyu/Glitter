@@ -5,7 +5,7 @@ import {
   defineView,
 } from '@shrio/shrio'
 import { todoAppStateFactory, portal } from './state'
-import { TodoItemAdd, AsyncTodoItemAdd } from './todoItemAdd'
+import { TodoItemAdd, AsyncTodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {

@@ -24,7 +24,7 @@
 ### Composition-Api
 
 - useUpdater
-- useAsyncUpdater with runAsyncUpdateFlow
+- useAsyncUpdater
 - provide-inject
 - lifecycle
 

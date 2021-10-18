@@ -1,4 +1,4 @@
-import { defineView, runAsyncUpdateFlow } from '@shrio/shrio'
+import { defineView } from '@shrio/shrio'
 import { portal } from './state'
 
 export const TodoItemAdd = defineView(() => {
@@ -40,10 +40,10 @@ export const AsyncTodoItemAdd = defineView(() => {
         class="outline-none text-gray-700 w-full"
         placeholder="Async add task"
         maxLength="16"
-        onkeydown={(e: KeyboardEvent) => {
+        onkeydown={async (e: KeyboardEvent) => {
           if (e.key.toLowerCase() === 'enter') {
             const inputNode = e.currentTarget as HTMLInputElement
-            operation.asyncAddTask({
+            await operation.asyncAddTask({
               desc: inputNode.value || '',
               status: 'Pending',
               importat: false,
@@ -55,12 +55,6 @@ export const AsyncTodoItemAdd = defineView(() => {
           }
         }}
       ></input>
-      <button
-        onclick={runAsyncUpdateFlow}
-        class="whitespace-nowrap text-green-200"
-      >
-        🍄
-      </button>
     </div>
   )
 })
