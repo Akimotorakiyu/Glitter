@@ -7,58 +7,11 @@ import {
 } from './type'
 import { createContextHub } from './event/eventTarget'
 import { ShrioFragment } from '../../..'
-
-export const updateStack: Map<Context, (() => void)[]> = new Map()
-export const updateRootList: Set<Context> = new Set()
-
-export const executeAsyncUpdateFlow = () => {
-  updateRootList.forEach((ctx) => {
-    ctx.syncUpdater()
-  })
-  updateStack.forEach((s) => {
-    s.forEach((r) => {
-      r()
-    })
-  })
-  updateRootList.clear()
-  updateStack.clear()
-}
-
-export const arrangeAsyncUpdateFlow = () => {
-  updateStack.forEach((value, key) => {
-    updateRootList.add(key)
-  })
-  updateRootList.forEach((value, key) => {
-    if (key.parent && hasParent(key.parent)) {
-      updateRootList.delete(key)
-    }
-  })
-}
-
-export const runAsyncUpdateFlow = () => {
-  arrangeAsyncUpdateFlow()
-  executeAsyncUpdateFlow()
-}
-
-const hasParent = (ctx: Context): boolean => {
-  if (updateStack.has(ctx)) {
-    return true
-  } else if (ctx.parent) {
-    return hasParent(ctx.parent)
-  } else {
-    return false
-  }
-}
-
-let requestAnimationFrameId = 0
-const scheduleRunAsyncUpdateFlow = () => {
-  if (!requestAnimationFrameId) {
-    requestAnimationFrameId = requestAnimationFrame(() => {
-      runAsyncUpdateFlow()
-      requestAnimationFrameId = 0
-    })
-  }
-}
+import {
+  addAndScheduleAsyncUpdateTask,
+  addAsyncUpdateTask,
+  scheduleRunAsyncUpdateFlow,
+} from './asyncUpdateFlow'
 
 export const createContextWithUpdater = <P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
@@ -85,18 +38,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
       }
     },
     asyncUpdater: () => {
-      const p = new Promise<void>((r) => {
-        const array = updateStack.get(comCtx)
-
-        if (array) {
-          array.push(r)
-        } else {
-          updateStack.set(comCtx, [r])
-        }
-      })
-
-      scheduleRunAsyncUpdateFlow()
-      return p
+      return addAndScheduleAsyncUpdateTask(comCtx)
     },
     active: true,
     props: props as any,
