@@ -21,6 +21,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
 ) => {
   const comCtx: Context = {
     tag,
+    element: null,
     render: null as any,
     parent: lastContext,
     provider: Object.create(lastContext?.provider || null),

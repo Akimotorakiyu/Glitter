@@ -5,6 +5,7 @@ import {
   updateChildNodes,
 } from '../createIntrinsicElement/tool'
 import { getNode } from '../createIntrinsicElement/util'
+import { ShrioFragment } from '../fragment'
 import {
   createComponentContext,
   getCurrentVComNode,
@@ -13,7 +14,8 @@ import {
 } from './componentContext'
 import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
 import { emptyNode } from './emptyNode'
-
+import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
+import { shouldDeep } from './componentRenderMode'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -34,6 +36,7 @@ export const createComponent = <P extends Record<string, any>>(
       const res = tag(props, childNodes, context)
       const isElementClassInstanceRes = isElementStructInstance(res)
       const ele = getNode(isElementClassInstanceRes ? res.render() : res)
+      vComNode.node.element = ele
       context.render = isElementClassInstanceRes
         ? () => {
             return getNode(res.render())
@@ -53,18 +56,32 @@ export const createComponent = <P extends Record<string, any>>(
       vComNode.node.hub.dispatch('active')
       return ele
     } else {
+      removeFromUpdateRootList(vComNode.node)
+
       vComNode.node.hub.dispatch('beforeUpdated')
-      updateProps(vComNode.node.props, props)
-      updateChildNodes(vComNode.node.childNodes, childNodes)
-      const ele = vComNode.node.updater()
+      const propsChanged = updateProps(vComNode.node.props, props)
+      const childChanged = updateChildNodes(
+        vComNode.node.childNodes,
+        childNodes,
+      )
+      if (shouldDeep() || propsChanged || childChanged) {
+        const ele = vComNode.node.updater()
+        vComNode.node.hub.dispatch('updated')
+        if (!vComNode.node.active) {
+          vComNode.node.active = true
+          vComNode.node.hub.dispatch('active')
+        }
 
-      vComNode.node.hub.dispatch('updated')
-      if (!vComNode.node.active) {
-        vComNode.node.active = true
-        vComNode.node.hub.dispatch('active')
+        return ele
+      } else {
+        const ele = vComNode.node.element!
+        if (ele instanceof ShrioFragment) {
+          ele.reloadChildren!()
+          return ele
+        } else {
+          return ele
+        }
       }
-
-      return ele
     }
   } else {
     if (!props?.keepAlive) {

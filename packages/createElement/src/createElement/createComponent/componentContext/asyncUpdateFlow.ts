@@ -16,14 +16,8 @@ const executeAsyncUpdateFlow = () => {
   updateStack.clear()
 }
 
-const hasParent = (ctx: Context): boolean => {
-  if (updateStack.has(ctx)) {
-    return true
-  } else if (ctx.parent) {
-    return hasParent(ctx.parent)
-  } else {
-    return false
-  }
+export const removeFromUpdateRootList = (ctx: Context) => {
+  updateRootList.delete(ctx)
 }
 
 const arrangeAsyncUpdateFlow = () => {
@@ -31,7 +25,7 @@ const arrangeAsyncUpdateFlow = () => {
     updateRootList.add(key)
   })
   updateRootList.forEach((value, key) => {
-    if (key.parent && hasParent(key.parent)) {
+    if (key.parent && updateStack.has(key.parent)) {
       updateRootList.delete(key)
     }
   })

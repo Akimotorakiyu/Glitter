@@ -20,6 +20,7 @@ export type TCompontentType<P extends Record<string, unknown>> =
 
 export interface Context {
   tag: IFunctionComponent<any> | IFactoryComponent<any>
+  element: Node | null
   active: boolean
   provider: Record<string, unknown>
   parent: Context | null
