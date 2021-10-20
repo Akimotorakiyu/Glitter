@@ -5,7 +5,7 @@ import {
   defineView,
 } from '@shrio/shrio'
 import { todoAppStateFactory, portal } from './state'
-import { TodoItemAdd, AsyncTodoItemAdd } from './addTodoItem'
+import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
@@ -86,7 +86,6 @@ export const TodoAppView = defineStateView(todoAppStateFactory, (props) => {
         </div>
         <div class="my-4">
           <TodoItemAdd></TodoItemAdd>
-          <AsyncTodoItemAdd></AsyncTodoItemAdd>
         </div>
       </div>
     </>

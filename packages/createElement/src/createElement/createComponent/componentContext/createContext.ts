@@ -7,11 +7,7 @@ import {
 } from './type'
 import { createContextHub } from './event/eventTarget'
 import { ShrioFragment } from '../../..'
-import {
-  addAndScheduleAsyncUpdateTask,
-  addAsyncUpdateTask,
-  scheduleRunAsyncUpdateFlow,
-} from './asyncUpdateFlow'
+import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
 
 export const createContextWithUpdater = <P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,

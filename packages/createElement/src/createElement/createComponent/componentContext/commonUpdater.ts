@@ -1,6 +1,12 @@
+import { emptyNode } from '../emptyNode'
 import { Context } from './type'
+import { FakeRootComponent } from './rootComponent'
 
 export const commonUpdater = (contextStack: Context[], comCtx: Context) => {
+  if (comCtx.tag === FakeRootComponent) {
+    return emptyNode
+  }
+
   contextStack.push(comCtx)
 
   comCtx.staticContentNodeInfo.domNodeInfo.current = 0

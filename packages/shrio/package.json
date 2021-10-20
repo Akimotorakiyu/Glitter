@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@shiro/create-element": "^1.0.0"
+    "@shiro/create-element": "^1.0.0",
+    "@shiro/reactive": "^1.0.0"
   }
 }

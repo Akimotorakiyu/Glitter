@@ -1,14 +1,16 @@
 import { createContextWithUpdater } from './createContext'
+import { FakeRootComponent } from './rootComponent'
 import { Context, IFactoryComponent, IFunctionComponent } from './type'
 
 const ctxStack: Context[] = []
+Reflect.set(window, 'ctxStack', ctxStack)
 
 export function getCurrentContext() {
   const currentCtx = ctxStack[ctxStack.length - 1]
   if (currentCtx) {
     return currentCtx
   } else {
-    return createContext(() => '<This is root!>', {}, null)
+    return createContext(FakeRootComponent, {}, null)
   }
 }
 

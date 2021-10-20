@@ -31,30 +31,3 @@ export const TodoItemAdd = defineView(() => {
     </div>
   )
 })
-export const AsyncTodoItemAdd = defineView(() => {
-  const operation = portal.inject()
-
-  return (
-    <div class="flex items-center">
-      <input
-        class="outline-none text-gray-700 w-full"
-        placeholder="Async add task"
-        maxLength="16"
-        onkeydown={async (e: KeyboardEvent) => {
-          if (e.key.toLowerCase() === 'enter') {
-            const inputNode = e.currentTarget as HTMLInputElement
-            await operation.asyncAddTask({
-              desc: inputNode.value || '',
-              status: 'Pending',
-              importat: false,
-              id: Date.now() + '',
-            })
-
-            inputNode.value = ''
-            inputNode.focus()
-          }
-        }}
-      ></input>
-    </div>
-  )
-})
