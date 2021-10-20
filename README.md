@@ -8,6 +8,10 @@
 
 ## Features
 
+### Reactive
+
+- shrioReactive, inspired by `@vue/reactive`
+
 ### Vanilla
 
 - no runtime
