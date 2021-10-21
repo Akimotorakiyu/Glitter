@@ -9,6 +9,16 @@ import { createContextHub } from './event/eventTarget'
 import { ShrioFragment } from '../../..'
 import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
 
+const isContain = (parent: Context, ctx: Context): boolean => {
+  if (ctx.parent === parent) {
+    return true
+  } else if (ctx.parent) {
+    return isContain(parent, ctx.parent)
+  } else {
+    return false
+  }
+}
+
 export const createContextWithUpdater = <P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -63,6 +73,9 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
       markSet: new Set(),
     },
     hub: createContextHub(),
+    contains: (ctx: Context) => {
+      return isContain(comCtx, ctx)
+    },
   }
   return comCtx
 }

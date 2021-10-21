@@ -43,6 +43,7 @@ export interface Context {
     markSet: Set<string>
   }
   hub: TContextHub
+  contains: (ctx: Context) => boolean
 }
 
 export interface VDomNode {

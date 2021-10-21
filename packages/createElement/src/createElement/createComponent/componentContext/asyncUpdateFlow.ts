@@ -1,34 +1,40 @@
 import { Context } from './type'
 
-export const updateStack: Map<Context, (() => void)[]> = new Map()
-export const updateRootList: Set<Context> = new Set()
+export const updateStatus = {
+  plan: new Map<Context, (() => void)[]>(),
+  pending: new Map<Context, (() => void)[]>(),
+}
 
 const executeAsyncUpdateFlow = () => {
-  updateRootList.forEach((ctx) => {
+  updateStatus.pending.forEach((value, ctx) => {
     ctx.syncUpdater()
   })
-  updateStack.forEach((s) => {
+  updateStatus.pending.forEach((s) => {
     s.forEach((r) => {
       r()
     })
   })
-  updateRootList.clear()
-  updateStack.clear()
+  updateStatus.pending.clear()
 }
 
 export const removeFromUpdateRootList = (ctx: Context) => {
-  updateRootList.delete(ctx)
+  updateStatus.pending.delete(ctx)
 }
 
 const arrangeAsyncUpdateFlow = () => {
-  updateStack.forEach((value, key) => {
-    updateRootList.add(key)
-  })
-  updateRootList.forEach((value, key) => {
-    if (key.parent && updateStack.has(key.parent)) {
-      updateRootList.delete(key)
+  // need to ensure sort result
+  const sortedList = [...updateStatus.plan.entries()].sort(([ctxA], [ctxB]) => {
+    if (ctxA.contains(ctxB)) {
+      return 1
+    } else if (ctxB.contains(ctxA)) {
+      return -1
+    } else {
+      return 0
     }
   })
+
+  updateStatus.plan.clear()
+  updateStatus.pending = new Map(sortedList)
 }
 
 const runAsyncUpdateFlow = () => {
@@ -48,12 +54,12 @@ export const scheduleRunAsyncUpdateFlow = () => {
 
 export const addAsyncUpdateTask = (comCtx: Context) => {
   const p = new Promise<void>((r) => {
-    const array = updateStack.get(comCtx)
+    const array = updateStatus.plan.get(comCtx)
 
     if (array) {
       array.push(r)
     } else {
-      updateStack.set(comCtx, [r])
+      updateStatus.plan.set(comCtx, [r])
     }
   })
 
