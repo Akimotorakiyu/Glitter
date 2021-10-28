@@ -18,8 +18,6 @@ export const todoAppStateFactory = defineState(
     }
 
     const deleteTask = async (todoItem: ITodoItem) => {
-      todoItem.status =
-        todoItem.status === 'Completed' ? 'Pending' : 'Completed'
       const index = todoList.findIndex((e) => e === todoItem)
       todoList.splice(index, 1)
     }
