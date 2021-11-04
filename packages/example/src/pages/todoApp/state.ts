@@ -12,9 +12,12 @@ export const todoAppStateFactory = defineState(
       callBack()
     }
 
-    const completeTask = async (todoItem: ITodoItem) => {
-      todoItem.status =
-        todoItem.status === 'Completed' ? 'Pending' : 'Completed'
+    const toggleTaskStatus = async (todoItem: ITodoItem) => {
+      if (todoItem.status === 'Completed') {
+        todoItem.status = 'Pending'
+      } else {
+        todoItem.status = 'Completed'
+      }
     }
 
     const deleteTask = async (todoItem: ITodoItem) => {
@@ -29,7 +32,7 @@ export const todoAppStateFactory = defineState(
       todoList,
       addTask,
       deleteTask,
-      completeTask,
+      toggleTaskStatus,
     }
 
     portal.provide(state)

@@ -22,7 +22,7 @@ const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
             },
           ]}
           onclick={() => {
-            operation.completeTask(todoItem)
+            operation.toggleTaskStatus(todoItem)
           }}
         ></button>
         <span class="ml-4 text-gray-700">{todoItem.desc}</span>

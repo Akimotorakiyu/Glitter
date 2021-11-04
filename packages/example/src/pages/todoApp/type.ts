@@ -4,5 +4,4 @@ export interface ITodoItem {
   id: string
   desc: string
   status: ITodoItemStatus
-  importat: boolean
 }

@@ -17,7 +17,6 @@ export const TodoItemAdd = defineView(() => {
               {
                 desc: inputNode.value || '',
                 status: 'Pending',
-                importat: false,
                 id: Date.now() + '',
               },
               () => {
