@@ -13,7 +13,7 @@ export const TodoItemAdd = defineView(() => {
         onkeydown={(e: KeyboardEvent) => {
           if (e.key.toLowerCase() === 'enter') {
             const inputNode = e.currentTarget as HTMLInputElement
-            operation.addTask(
+            operation.methods.addTask(
               {
                 desc: inputNode.value || '',
                 status: 'Pending',

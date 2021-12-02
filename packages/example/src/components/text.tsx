@@ -11,85 +11,75 @@ interface ITextProps {
   class?: string
 }
 
+export const TextViewWhite = defineView((props: ITextProps, children) => {
+  return (
+    <TextView class={` text-white ${props.class ?? ''}`}>{children}</TextView>
+  )
+})
+
 export const TextViewBlack = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-gray-800 leading-6 ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-gray-800  ${props.class ?? ''}`}>
       {children}
-    </span>
+    </TextView>
   )
 })
 
 export const TextViewBlue = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-blue-800  leading-6  ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-blue-800   ${props.class ?? ''}`}>
       {children}
-    </span>
+    </TextView>
   )
 })
 
 export const TextViewRed = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-red-800 leading-6  ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-red-800  ${props.class ?? ''}`}>
       {children}
-    </span>
+    </TextView>
   )
 })
 
 export const TextViewGreen = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-green-800 leading-6  ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-green-800  ${props.class ?? ''}`}>
       {children}
-    </span>
+    </TextView>
   )
 })
 
 export const TextViewOrange = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-orange-800 leading-6  ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-orange-800  ${props.class ?? ''}`}>
       {children}
-    </span>
+    </TextView>
   )
 })
 
 export const TextViewGray = defineView((props: ITextProps, children) => {
   return (
-    <span
-      class={`inline-flex items-center text-gray-500 leading-6  ${
-        props.class ?? ''
-      }`}
-    >
+    <TextView class={` text-gray-500  ${props.class ?? ''}`}>
+      {children}
+    </TextView>
+  )
+})
+
+export const defalutInlineStyle = 'inline-flex items-center'
+/**
+ * Basic TextView
+ */
+export const TextView = defineView((props: ITextProps, children) => {
+  return (
+    <span class={`inline-flex items-center leading-6 ${props.class ?? ''}`}>
       {children}
     </span>
   )
 })
 
-export const ParagraphTextView = defineView((props: ITextProps, children) => {
+export const ParagraphView = defineView((props: ITextProps, children) => {
   return (
-    <p
-      class={`flex text-gray-800  items-center leading-6  flex-wrap ${
-        props.class ?? ''
-      }`}
-    >
+    <p class={`flex items-center leading-6  flex-wrap ${props.class ?? ''}`}>
       {children}
     </p>
   )

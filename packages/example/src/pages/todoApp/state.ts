@@ -28,11 +28,15 @@ export const todoAppStateFactory = defineState(
     lifeCycleTest()
 
     const state = {
-      ...props,
-      todoList,
-      addTask,
-      deleteTask,
-      toggleTaskStatus,
+      props,
+      methods: {
+        addTask,
+        deleteTask,
+        toggleTaskStatus,
+      },
+      data: {
+        todoList,
+      },
     }
 
     portal.provide(state)

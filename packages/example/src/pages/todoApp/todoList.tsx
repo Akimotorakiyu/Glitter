@@ -22,7 +22,7 @@ const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
             },
           ]}
           onclick={() => {
-            operation.toggleTaskStatus(todoItem)
+            operation.methods.toggleTaskStatus(todoItem)
           }}
         ></button>
         <span class="ml-4 text-gray-700">{todoItem.desc}</span>
@@ -32,7 +32,7 @@ const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
           `w-4 h-4 rounded-full bg-red-200 outline-none border-none hover:shadow`,
         ]}
         onclick={() => {
-          operation.deleteTask(todoItem)
+          operation.methods.deleteTask(todoItem)
         }}
       ></button>
     </div>
@@ -60,7 +60,7 @@ const Kanban = defineView(({ status }: { status: ITodoItemStatus }) => {
   return (
     <KanbanContainer title={status}>
       <>
-        {operation.todoList
+        {operation.data.todoList
           .filter((item) => item.status === status)
           .map(
             dynamic((setKey, item) => {
@@ -79,7 +79,9 @@ export const TodoAppView = defineStateView(todoAppStateFactory, (props) => {
   return (
     <>
       <div class=" w-80 shadow-lg p-6 rounded-lg">
-        <h1 class="my-4 select-none">{operation.title} A simple todo list.</h1>
+        <h1 class="my-4 select-none">
+          {operation.props.title} A simple todo list.
+        </h1>
         <div class="h-50 overflow-y-auto shadow-inner px-4 py-2 rounded-md">
           <Kanban status="Pending"></Kanban>
           <Kanban status="Completed"></Kanban>

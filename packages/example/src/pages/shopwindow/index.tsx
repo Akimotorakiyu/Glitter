@@ -18,7 +18,7 @@ import {
   TextViewBlue,
   TextViewOrange,
   TextViewGray,
-  ParagraphTextView,
+  ParagraphView,
   TextViewGreen,
 } from '../../components/text'
 
@@ -29,21 +29,20 @@ export const ShopWindowView = defineView(() => {
     <div>
       <h2 class=" text-center text-xl ">Button</h2>
       <div class="flex justify-center max-w-5xl  p-8 m-auto">
-        <ButtonViewLight class=" m-4">按钮</ButtonViewLight>
-        <ButtonViewBlue class=" m-4">按钮</ButtonViewBlue>
-        <ButtonViewOrange class=" m-4">按钮</ButtonViewOrange>
-        <ButtonViewRed class=" m-4">按钮</ButtonViewRed>
-        <ButtonViewGray class=" m-4">按钮</ButtonViewGray>
+        <ButtonViewLight class=" m-4">Button</ButtonViewLight>
+        <ButtonViewBlue class=" m-4">Button</ButtonViewBlue>
+        <ButtonViewOrange class=" m-4">Button</ButtonViewOrange>
+        <ButtonViewRed class=" m-4">Button</ButtonViewRed>
+        <ButtonViewGray class=" m-4">Button</ButtonViewGray>
       </div>
       <h2 class=" text-center text-xl ">Text</h2>
       <div class=" max-w-5xl p-8 m-auto">
-        <ParagraphTextView class="justify-center">
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-
           <TextViewBlack>
             A modern vanilla front-end framework, for building UI on the web.
           </TextViewBlack>
@@ -52,8 +51,8 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
-        <ParagraphTextView class="justify-center">
+        </ParagraphView>
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
@@ -68,8 +67,8 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
-        <ParagraphTextView class="justify-center">
+        </ParagraphView>
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
@@ -84,8 +83,8 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
-        <ParagraphTextView class="justify-center">
+        </ParagraphView>
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
@@ -100,8 +99,8 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
-        <ParagraphTextView class="justify-center">
+        </ParagraphView>
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
@@ -116,8 +115,8 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
-        <ParagraphTextView class="justify-center">
+        </ParagraphView>
+        <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
             alt="netlify"
@@ -132,7 +131,7 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-        </ParagraphTextView>
+        </ParagraphView>
       </div>
     </div>
   )

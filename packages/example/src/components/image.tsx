@@ -15,7 +15,7 @@ interface IImageViewProps {
 export const ImageView = defineView((props: IImageViewProps, children) => {
   return (
     <div class="inline-flex items-center">
-      <img class={`w-4 h-4 ${props.class ?? ''}`} src={props.src}>
+      <img class={`${props.class ?? ''}`} src={props.src}>
         {children}
       </img>
     </div>
