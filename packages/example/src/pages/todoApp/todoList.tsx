@@ -1,12 +1,9 @@
-import {
-  dynamic,
-  defineFactory,
-  defineStateView,
-  defineView,
-} from '@shrio/shrio'
-import { todoAppStateFactory, portal } from './state'
+import { dynamic, defineView } from '@shrio/shrio'
+import { stateSuite } from './state'
 import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
+
+const { portal, StateView } = stateSuite
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
   const operation = portal.inject()
@@ -73,7 +70,7 @@ const Kanban = defineView(({ status }: { status: ITodoItemStatus }) => {
   )
 })
 
-export const TodoAppView = defineStateView(todoAppStateFactory, (props) => {
+export const TodoAppView = defineView((props) => {
   const operation = portal.inject()
 
   return (
@@ -94,4 +91,10 @@ export const TodoAppView = defineStateView(todoAppStateFactory, (props) => {
   )
 })
 
-export const TodoApp = defineFactory(todoAppStateFactory, TodoAppView)
+export const TodoApp = defineView((props: { title: string }, children, ctx) => {
+  return (
+    <StateView {...props}>
+      <TodoAppView></TodoAppView>
+    </StateView>
+  )
+})

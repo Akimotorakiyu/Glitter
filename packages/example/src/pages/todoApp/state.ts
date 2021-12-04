@@ -1,9 +1,9 @@
-import { defineStatePortal, defineState, shrioReactive } from '@shrio/shrio'
+import { defineStateSuite, shrioReactive } from '@shrio/shrio'
 import { lifeCycleTest } from './lifeCycleTest'
 import { ITodoItem } from './type'
 import { genTempData } from './tempData'
 
-export const todoAppStateFactory = defineState(
+export const stateSuite = defineStateSuite(
   (props: { title: string }, children, context) => {
     const todoList: ITodoItem[] = shrioReactive(genTempData())
 
@@ -39,10 +39,8 @@ export const todoAppStateFactory = defineState(
       },
     }
 
-    portal.provide(state)
+    console.log('state', state)
 
-    return [state, children, context]
+    return state
   },
 )
-
-export const portal = defineStatePortal(todoAppStateFactory)
