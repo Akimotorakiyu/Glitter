@@ -34,14 +34,13 @@
 
 ### Maintainability
 
+- defineView
+- defineStateSuite
+
 #### Isolate
 
 - defineView
-- defineState
-- defineStateView
 
 #### Compose
 
-- defineFactory
-- definePortal
-- defineStatePortal
+- defineStateSuite
