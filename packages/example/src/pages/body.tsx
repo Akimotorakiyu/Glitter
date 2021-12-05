@@ -4,7 +4,7 @@ import {
   useUpdater,
   defineState,
   defineStateView,
-  defineFactory,
+  defineFactoryComponent,
 } from '@shrio/shrio'
 import { TodoApp } from './todoApp/todoList'
 
@@ -14,7 +14,7 @@ const bodyStateFactory = defineState((props, children, context) => {
   const todoAppRef = createRef(TodoApp)
   let show = true
 
-  return [{ updater, buttonRef, todoAppRef, show }, children, context]
+  return { updater, buttonRef, todoAppRef, show }
 })
 
 export const BodyView = defineStateView(bodyStateFactory, (props) => {
@@ -52,4 +52,4 @@ export const BodyView = defineStateView(bodyStateFactory, (props) => {
   )
 })
 
-export const Body = defineFactory(bodyStateFactory, BodyView)
+export const Body = defineFactoryComponent(bodyStateFactory, BodyView)

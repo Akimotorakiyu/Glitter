@@ -1,9 +1,4 @@
-import {
-  dynamic,
-  defineFactory,
-  defineStateView,
-  defineView,
-} from '@shrio/shrio'
+import { defineView } from '@shrio/shrio'
 import {
   ButtonViewLight,
   ButtonViewBlue,

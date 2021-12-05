@@ -1,10 +1,4 @@
-import {
-  dynamic,
-  defineFactory,
-  defineStateView,
-  defineState,
-  defineView,
-} from '@shrio/shrio'
+import { defineView } from '@shrio/shrio'
 
 interface IButtonProps {
   onclick?: () => void | Promise<void>

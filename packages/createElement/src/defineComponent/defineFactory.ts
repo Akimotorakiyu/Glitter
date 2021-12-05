@@ -4,7 +4,7 @@ import {
 } from '../createElement/createComponent/componentContext/type'
 import { ShrioProps, IFactoryState } from './type'
 
-export const defineFactory = <
+export const defineFactoryComponent = <
   P extends Record<string, unknown>,
   S extends Record<string, unknown>,
 >(
@@ -12,7 +12,7 @@ export const defineFactory = <
   view: IFunctionComponent<S | (S & ShrioProps)>,
 ): IFactoryComponent<P & ShrioProps> => {
   const factory = (props: any, children: any, context: any) => {
-    const [_state, _children, _context] = stateFactory(props, children, context)
+    const _state = stateFactory(props, children, context)
     if (typeof _state !== 'object') {
       throw new Error('render should be an object')
     }
@@ -21,7 +21,7 @@ export const defineFactory = <
     }
     const com = Object.assign(_state, {
       render: () => {
-        return view(_state, _children, _context)
+        return view(_state, children, context)
       },
     })
     return com

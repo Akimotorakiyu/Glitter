@@ -27,8 +27,18 @@
 
 ### Composition-Api
 
-- provide-inject
+- provide-inject / definePortal
 - lifecycle
+
+### factory component and around
+
+- defineFactory
+
+@deprecated
+
+- defineState @deprecated
+- defineStateView @deprecated
+- defineStatePortal @deprecated
 
 ## Philosophy
 
