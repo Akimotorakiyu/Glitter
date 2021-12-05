@@ -93,8 +93,16 @@ export const TodoAppView = defineView((props) => {
 
 export const TodoApp = defineView((props: { title: string }, children, ctx) => {
   return (
-    <StateView {...props}>
-      <TodoAppView></TodoAppView>
-    </StateView>
+    <StateView
+      {...props}
+      scope={() => {
+        return <TodoAppView></TodoAppView>
+      }}
+    ></StateView>
   )
+
+  /**
+   * 简单版本
+   */
+  return <TodoAppView></TodoAppView>
 })

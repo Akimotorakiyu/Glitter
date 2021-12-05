@@ -43,4 +43,7 @@ export const stateSuite = defineStateSuite(
 
     return state
   },
+  {
+    title: '🤣',
+  },
 )

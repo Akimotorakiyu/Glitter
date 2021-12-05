@@ -15,6 +15,7 @@ export function inject<T>(key: KeyType): T {
 export interface IPortal<D> {
   provide(data: D): void
   inject(): D
+  key: KeyType
 }
 
 export function definePortal<D, K extends KeyType = symbol>(
@@ -27,6 +28,9 @@ export function definePortal<D, K extends KeyType = symbol>(
     },
     inject() {
       return inject(_key) as D
+    },
+    get key() {
+      return _key
     },
   }
 }
