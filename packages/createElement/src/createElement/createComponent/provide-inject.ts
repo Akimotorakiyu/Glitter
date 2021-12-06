@@ -1,10 +1,14 @@
-import { getCurrentContext } from './componentContext'
+import { Context, getCurrentContext } from './componentContext'
 
 export type KeyType = number | symbol | string
 
+export function _provide<T>(ctx: Context, key: KeyType, data: T) {
+  return Reflect.set(ctx.provider, key, data)
+}
+
 export function provide<T>(key: KeyType, data: T) {
   const ctx = getCurrentContext()
-  return Reflect.set(ctx.provider, key, data)
+  return _provide(ctx, key, data)
 }
 
 export function inject<T>(key: KeyType): T {

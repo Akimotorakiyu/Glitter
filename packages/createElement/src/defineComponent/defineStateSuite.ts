@@ -3,7 +3,9 @@ import {
   createElement,
   defineView,
   Fragment,
+  getCurrentContext,
   IFunctionComponent,
+  _provide,
 } from '..'
 import { IStateFactory, ShrioProps } from './type'
 import { definePortal, IPortal, KeyType } from '..'
@@ -58,7 +60,8 @@ export const defineStateSuite = <
     } else {
       const state = stateFactory(defaultProps! ?? {}, [], undefined!)
 
-      portal.provide(state)
+      const ctx = getCurrentContext()
+      _provide(ctx.parent!, portal.key, state)
 
       return state
     }

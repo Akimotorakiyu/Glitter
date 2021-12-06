@@ -1,7 +1,7 @@
 import { defineView, IStateSuite } from '@shiro/create-element'
 import { getTypedRadioSuite, IRadioSuiteProps, IRadioSuiteState } from './state'
 import { TextView } from '../text'
-const key = Symbol()
+const key = Symbol('xxxxx')
 
 export const RadioView = defineView(
   <T extends unknown>(props: {
@@ -22,9 +22,9 @@ export const RadioView = defineView(
           state.props.onchange?.(state.value)
         }}
       >
-        <TextView>
+        <TextView class="mx-1">
           <span
-            class={`w-4 h-4 rounded-full outline-none border-none hover:shadow ${
+            class={`mx-1 w-4 h-4 rounded-full outline-none border-none hover:shadow ${
               state.reactive.value === props.value
                 ? 'bg-red-200'
                 : 'bg-blue-200'
