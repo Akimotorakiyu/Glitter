@@ -63,7 +63,7 @@ export const reactive = <T extends Record<TKey, any>>(
       >
 
       const set = reactiveMap?.get(key)
-      reactiveMap.delete(key)
+      reactiveMap?.delete(key)
       set?.forEach((fn) => fn())
     },
   )
