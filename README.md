@@ -28,7 +28,7 @@
 ### Composition-Api
 
 - provide-inject / definePortal
-- lifecycle
+- lifecycle(WIP)
 
 ### factory component and around
 
