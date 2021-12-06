@@ -9,10 +9,7 @@ export interface ShrioProps {
   ref?: any
 }
 
-export interface IFactoryState<
-  P extends Record<string, unknown>,
-  S extends Record<string, unknown>,
-> {
+export interface IStateFactory<P, S extends Record<string, unknown>> {
   (props: P, children: Node[], ctx: Context): S
 }
 export interface IFactoryView<F, S> {

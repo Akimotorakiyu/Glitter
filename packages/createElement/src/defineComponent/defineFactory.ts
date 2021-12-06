@@ -2,13 +2,13 @@ import {
   IFunctionComponent,
   IFactoryComponent,
 } from '../createElement/createComponent/componentContext/type'
-import { ShrioProps, IFactoryState } from './type'
+import { ShrioProps, IStateFactory } from './type'
 
 export const defineFactoryComponent = <
   P extends Record<string, unknown>,
   S extends Record<string, unknown>,
 >(
-  stateFactory: IFactoryState<P, S>,
+  stateFactory: IStateFactory<P, S>,
   view: IFunctionComponent<S | (S & ShrioProps)>,
 ): IFactoryComponent<P & ShrioProps> => {
   const factory = (props: any, children: any, context: any) => {
