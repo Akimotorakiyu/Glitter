@@ -140,9 +140,10 @@ export const ShopWindowView = defineView(() => {
 
       <div class=" max-w-5xl  p-8 m-auto">
         <div class="flex justify-center">
-          <RadioView value={11} label="11" onchange={logger}></RadioView>
+          <RadioView value={666} label="666" onchange={logger}></RadioView>
           <RadioView value="泛影" label="你好" onchange={logger}></RadioView>
           <RadioView value="幻光" label="幻光" onchange={logger}></RadioView>
+          <RadioView value={888} label="888" onchange={logger}></RadioView>
         </div>
 
         <div class="flex justify-center">
@@ -153,14 +154,14 @@ export const ShopWindowView = defineView(() => {
               return (
                 <div>
                   <RadioView
-                    value={1}
-                    label="1"
+                    value={666}
+                    label="666"
                     suit={numberRadioSuite}
                     onchange={logger}
                   ></RadioView>
                   <RadioView
-                    value={2}
-                    label="2"
+                    value={888}
+                    label="888"
                     suit={numberRadioSuite}
                     onchange={logger}
                   ></RadioView>
@@ -175,8 +176,14 @@ export const ShopWindowView = defineView(() => {
               return (
                 <div>
                   <RadioView
-                    value={''}
-                    label="First"
+                    value={'幻光'}
+                    label="幻光"
+                    suit={stringRadioSuite}
+                    onchange={logger}
+                  ></RadioView>
+                  <RadioView
+                    value={'泛影'}
+                    label="泛影"
                     suit={stringRadioSuite}
                     onchange={logger}
                   ></RadioView>
