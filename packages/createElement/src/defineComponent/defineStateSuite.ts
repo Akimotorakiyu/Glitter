@@ -1,15 +1,17 @@
-import { Context, defineView, Fragment, IFunctionComponent } from '..'
-import { ShrioProps } from './type'
-import { definePortal, IPortal } from '..'
+import {
+  Context,
+  createElement,
+  defineView,
+  Fragment,
+  IFunctionComponent,
+} from '..'
+import { IStateFactory, ShrioProps } from './type'
+import { definePortal, IPortal, KeyType } from '..'
 
-export interface IStateFactory<P extends {}, S extends {}> {
-  (props: P, children: Node[], ctx: Context): S
-}
-
-export const defineStateSuite = <P extends {}, S extends {}>(
-  stateFactory: IStateFactory<P, S>,
-  defaultProps?: P,
-): {
+export interface IStateSuite<
+  P extends Record<string, any>,
+  S extends Record<string, any>,
+> {
   StateView: IFunctionComponent<
     P &
       ShrioProps &
@@ -18,8 +20,18 @@ export const defineStateSuite = <P extends {}, S extends {}>(
       }
   >
   portal: IPortal<S>
-} => {
-  const portal = definePortal<S>()
+  stateFactory: IStateFactory<P, S>
+}
+
+export const defineStateSuite = <
+  P extends Record<string, any>,
+  S extends Record<string, any>,
+>(
+  stateFactory: IStateFactory<P, S>,
+  defaultProps?: P,
+  key?: KeyType,
+): IStateSuite<P, S> => {
+  const portal = definePortal<S, KeyType>(key)
 
   const StateView = defineView(
     (
@@ -35,9 +47,7 @@ export const defineStateSuite = <P extends {}, S extends {}>(
 
       portal.provide(state)
 
-      return props.scope
-        ? props.scope(state, children, ctx)
-        : Fragment(null, children)
+      return createElement(props.scope ?? (Fragment as any), state, ...children)
     },
   )
 
@@ -61,5 +71,6 @@ export const defineStateSuite = <P extends {}, S extends {}>(
       ...portal,
       inject,
     },
+    stateFactory,
   }
 }
