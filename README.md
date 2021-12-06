@@ -44,9 +44,6 @@
 
 ### Maintainability
 
-- defineView
-- defineStateSuite
-
 #### Isolate
 
 - defineView
