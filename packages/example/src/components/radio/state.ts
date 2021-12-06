@@ -1,22 +1,46 @@
-import { defineStatePortal, defineState, shrioReactive } from '@shrio/shrio'
+import {
+  defineStateSuite,
+  Context,
+  KeyType,
+  IStateSuite,
+  shrioReactive,
+} from '@shrio/shrio'
 
-export const radioStateFactory = defineState(
-  (
-    props: {
-      value: string
-      onchange: (value: string) => {}
-    },
-    children,
-    context,
+export interface IRadioSuiteProps<T> {
+  defaultValue?: T
+  onchange?: (value?: T) => void
+}
+
+export interface IRadioSuiteState<T> {
+  props: IRadioSuiteProps<T>
+  value: T | undefined
+  reactive: {
+    value: T | undefined
+  }
+}
+
+export const getTypedRadioSuite = <T>(
+  defaultValue?: T,
+  key?: KeyType,
+): IStateSuite<IRadioSuiteProps<T>, IRadioSuiteState<T>> => {
+  const state = (
+    props: IRadioSuiteProps<T>,
+    children: Node[],
+    context: Context,
   ) => {
     const state = {
       props,
+      value: props.defaultValue,
+
+      reactive: shrioReactive({
+        value: props.defaultValue,
+      }),
     }
 
-    portal.provide(state)
+    return state
+  }
 
-    return [state, children, context]
-  },
-)
+  const radioSuite = defineStateSuite(state, defaultValue, key)
 
-export const portal = defineStatePortal(radioStateFactory)
+  return radioSuite
+}

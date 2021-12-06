@@ -39,8 +39,6 @@ export const stateSuite = defineStateSuite(
       },
     }
 
-    console.log('state', state)
-
     return state
   },
   {

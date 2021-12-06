@@ -57,7 +57,6 @@ export const defineStateSuite = <
       return state
     } else {
       const state = stateFactory(defaultProps! ?? {}, [], undefined!)
-      console.log('res', state)
 
       portal.provide(state)
 
