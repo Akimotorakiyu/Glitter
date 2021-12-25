@@ -76,3 +76,26 @@ export const defineStateSuite = <
     stateFactory,
   }
 }
+
+export const ComposeStateView = defineView(
+  (
+    props: {
+      stateSuiteList: IStateSuite<{}, {}>[]
+      scope: IFunctionComponent<Record<string, unknown>>
+    },
+    children: Node[],
+    ctx: Context,
+  ) => {
+    const stateList = props.stateSuiteList.map((suit) => {
+      const state = suit.stateFactory(props, children, ctx)
+      suit.portal.provide(state)
+      return state
+    })
+
+    return createElement(
+      props.scope ?? (Fragment as any),
+      { stateList },
+      ...children,
+    )
+  },
+)

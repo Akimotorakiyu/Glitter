@@ -47,7 +47,8 @@
 #### Isolate
 
 - defineView
+- defineStateSuite
 
 #### Compose
 
-- defineStateSuite
+- ComposeStateView
