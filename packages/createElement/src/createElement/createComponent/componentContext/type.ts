@@ -28,8 +28,8 @@ export interface Context {
   isConnected: boolean
   onConnected: ((target: Element[]) => void)[]
   onDisonnected: ((target: Element[]) => void)[]
-  updater: () => Node
-  render: () => Node
+  updater: () => Node | ShrioFragment
+  render: () => Node | ShrioFragment
   syncUpdater: () => void
   asyncUpdater: () => Promise<void>
   props: Record<string, unknown>

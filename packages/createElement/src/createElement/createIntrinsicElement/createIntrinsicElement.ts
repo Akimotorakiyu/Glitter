@@ -1,6 +1,7 @@
 import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
+import { ShrioFragment } from '../fragment'
 import { createElement } from './createElement'
 import { setAttrs } from './setAttrs'
 import { shouldShowComponent } from './tool'
@@ -8,8 +9,8 @@ import { shouldShowComponent } from './tool'
 export const createIntrinsicElement = <P extends Record<string, any>>(
   tag: keyof HTMLElementTagNameMap,
   props: P,
-  childNodes: Node[],
-): Node => {
+  childNodes: (Node | ShrioFragment)[],
+): Node | ShrioFragment => {
   // create and push
   const shouldShow = shouldShowComponent(props)
   const vDomNode = getCurrentVDomNode()

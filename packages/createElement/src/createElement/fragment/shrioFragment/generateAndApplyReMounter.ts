@@ -1,12 +1,13 @@
+import { replaceChildren } from '../../arrangeChildren'
 import { ShrioFragment } from './shrioFragment'
 
 export const generateAndApplyReMounter = (
-  parentElement: Element | DocumentFragment,
-  children: Node[],
+  parentElement: Element | ShrioFragment,
+  children: (Node | ShrioFragment)[],
 ) => {
   const shrioFragmentNodes = children.filter(
     (child) => child instanceof ShrioFragment,
-  ) as ShrioFragment[]
+  ) as unknown[] as ShrioFragment[]
 
   const reMount = (shrioFragment?: ShrioFragment) => {
     if (parentElement instanceof ShrioFragment) {
@@ -17,7 +18,8 @@ export const generateAndApplyReMounter = (
           fragment.reloadChildren!()
         }
       })
-      parentElement.replaceChildren(...children)
+
+      replaceChildren(parentElement, children)
     }
   }
 

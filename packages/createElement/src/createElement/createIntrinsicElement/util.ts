@@ -1,5 +1,11 @@
+import { ShrioFragment } from '../fragment'
+
 export function getNode(n: any) {
-  return n instanceof Node ? n : document.createTextNode(String(n))
+  if (n instanceof Node || n instanceof ShrioFragment) {
+    return n
+  } else {
+    return document.createTextNode(String(n))
+  }
 }
 
 // todo: need more safe impl

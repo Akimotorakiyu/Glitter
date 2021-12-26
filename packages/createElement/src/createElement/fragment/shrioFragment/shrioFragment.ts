@@ -1,4 +1,19 @@
-export class ShrioFragment extends DocumentFragment {
+export class ShrioFragment {
   reMount: ((shrioFragment?: ShrioFragment) => void) | null = null
-  reloadChildren: (() => DocumentFragment) | null = null
+  reloadChildren: (() => ShrioFragment) | null = null
+  insertBefore<T extends Node>(newNode: T, refChild: Node | null) {
+    if (refChild) {
+      const index = this.childNodes.findIndex((child) => {
+        return child === refChild
+      })
+
+      this.childNodes.splice(index, 0, newNode as unknown as ChildNode)
+    } else {
+      this.childNodes.push(newNode as unknown as ChildNode)
+    }
+
+    return newNode
+  }
+
+  childNodes: ChildNode[] = []
 }

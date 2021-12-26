@@ -9,14 +9,14 @@ export const Fragment = (props: null, childNodes: Node[]) => {
 
   const shrioFragmentChildrenNodes = childNodes.filter(
     (child) => child instanceof ShrioFragment,
-  ) as ShrioFragment[]
+  ) as unknown[] as ShrioFragment[]
 
   vFragmentNode.node.reloadChildren = () => {
     shrioFragmentChildrenNodes.forEach((fragment) => {
       fragment.reloadChildren!()
     })
     arrangeChildren(vFragmentNode.node!, childNodes)
-    return vFragmentNode.node!
+    return vFragmentNode.node as unknown as any
   }
 
   arrangeChildren(vFragmentNode.node, childNodes)

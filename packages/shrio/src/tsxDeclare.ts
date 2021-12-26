@@ -1,3 +1,5 @@
+import { ShrioFragment } from '.'
+
 type TElementTagNameMap = HTMLElementTagNameMap
 
 type TClassType = string | { [key: string]: boolean }
@@ -31,7 +33,7 @@ declare namespace JSX {
   type Element =
     | ElementClass
     | HTMLElement
-    | DocumentFragment
+    | ShrioFragment
     | Node
     | DomElement
     | number
@@ -71,7 +73,7 @@ declare interface HTSX {
     props: JSX.IntrinsicElements[Tag],
     ...children: JSX.Element[]
   ): JSX.Element
-  Fragment(props: null, children: JSX.Element[]): DocumentFragment
+  Fragment(props: null, children: JSX.Element[]): ShrioFragment
 }
 
 declare const htsx: HTSX

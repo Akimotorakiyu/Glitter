@@ -41,7 +41,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
     syncUpdater: () => {
       const res = comCtx.updater?.()
       if (res instanceof ShrioFragment) {
-        res.reMount!(res)
+        res.reMount?.(res)
       }
     },
     asyncUpdater: () => {
