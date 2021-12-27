@@ -1,4 +1,11 @@
-export class ShrioFragment {
+export interface IShrioFragment {
+  reMount: ((shrioFragment?: ShrioFragment) => void) | null
+  reloadChildren: (() => ShrioFragment) | null
+  insertBefore<T extends Node>(newNode: T, refChild: Node | null): T
+  childNodes: ChildNode[]
+}
+
+export class ShrioFragment implements IShrioFragment {
   reMount: ((shrioFragment?: ShrioFragment) => void) | null = null
   reloadChildren: (() => ShrioFragment) | null = null
   insertBefore<T extends Node>(newNode: T, refChild: Node | null) {

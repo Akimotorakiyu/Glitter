@@ -1,10 +1,19 @@
-import { ShrioFragment } from '../../fragment/shrioFragment/shrioFragment'
+import {
+  IShrioFragment,
+  ShrioFragment,
+} from '../../fragment/shrioFragment/shrioFragment'
 import { TContextHub } from './event/eventTarget'
 export interface IElementStruct {
   render: () => TElementValue
 }
 
-export type TElementValue = IElementStruct | Node | number | string | boolean
+export type TElementValue =
+  | IElementStruct
+  | Node
+  | number
+  | string
+  | boolean
+  | IShrioFragment
 
 export interface IFunctionComponent<P extends Record<string, unknown> = {}> {
   (props: P, children: Node[], ctx: Context): TElementValue

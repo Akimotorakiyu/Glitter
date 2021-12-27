@@ -1,4 +1,9 @@
-import { ShrioFragment } from '.'
+interface IShrioFragment {
+  reMount: ((shrioFragment?: IShrioFragment) => void) | null
+  reloadChildren: (() => IShrioFragment) | null
+  insertBefore<T extends Node>(newNode: T, refChild: Node | null): T
+  childNodes: ChildNode[]
+}
 
 type TElementTagNameMap = HTMLElementTagNameMap
 
@@ -33,7 +38,7 @@ declare namespace JSX {
   type Element =
     | ElementClass
     | HTMLElement
-    | ShrioFragment
+    | IShrioFragment
     | Node
     | DomElement
     | number
@@ -73,7 +78,7 @@ declare interface HTSX {
     props: JSX.IntrinsicElements[Tag],
     ...children: JSX.Element[]
   ): JSX.Element
-  Fragment(props: null, children: JSX.Element[]): ShrioFragment
+  Fragment(props: null, children: JSX.Element[]): IShrioFragment
 }
 
 declare const htsx: HTSX
