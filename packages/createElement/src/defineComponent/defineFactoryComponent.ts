@@ -3,16 +3,22 @@ import {
   IFactoryComponent,
 } from '../createElement/createComponent/componentContext/type'
 import { ShrioProps, IStateFactory } from './type'
+import { IStateSuite, defineStateSuite } from './defineStateSuite'
 
-export const defineFactoryComponent = <
+export function defineFactoryComponent<
   P extends Record<string, any>,
   S extends Record<string, any>,
 >(
   stateFactory: IStateFactory<P, S>,
   view: IFunctionComponent<S | (S & ShrioProps)>,
-): IFactoryComponent<P & ShrioProps> => {
+): IFactoryComponent<P & ShrioProps> {
+  let suite = defineStateSuite(stateFactory)
+
   const factory = (props: any, children: any, context: any) => {
-    const _state = stateFactory(props, children, context)
+    const _state = suite(props, children, context)
+
+    suite.provide(_state)
+
     if (typeof _state !== 'object') {
       throw new Error('state should be an object')
     }
@@ -30,5 +36,9 @@ export const defineFactoryComponent = <
     return com
   }
 
-  return factory
+  Reflect.set(factory, 'stateFactory', suite)
+
+  return factory as IFactoryComponent<P & ShrioProps> & {
+    stateFactory: IStateSuite<P, S>
+  }
 }

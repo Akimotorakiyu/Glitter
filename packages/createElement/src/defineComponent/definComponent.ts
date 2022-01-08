@@ -1,4 +1,3 @@
-export * from './defineFactory'
+export * from './defineFactoryComponent'
 export * from './defineView'
-export * from './defineState'
 export * from './defineStateSuite'

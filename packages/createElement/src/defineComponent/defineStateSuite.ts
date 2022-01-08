@@ -10,6 +10,8 @@ import {
 import { IStateFactory } from './type'
 import { definePortal, IPortal, KeyType } from '..'
 
+const suiteKey = Symbol('suiteKey')
+
 export type IStateSuite<
   P extends Record<string, any>,
   S extends Record<string, any>,
@@ -23,6 +25,10 @@ export const defineStateSuite = <
   defaultProps?: P,
   key?: KeyType,
 ): IStateSuite<P, S> => {
+  if (Reflect.get(stateFactory, suiteKey)) {
+    return stateFactory as IStateSuite<P, S>
+  }
+
   const portal = definePortal<S, KeyType>(key)
 
   const inject = () => {
@@ -39,7 +45,7 @@ export const defineStateSuite = <
     }
   }
 
-  Object.assign(stateFactory, { ...portal, inject })
+  Object.assign(stateFactory, { ...portal, inject, suiteKey: true })
 
   return stateFactory as IStateSuite<P, S>
 }
@@ -60,7 +66,7 @@ export const ViewContext = defineFactoryComponent(
       rawProps: props,
     }
   },
-  (props, children: Node[], ctx: Context) => {
+  (props, children, ctx) => {
     return createElement(
       props.rawProps.scope ?? (Fragment as any),
       { state: props.state },

@@ -30,15 +30,9 @@
 - provide-inject / definePortal
 - lifecycle(WIP)
 
-### factory component and around
+### factory component
 
-- defineFactory
-
-@deprecated
-
-- defineState @deprecated
-- defineStateView @deprecated
-- defineStatePortal @deprecated
+- defineFactoryComponent
 
 ## Philosophy
 
@@ -52,3 +46,4 @@
 #### Compose
 
 - ViewContext
+- defineFactoryComponent

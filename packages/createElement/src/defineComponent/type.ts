@@ -9,10 +9,6 @@ export interface ShrioProps {
   ref?: any
 }
 
-export interface IStateFunction<P, S extends Record<string, unknown>> {
-  (props: P, children: Node[], ctx: Context): S
-}
-
 export interface IStateFactory<P, S extends Record<string, unknown>> {
   (props: P, children: Node[], ctx: Context): S
 }
