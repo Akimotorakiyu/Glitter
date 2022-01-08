@@ -1,7 +1,7 @@
 import { defineView } from '@shrio/shrio'
 import { stateSuite } from './state'
 
-const { portal } = stateSuite
+const portal = stateSuite
 
 export const TodoItemAdd = defineView(() => {
   const operation = portal.inject()

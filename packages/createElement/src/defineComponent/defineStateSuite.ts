@@ -10,13 +10,10 @@ import {
 import { IStateFactory } from './type'
 import { definePortal, IPortal, KeyType } from '..'
 
-export interface IStateSuite<
+export type IStateSuite<
   P extends Record<string, any>,
   S extends Record<string, any>,
-> {
-  portal: IPortal<S>
-  stateFactory: IStateFactory<P, S>
-}
+> = IStateFactory<P, S> & IPortal<S>
 
 export const defineStateSuite = <
   P extends Record<string, any>,
@@ -42,43 +39,10 @@ export const defineStateSuite = <
     }
   }
 
-  return {
-    portal: {
-      ...portal,
-      inject,
-    },
-    stateFactory,
-  }
+  Object.assign(stateFactory, { ...portal, inject })
+
+  return stateFactory as IStateSuite<P, S>
 }
-
-export const ComposeStateView = defineFactoryComponent(
-  (
-    props: {
-      stateSuiteList: IStateSuite<{}, {}>[]
-      scope: IFunctionComponent<Record<string, unknown>>
-    },
-    children: Node[],
-    ctx: Context,
-  ) => {
-    const stateList = props.stateSuiteList.map((suit) => {
-      const state = suit.stateFactory(props, children, ctx)
-      suit.portal.provide(state)
-      return state
-    })
-
-    return {
-      stateList,
-      rawProps: props,
-    }
-  },
-  (props, children: Node[], ctx: Context) => {
-    return createElement(
-      props.rawProps.scope ?? (Fragment as any),
-      { stateList: props.stateList },
-      ...children,
-    )
-  },
-)
 
 export const ViewContext = defineFactoryComponent(
   <P extends Record<string, any>, S extends Record<string, any>>(
@@ -89,8 +53,8 @@ export const ViewContext = defineFactoryComponent(
     children: Node[],
     ctx: Context,
   ) => {
-    const state = props.stateSuite.stateFactory(props, children, ctx)
-    props.stateSuite.portal.provide(state)
+    const state = props.stateSuite(props, children, ctx)
+    props.stateSuite.provide(state)
     return {
       state,
       rawProps: props,

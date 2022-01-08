@@ -3,7 +3,7 @@ import { stateSuite } from './state'
 import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
 
-const { portal } = stateSuite
+const portal = stateSuite
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
   const operation = portal.inject()

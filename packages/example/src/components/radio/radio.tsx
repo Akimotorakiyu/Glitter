@@ -10,9 +10,7 @@ export const RadioView = defineView(
     label: string
     onchange?: (value?: T) => void
   }) => {
-    const state = (
-      props.suit ?? getTypedRadioSuite<T>(undefined, key)
-    ).portal.inject()
+    const state = (props.suit ?? getTypedRadioSuite<T>(undefined, key)).inject()
 
     return (
       <label
