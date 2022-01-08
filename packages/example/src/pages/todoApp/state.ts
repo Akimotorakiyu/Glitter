@@ -21,7 +21,11 @@ export const stateSuite = defineStateSuite(
     }
 
     const deleteTask = async (todoItem: ITodoItem) => {
-      const index = todoList.findIndex((e) => e === todoItem)
+      const index = todoList.findIndex((e) => {
+        console.log(e === todoItem, e, todoItem)
+        return e === todoItem
+      })
+      console.log('index', index)
       todoList.splice(index, 1)
     }
 

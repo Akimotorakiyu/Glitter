@@ -4,14 +4,27 @@ export function isObject(value: unknown): value is Record<TKey, any> {
   return value !== null && typeof value === 'object'
 }
 
+const reactiveAttrKey = Symbol()
+
 export const reactiveFrame = <T extends Record<TKey, any>>(
   target: T,
   track: (target: T, key: TKey) => void,
   trigger: (target: T, key: TKey, newValue: any, oldValue: any) => void,
 ): T => {
-  const obsver = new Proxy(target, {
+  const _ob = Reflect.get(target, reactiveAttrKey)
+
+  if (_ob) {
+    return _ob as T
+  }
+
+  const observer = new Proxy(target, {
     get(target, key, receiver) {
       const value = Reflect.get(target, key, receiver)
+      // 防止递归
+      if (key === reactiveAttrKey) {
+        return value
+      }
+
       track(target, key)
       return isObject(value)
         ? reactiveFrame(value as any, track, trigger)
@@ -20,11 +33,17 @@ export const reactiveFrame = <T extends Record<TKey, any>>(
     set(target, key, newValue, receiver) {
       const oldValue = Reflect.get(target, key, receiver)
       const result = Reflect.set(target, key, newValue, receiver)
+      // 防止 trigger
+      if (key === reactiveAttrKey) {
+        return result
+      }
       trigger(target, key, newValue, oldValue)
       return result
     },
   })
-  return obsver
+
+  Reflect.set(target, reactiveAttrKey, observer)
+  return observer
 }
 
 const reactiveKey = Symbol('reactiveKey')
