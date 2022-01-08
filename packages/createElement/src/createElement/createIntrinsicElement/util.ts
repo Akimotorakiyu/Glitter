@@ -4,7 +4,7 @@ export function getNode(n: any) {
   if (n instanceof Node || n instanceof ShrioFragment) {
     return n
   } else {
-    return document.createTextNode(String(n))
+    return String(n)
   }
 }
 

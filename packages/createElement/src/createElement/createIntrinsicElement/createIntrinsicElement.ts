@@ -41,3 +41,19 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
     return emptyNode
   }
 }
+
+export const createTextNode = (text: string): Node => {
+  // create and push
+  const vDomNode = getCurrentVDomNode()
+
+  if (!vDomNode.node) {
+    vDomNode.node = new Text(text) as any
+  } else {
+    const textNode = vDomNode.node as unknown as Text
+    if (textNode.data !== text) {
+      textNode.data = text
+    }
+  }
+
+  return vDomNode.node
+}

@@ -1,5 +1,8 @@
 import { Fragment } from './fragment/fragment'
-import { createIntrinsicElement } from './createIntrinsicElement/createIntrinsicElement'
+import {
+  createIntrinsicElement,
+  createTextNode,
+} from './createIntrinsicElement/createIntrinsicElement'
 import { createComponent } from './createComponent/createComponent'
 import {
   TCompontentType,
@@ -12,7 +15,13 @@ export const createElement = <P extends Record<string, unknown>>(
   props: P,
   ...children: TElementValue[]
 ): Node => {
-  const childNodes = flatenChildren(children)
+  const childNodes = flatenChildren(children).map((n) => {
+    if (typeof n === 'string') {
+      return createTextNode(n)
+    } else {
+      return n
+    }
+  })
 
   if (typeof tag === 'function') {
     if ((tag as unknown) === Fragment) {
