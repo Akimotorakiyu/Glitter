@@ -1,9 +1,9 @@
-import { dynamic, defineView } from '@shrio/shrio'
+import { dynamic, defineView, ViewContext } from '@shrio/shrio'
 import { stateSuite } from './state'
 import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
 
-const { portal, StateView } = stateSuite
+const { portal } = stateSuite
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
   const operation = portal.inject()
@@ -93,12 +93,13 @@ export const TodoAppView = defineView((props) => {
 
 export const TodoApp = defineView((props: { title: string }, children, ctx) => {
   return (
-    <StateView
+    <ViewContext
+      stateSuite={stateSuite}
       {...props}
       scope={() => {
         return <TodoAppView></TodoAppView>
       }}
-    ></StateView>
+    ></ViewContext>
   )
 
   /**

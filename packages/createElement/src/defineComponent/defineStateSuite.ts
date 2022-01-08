@@ -1,26 +1,19 @@
 import {
   Context,
   createElement,
-  defineView,
+  defineFactoryComponent,
   Fragment,
   getCurrentContext,
   IFunctionComponent,
   _provide,
 } from '..'
-import { IStateFactory, ShrioProps } from './type'
+import { IStateFactory } from './type'
 import { definePortal, IPortal, KeyType } from '..'
 
 export interface IStateSuite<
   P extends Record<string, any>,
   S extends Record<string, any>,
 > {
-  StateView: IFunctionComponent<
-    P &
-      ShrioProps &
-      Record<string, unknown> & {
-        scope: IFunctionComponent<Record<string, unknown>>
-      }
-  >
   portal: IPortal<S>
   stateFactory: IStateFactory<P, S>
 }
@@ -34,24 +27,6 @@ export const defineStateSuite = <
   key?: KeyType,
 ): IStateSuite<P, S> => {
   const portal = definePortal<S, KeyType>(key)
-
-  const StateView = defineView(
-    (
-      props: P &
-        ShrioProps &
-        Record<string, unknown> & {
-          scope?: IFunctionComponent<Record<string, unknown>>
-        },
-      children: Node[],
-      ctx: Context,
-    ) => {
-      const state = stateFactory(props, children, ctx)
-
-      portal.provide(state)
-
-      return createElement(props.scope ?? (Fragment as any), state, ...children)
-    },
-  )
 
   const inject = () => {
     let state = portal.inject()
@@ -68,7 +43,6 @@ export const defineStateSuite = <
   }
 
   return {
-    StateView,
     portal: {
       ...portal,
       inject,
@@ -77,7 +51,7 @@ export const defineStateSuite = <
   }
 }
 
-export const ComposeStateView = defineView(
+export const ComposeStateView = defineFactoryComponent(
   (
     props: {
       stateSuiteList: IStateSuite<{}, {}>[]
@@ -92,9 +66,40 @@ export const ComposeStateView = defineView(
       return state
     })
 
+    return {
+      stateList,
+      rawProps: props,
+    }
+  },
+  (props, children: Node[], ctx: Context) => {
     return createElement(
-      props.scope ?? (Fragment as any),
-      { stateList },
+      props.rawProps.scope ?? (Fragment as any),
+      { stateList: props.stateList },
+      ...children,
+    )
+  },
+)
+
+export const ViewContext = defineFactoryComponent(
+  <P extends Record<string, any>, S extends Record<string, any>>(
+    props: {
+      stateSuite: IStateSuite<P, S>
+      scope: IFunctionComponent<Record<string, unknown>>
+    } & P,
+    children: Node[],
+    ctx: Context,
+  ) => {
+    const state = props.stateSuite.stateFactory(props, children, ctx)
+    props.stateSuite.portal.provide(state)
+    return {
+      state,
+      rawProps: props,
+    }
+  },
+  (props, children: Node[], ctx: Context) => {
+    return createElement(
+      props.rawProps.scope ?? (Fragment as any),
+      { state: props.state },
       ...children,
     )
   },

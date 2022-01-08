@@ -1,4 +1,4 @@
-import { defineView } from '@shrio/shrio'
+import { defineView, ViewContext } from '@shrio/shrio'
 import {
   ButtonViewLight,
   ButtonViewBlue,
@@ -19,13 +19,13 @@ import {
 
 import { ImageView, getTypedRadioSuite, RadioView } from '../../components'
 
+function logger<T>(value: T) {
+  console.log('value', value)
+}
+
 export const ShopWindowView = defineView(() => {
   const numberRadioSuite = getTypedRadioSuite(0)
   const stringRadioSuite = getTypedRadioSuite('')
-
-  const logger = (value: any) => {
-    console.log('value', value)
-  }
 
   return (
     <div>
@@ -147,7 +147,8 @@ export const ShopWindowView = defineView(() => {
         </div>
 
         <div class="flex justify-center">
-          <numberRadioSuite.StateView
+          <ViewContext
+            stateSuite={numberRadioSuite}
             defaultValue={1}
             onchange={logger}
             scope={() => {
@@ -168,8 +169,9 @@ export const ShopWindowView = defineView(() => {
                 </div>
               )
             }}
-          ></numberRadioSuite.StateView>
-          <stringRadioSuite.StateView
+          ></ViewContext>
+          <ViewContext
+            stateSuite={stringRadioSuite}
             defaultValue={''}
             onchange={logger}
             scope={() => {
@@ -190,7 +192,7 @@ export const ShopWindowView = defineView(() => {
                 </div>
               )
             }}
-          ></stringRadioSuite.StateView>
+          ></ViewContext>
         </div>
       </div>
     </div>

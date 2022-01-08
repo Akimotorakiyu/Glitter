@@ -5,8 +5,8 @@ import {
 import { ShrioProps, IStateFactory } from './type'
 
 export const defineFactoryComponent = <
-  P extends Record<string, unknown>,
-  S extends Record<string, unknown>,
+  P extends Record<string, any>,
+  S extends Record<string, any>,
 >(
   stateFactory: IStateFactory<P, S>,
   view: IFunctionComponent<S | (S & ShrioProps)>,

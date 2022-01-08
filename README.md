@@ -47,6 +47,7 @@
 #### Isolate
 
 - defineView
+- ViewContext
 - defineStateSuite
 
 #### Compose
