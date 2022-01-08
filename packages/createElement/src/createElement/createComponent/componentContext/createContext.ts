@@ -8,6 +8,7 @@ import {
 import { createContextHub } from './event/eventTarget'
 import { ShrioFragment } from '../../..'
 import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
+import { FakeRootComponent } from './rootComponent'
 
 const isContain = (parent: Context, ctx: Context): boolean => {
   if (ctx.parent === parent) {
@@ -40,7 +41,14 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
     },
     syncUpdater: () => {
       const res = comCtx.updater?.()
+      // FakeRootComponent root 组件 不需要更新
+      // 以下两个都可以让FakeRootComponent这个reMount逻辑不执行
+      // todo: 需要更合理的设计
+      if (comCtx.tag === FakeRootComponent) {
+        return
+      }
       if (res instanceof ShrioFragment) {
+        // root 组件时候 reMount 不存在
         res.reMount?.(res)
       }
     },
