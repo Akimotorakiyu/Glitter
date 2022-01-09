@@ -1,3 +1,4 @@
+import '@shrio/core'
 import './tsxDeclare'
 export * from '@shiro/reactive'
 export * from '@shiro/create-element'

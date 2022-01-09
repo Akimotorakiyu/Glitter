@@ -2,11 +2,12 @@ import {
   IElementStruct,
   TElementValue,
 } from '../createComponent/componentContext'
+import { ShrioFragment } from '../fragment'
 export const isElementStructInstance = (
-  com: TElementValue,
+  com: TElementValue | IElementStruct,
 ): com is IElementStruct => {
   const _ = com as any
-  return _.render ? true : false
+  return typeof _.render === 'function' ? true : false
 }
 
 export const updateProps = (
@@ -33,8 +34,8 @@ export const updateProps = (
 }
 
 export const updateChildNodes = (
-  targetChildNodes: Node[],
-  newChildNodes: Node[],
+  targetChildNodes: (Node | ShrioFragment)[],
+  newChildNodes: (Node | ShrioFragment)[],
 ) => {
   let childrenChanged = false
 

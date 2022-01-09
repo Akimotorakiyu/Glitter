@@ -7,20 +7,14 @@ export interface IElementStruct {
   render: () => TElementValue
 }
 
-export type TElementValue =
-  | IElementStruct
-  | Node
-  | number
-  | string
-  | boolean
-  | IShrioFragment
+export type TElementValue = Node | IShrioFragment
 
 export interface IFunctionComponent<P extends Record<string, unknown> = {}> {
-  (props: P, children: Node[], ctx: Context): TElementValue
+  (props: P, children: TElementValue[], ctx: Context): TElementValue
 }
 
 export interface IFactoryComponent<P extends Record<string, unknown> = {}> {
-  (props: P, children: Node[], ctx: Context): IElementStruct
+  (props: P, children: TElementValue[], ctx: Context): IElementStruct
 }
 
 export type TCompontentType<P extends Record<string, unknown>> =
@@ -29,7 +23,7 @@ export type TCompontentType<P extends Record<string, unknown>> =
 
 export interface Context {
   tag: IFunctionComponent<any> | IFactoryComponent<any>
-  element: Node | null
+  element: (Node | ShrioFragment) | null
   active: boolean
   provider: Record<string, unknown>
   parent: Context | null
@@ -44,7 +38,7 @@ export interface Context {
   props: Record<string, unknown>
   created: boolean
   staticContentNodeInfo: ContentNodeInfo
-  childNodes: Node[]
+  childNodes: (Node | ShrioFragment)[]
   dynamicContentNodeInfo: {
     map: Map<string, ContentNodeInfo>
     keyStack: string[]
@@ -56,7 +50,7 @@ export interface Context {
 }
 
 export interface VDomNode {
-  node: Element | null
+  node: Node | null
   props: Record<string, unknown>
 }
 export interface VComNode {

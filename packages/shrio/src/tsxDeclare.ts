@@ -1,10 +1,3 @@
-interface IShrioFragment {
-  reMount: ((shrioFragment?: IShrioFragment) => void) | null
-  reloadChildren: (() => IShrioFragment) | null
-  insertBefore<T extends Node>(newNode: T, refChild: Node | null): T
-  childNodes: ChildNode[]
-}
-
 type TElementTagNameMap = HTMLElementTagNameMap
 
 type TClassType = string | { [key: string]: boolean }
@@ -24,26 +17,16 @@ declare type JsxElementTagNameMap = {
   >
 }
 
-type DomElement = Element
-
 declare namespace JSX {
   // The Intrinsic Elements Type Map
   type IntrinsicElements = JsxElementTagNameMap
 
   // The Class Component Instance Type or Factory Return Value Type
   interface ElementClass {
-    render: () => Element
+    render: () => IShrioFragment | Node
   }
   // The JSX result type
-  type Element =
-    | ElementClass
-    | HTMLElement
-    | IShrioFragment
-    | Node
-    | DomElement
-    | number
-    | string
-    | boolean
+  type Element = IShrioFragment | Node
 }
 
 declare type JsxTagType<P> =

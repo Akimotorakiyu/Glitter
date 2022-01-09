@@ -1,3 +1,4 @@
+import { ShrioFragment } from '..'
 import {
   IFunctionComponent,
   Context,
@@ -15,7 +16,7 @@ export const defineView = <P extends {}>(
     | Partial<P & ShrioProps>
     | ((
         p: P & ShrioProps & Record<string, unknown>,
-        children: Node[],
+        children: (Node | ShrioFragment)[],
         ctx: Context,
       ) => Partial<P & ShrioProps>),
 ): IFunctionComponent<P & ShrioProps & Record<string, unknown>> => {

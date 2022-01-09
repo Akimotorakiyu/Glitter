@@ -55,5 +55,5 @@ export const createTextNode = (text: string): Node => {
     }
   }
 
-  return vDomNode.node
+  return vDomNode.node!
 }

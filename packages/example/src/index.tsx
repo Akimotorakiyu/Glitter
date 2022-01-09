@@ -4,4 +4,4 @@ import 'virtual:windi.css'
 import { arrangeChildren, getNode } from '@shrio/shrio'
 
 // mount(root!, <Welcome></Welcome>)
-arrangeChildren(document.body, [getNode(<Welcome></Welcome>)])
+arrangeChildren(document.body, [<Welcome></Welcome>])

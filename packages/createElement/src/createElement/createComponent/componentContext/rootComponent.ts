@@ -1,1 +1,1 @@
-export const FakeRootComponent = () => '<This is root!>'
+export const FakeRootComponent = () => new Text('<This is root!>')

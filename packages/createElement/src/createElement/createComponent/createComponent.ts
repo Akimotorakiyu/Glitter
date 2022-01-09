@@ -12,15 +12,19 @@ import {
   popContext,
   pushContext,
 } from './componentContext'
-import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
+import {
+  IFactoryComponent,
+  IFunctionComponent,
+  TElementValue,
+} from './componentContext/type'
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
-  childNodes: Node[],
-): Node => {
+  childNodes: (Node | ShrioFragment)[],
+): Node | ShrioFragment => {
   const shouldShow = shouldShowComponent(props)
   const vComNode = getCurrentVComNode()
 
@@ -35,15 +39,19 @@ export const createComponent = <P extends Record<string, any>>(
 
       const res = tag(props, childNodes, context)
       const isElementClassInstanceRes = isElementStructInstance(res)
-      const ele = getNode(isElementClassInstanceRes ? res.render() : res)
+      const ele = isElementClassInstanceRes ? res.render() : res
       vComNode.node.element = ele
-      context.render = isElementClassInstanceRes
-        ? () => {
-            return getNode(res.render())
-          }
-        : () => {
-            return getNode(tag(props, childNodes, context))
-          }
+
+      if (isElementClassInstanceRes) {
+        context.render = () => {
+          return res.render()
+        }
+      } else {
+        context.render = () => {
+          return tag(props, childNodes, context) as TElementValue
+        }
+      }
+
       popContext()
       vComNode.node.created = true
 

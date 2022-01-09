@@ -2,7 +2,7 @@ import { generateAndApplyReMounter } from './fragment/shrioFragment/generateAndA
 import { ShrioFragment } from './fragment/shrioFragment/shrioFragment'
 
 export const arrangeChildren = (
-  parentElement: Element | ShrioFragment,
+  parentElement: Node | ShrioFragment,
   childNodes: (Node | ShrioFragment)[],
 ) => {
   generateAndApplyReMounter(parentElement, childNodes)
@@ -11,7 +11,7 @@ export const arrangeChildren = (
 }
 
 export const replaceChildren = (
-  parentElement: Element | ShrioFragment,
+  parentElement: Node | ShrioFragment,
   childNodes: (Node | ShrioFragment)[],
 ) => {
   const flatedChildNodes = childNodes.reduce((acc, child) => {

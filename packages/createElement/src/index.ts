@@ -1,3 +1,4 @@
+import '@shrio/core'
 export * from './createElement/arrangeChildren'
 export * from './createElement/createElement'
 export * from './createElement/createIntrinsicElement/util'
