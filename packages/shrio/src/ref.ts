@@ -9,5 +9,5 @@ export type ShrioRefType<T> = T extends (...arg: any[]) => infer R
 export const createRef = <T>(t?: T): ShrioRefType<T> => {
   return {
     current: null,
-  }
+  } as ShrioRefType<T>
 }
