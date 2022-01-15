@@ -1,6 +1,6 @@
 import { ShrioFragment } from '../fragment'
 
-export function getNode(n: any) {
+export function getNode(n: TElementValue) {
   if (n instanceof Node || n instanceof ShrioFragment) {
     return n
   } else {

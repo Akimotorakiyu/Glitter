@@ -4,18 +4,14 @@ import {
   createTextNode,
 } from './createIntrinsicElement/createIntrinsicElement'
 import { createComponent } from './createComponent/createComponent'
-import {
-  TCompontentType,
-  TElementValue,
-} from './createComponent/componentContext'
+import { TCompontentType } from './createComponent/componentContext'
 import { flatenChildren } from './flatenChildren'
-import { ShrioFragment } from '..'
 
 export const createElement = <P extends Record<string, unknown>>(
   tag: TCompontentType<P> | string,
   props: P,
   ...children: TElementValue[]
-): Node | ShrioFragment => {
+): TElementValue => {
   const childNodes = flatenChildren(children).map((n) => {
     if (typeof n === 'string') {
       return createTextNode(n)

@@ -23,10 +23,10 @@ declare namespace JSX {
 
   // The Class Component Instance Type or Factory Return Value Type
   interface ElementClass {
-    render: () => IShrioFragment | Node
+    render: () => TElementValue
   }
   // The JSX result type
-  type Element = IShrioFragment | Node
+  type Element = TElementValue
 }
 
 declare type JsxTagType<P> =

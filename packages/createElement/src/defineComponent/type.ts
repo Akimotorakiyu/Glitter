@@ -1,7 +1,4 @@
-import {
-  Context,
-  TElementValue,
-} from '../createElement/createComponent/componentContext/type'
+import { Context } from '../createElement/createComponent/componentContext/type'
 
 export interface ShrioProps {
   if?: any
@@ -10,9 +7,9 @@ export interface ShrioProps {
 }
 
 export interface IStateFactory<P, S extends Record<string, unknown>> {
-  (props: P, children: Node[], ctx: Context): S
+  (props: P, children: TElementValue[], ctx: Context): S
 }
 
 export interface IFactoryView<F, S> {
-  (state: S, children: Node[], ctx: Context): TElementValue
+  (state: S, children: TElementValue[], ctx: Context): TElementValue
 }

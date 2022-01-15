@@ -1,7 +1,7 @@
 import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVFragmentNode } from '../createComponent/componentContext'
 import { ShrioFragment } from './shrioFragment/shrioFragment'
-export const Fragment = (props: null, childNodes: (Node | ShrioFragment)[]) => {
+export const Fragment = (props: null, childNodes: TElementValue[]) => {
   const vFragmentNode = getCurrentVFragmentNode()
   if (!vFragmentNode.node) {
     vFragmentNode.node = new ShrioFragment()

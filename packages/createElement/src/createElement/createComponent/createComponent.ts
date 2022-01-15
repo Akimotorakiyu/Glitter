@@ -4,7 +4,6 @@ import {
   updateProps,
   updateChildNodes,
 } from '../createIntrinsicElement/tool'
-import { getNode } from '../createIntrinsicElement/util'
 import { ShrioFragment } from '../fragment'
 import {
   createComponentContext,
@@ -12,19 +11,15 @@ import {
   popContext,
   pushContext,
 } from './componentContext'
-import {
-  IFactoryComponent,
-  IFunctionComponent,
-  TElementValue,
-} from './componentContext/type'
+import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
-  childNodes: (Node | ShrioFragment)[],
-): Node | ShrioFragment => {
+  childNodes: TElementValue[],
+): TElementValue => {
   const shouldShow = shouldShowComponent(props)
   const vComNode = getCurrentVComNode()
 

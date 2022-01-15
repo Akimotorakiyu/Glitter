@@ -1,7 +1,7 @@
 import { Welcome } from './app'
 import 'virtual:windi.css'
 // const root = document.getElementById('app')
-import { arrangeChildren, getNode } from '@shrio/shrio'
+import { arrangeChildren } from '@shrio/shrio'
 
 // mount(root!, <Welcome></Welcome>)
-arrangeChildren(document.body, [<Welcome></Welcome>])
+arrangeChildren(document.body as unknown as IShrioNode, [<Welcome></Welcome>])

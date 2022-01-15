@@ -2,8 +2,8 @@ import { replaceChildren } from '../../arrangeChildren'
 import { ShrioFragment } from './shrioFragment'
 
 export const generateAndApplyReMounter = (
-  parentElement: Node | ShrioFragment,
-  children: (Node | ShrioFragment)[],
+  parentElement: IShrioNode,
+  children: IShrioNode[],
 ) => {
   const shrioFragmentNodes = children.filter(
     (child) => child instanceof ShrioFragment,

@@ -15,7 +15,7 @@ export type TCompontentType<P extends Record<string, unknown>> =
 
 export interface Context {
   tag: IFunctionComponent<any> | IFactoryComponent<any>
-  element: (Node | ShrioFragment) | null
+  element: TElementValue | null
   active: boolean
   provider: Record<string, unknown>
   parent: Context | null
@@ -23,14 +23,14 @@ export interface Context {
   isConnected: boolean
   onConnected: ((target: Element[]) => void)[]
   onDisonnected: ((target: Element[]) => void)[]
-  updater: () => Node | ShrioFragment
-  render: () => Node | ShrioFragment
+  updater: () => TElementValue
+  render: () => TElementValue
   syncUpdater: () => void
   asyncUpdater: () => Promise<void>
   props: Record<string, unknown>
   created: boolean
   staticContentNodeInfo: ContentNodeInfo
-  childNodes: (Node | ShrioFragment)[]
+  childNodes: TElementValue[]
   dynamicContentNodeInfo: {
     map: Map<string, ContentNodeInfo>
     keyStack: string[]
@@ -42,7 +42,7 @@ export interface Context {
 }
 
 export interface VDomNode {
-  node: Node | null
+  node: IShrioNode | null
   props: Record<string, unknown>
 }
 export interface VComNode {

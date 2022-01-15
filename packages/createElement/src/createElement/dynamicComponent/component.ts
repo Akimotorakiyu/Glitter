@@ -11,8 +11,8 @@ export const Component = <P extends Record<string, unknown>>(
     key?: string
     keepAlive?: boolean
   } & P,
-  children: Node[],
-) => {
+  children: IShrioNode[],
+): TElementValue => {
   const parentCtx = getCurrentContext()
   parentCtx.dynamicContentNodeInfo.depth++
   setKey(props.key || (props.is as string))

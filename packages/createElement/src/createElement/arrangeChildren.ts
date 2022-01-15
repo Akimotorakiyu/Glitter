@@ -1,18 +1,35 @@
 import { generateAndApplyReMounter } from './fragment/shrioFragment/generateAndApplyReMounter'
 import { ShrioFragment } from './fragment/shrioFragment/shrioFragment'
 
-export const arrangeChildren = (
-  parentElement: Node | ShrioFragment,
-  childNodes: (Node | ShrioFragment)[],
-) => {
-  generateAndApplyReMounter(parentElement, childNodes)
+function isElementStruct(node: TElementValue): node is IElementStruct {
+  return 'render' in node && typeof node.render === 'function' ? true : false
+}
 
-  replaceChildren(parentElement, childNodes)
+export const getShrioNode = (element: TElementValue): IShrioNode => {
+  return isElementStruct(element) ? getShrioNode(element.render()) : element
+}
+
+export const getChildren = (childNodes: TElementValue[]): IShrioNode[] => {
+  const realchildNodes = childNodes.map((child) => {
+    return getShrioNode(child)
+  })
+  return realchildNodes
+}
+
+export const arrangeChildren = (
+  parentElement: TElementValue,
+  childNodes: TElementValue[],
+) => {
+  const parent = getShrioNode(parentElement)
+  const children = getChildren(childNodes)
+
+  generateAndApplyReMounter(parent, children)
+  replaceChildren(parent, children)
 }
 
 export const replaceChildren = (
-  parentElement: Node | ShrioFragment,
-  childNodes: (Node | ShrioFragment)[],
+  parentElement: IShrioNode,
+  childNodes: IShrioNode[],
 ) => {
   const flatedChildNodes = childNodes.reduce((acc, child) => {
     if (child instanceof ShrioFragment) {
@@ -23,7 +40,7 @@ export const replaceChildren = (
       acc.push(child)
     }
     return acc
-  }, [] as Node[])
+  }, [] as IShrioNode[])
 
   const childNodesSet = new Set(flatedChildNodes)
 

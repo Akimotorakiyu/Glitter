@@ -56,7 +56,7 @@ export const ViewContext = defineFactoryComponent(
       stateSuite: IStateSuite<P, S>
       scope: IFunctionComponent<Record<string, unknown>>
     } & P,
-    children: Node[],
+    children: TElementValue[],
     ctx: Context,
   ) => {
     const state = props.stateSuite(props, children, ctx)
