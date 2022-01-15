@@ -14,7 +14,8 @@ function elementTypeJudge<T>(
 }
 
 function markElementType(element: Record<any, any>, key: symbol) {
-  return Reflect.set(element, key, true)
+  const result = Reflect.set(element, key, true)
+  return result
 }
 
 /**

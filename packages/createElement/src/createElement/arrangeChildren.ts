@@ -1,5 +1,5 @@
+import { isFragmentElement } from '@shrio/core'
 import { generateAndApplyReMounter } from './fragment/shrioFragment/generateAndApplyReMounter'
-import { ShrioFragment } from './fragment/shrioFragment/shrioFragment'
 
 function isElementStruct(node: TElementValue): node is IElementStruct {
   return 'render' in node && typeof node.render === 'function' ? true : false
@@ -32,7 +32,7 @@ export const replaceChildren = (
   childNodes: IShrioNode[],
 ) => {
   const flatedChildNodes = childNodes.reduce((acc, child) => {
-    if (child instanceof ShrioFragment) {
+    if (isFragmentElement(child)) {
       const concated = acc.concat(...child.childNodes)
       child.childNodes.length = 0
       return concated

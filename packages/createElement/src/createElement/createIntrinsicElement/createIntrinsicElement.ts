@@ -1,3 +1,8 @@
+import {
+  isTextElement,
+  markAsIntrinsicElement,
+  markAsTextElement,
+} from '@shrio/core'
 import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
@@ -50,9 +55,12 @@ export const createTextNode = (text: string): IShrioNode => {
   const vDomNode = getCurrentVDomNode()
 
   if (!vDomNode.node) {
-    vDomNode.node = new Text(text) as any
+    const textNode = new Text(text) as unknown as IShrioNode
+    markAsTextElement(textNode)
+    vDomNode.node = textNode
   } else {
     const textNode = vDomNode.node as unknown as Text
+
     if (textNode.data !== text) {
       textNode.data = text
     }

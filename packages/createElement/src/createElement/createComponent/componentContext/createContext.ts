@@ -6,9 +6,9 @@ import {
   IFunctionComponent,
 } from './type'
 import { createContextHub } from './event/eventTarget'
-import { ShrioFragment } from '../../..'
 import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
 import { FakeRootComponent } from './rootComponent'
+import { isFragmentElement } from '@shrio/core'
 
 const isContain = (parent: Context, ctx: Context): boolean => {
   if (ctx.parent === parent) {
@@ -47,7 +47,7 @@ export const createContextWithUpdater = <P extends Record<string, unknown>>(
       if (comCtx.tag === FakeRootComponent) {
         return
       }
-      if (res instanceof ShrioFragment) {
+      if (isFragmentElement(res)) {
         // root 组件时候 reMount 不存在
         res.reMount?.(res)
       }

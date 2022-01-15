@@ -4,7 +4,6 @@ import {
   updateProps,
   updateChildNodes,
 } from '../createIntrinsicElement/tool'
-import { ShrioFragment } from '../fragment'
 import {
   createComponentContext,
   getCurrentVComNode,
@@ -15,6 +14,7 @@ import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
+import { isFragmentElement } from '@shrio/core'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -78,7 +78,7 @@ export const createComponent = <P extends Record<string, any>>(
         return ele
       } else {
         const ele = vComNode.node.element!
-        if (ele instanceof ShrioFragment) {
+        if (isFragmentElement(ele)) {
           ele.reloadChildren!()
           return ele
         } else {
