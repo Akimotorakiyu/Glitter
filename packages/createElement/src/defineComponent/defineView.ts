@@ -1,8 +1,4 @@
-import { ShrioFragment } from '..'
-import {
-  IFunctionComponent,
-  Context,
-} from '../createElement/createComponent/componentContext/type'
+import { IFunctionComponent } from '../createElement/createComponent/componentContext/type'
 import { ShrioProps } from './type'
 
 /**
@@ -10,8 +6,8 @@ import { ShrioProps } from './type'
  * @param view
  * @returns
  */
-export const defineView = <P extends {}>(
+export function defineView<P extends {}>(
   view: IFunctionComponent<P>,
-): IFunctionComponent<P & ShrioProps & Record<string, unknown>> => {
+): IFunctionComponent<P & ShrioProps & Record<string, unknown>> {
   return view
 }
