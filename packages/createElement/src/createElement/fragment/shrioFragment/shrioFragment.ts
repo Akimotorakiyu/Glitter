@@ -1,19 +1,28 @@
 export class ShrioFragment implements IShrioFragment {
-  reMount: ((shrioFragment?: ShrioFragment) => void) | null = null
-  reloadChildren: (() => ShrioFragment) | null = null
-  insertBefore<T extends Node>(newNode: T, refChild: Node | null) {
+  reMount: (shrioFragment?: IShrioFragment | undefined) => void = () => {
+    throw new Error('尚未 给 ShrioFragment reMount 赋值')
+  }
+  reloadChildren: () => void = () => {
+    throw new Error('尚未 给 ShrioFragment reloadChildren 赋值')
+  }
+  insertBefore<T extends IShrioNode>(
+    newNode: T,
+    refChild: IShrioNode | null,
+  ): T {
     if (refChild) {
       const index = this.childNodes.findIndex((child) => {
         return child === refChild
       })
 
-      this.childNodes.splice(index, 0, newNode as unknown as ChildNode)
+      this.childNodes.splice(index, 0, newNode)
     } else {
-      this.childNodes.push(newNode as unknown as ChildNode)
+      this.childNodes.push(newNode)
     }
 
     return newNode
   }
-
-  childNodes: ChildNode[] = []
+  childNodes: IShrioNode[] = []
+  remove: () => void = () => {
+    throw new Error('ShrioFragment 尚未实现 remove')
+  }
 }
