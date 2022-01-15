@@ -7,7 +7,8 @@ import {
   IFunctionComponent,
   IPortal,
   _provide,
-} from '@shiro/create-element'
+} from '@shiro/render-core'
+
 import { defineFactoryComponent } from './defineFactoryComponent'
 import { IStateFactory } from './type'
 

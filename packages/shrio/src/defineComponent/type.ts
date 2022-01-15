@@ -1,4 +1,4 @@
-import { Context } from '@shiro/create-element'
+import { Context } from '@shiro/render-core'
 
 export interface ShrioProps {
   if?: any

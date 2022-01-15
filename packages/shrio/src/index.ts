@@ -1,7 +1,7 @@
 import '@shrio/core'
 import './tsxDeclare'
 export * from '@shiro/reactive'
-export * from '@shiro/create-element'
+export * from '@shiro/render-core'
 export * from './tsx'
 export * from './compositionApi/useUpdater'
 export * from './compositionApi/lifecycle'

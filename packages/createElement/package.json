@@ -1,9 +1,0 @@
-{
-  "name": "@shiro/create-element",
-  "version": "1.0.0",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "dependencies": {
-    "@shrio/core": "^1.0.0"
-  }
-}

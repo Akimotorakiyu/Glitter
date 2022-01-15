@@ -1,8 +1,4 @@
-import {
-  isTextElement,
-  markAsIntrinsicElement,
-  markAsTextElement,
-} from '@shrio/core'
+import { markAsTextElement } from '@shrio/core'
 import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'

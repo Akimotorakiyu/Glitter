@@ -1,4 +1,4 @@
-import { useAsyncUpdater, setUpdateMode } from '@shiro/create-element'
+import { useAsyncUpdater, setUpdateMode } from '@shiro/render-core'
 import { reactive, TKey } from '@shiro/reactive'
 setUpdateMode('shallow')
 export const shrioReactive = <T extends Record<TKey, any>>(target: T) => {

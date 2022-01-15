@@ -1,4 +1,4 @@
-import { createElement, Fragment } from '@shiro/create-element'
+import { createElement, Fragment } from '@shiro/render-core'
 
 export const htsx = <HTSX>{
   createElement,
