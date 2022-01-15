@@ -16,10 +16,14 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
 
   if (shouldShow) {
     if (!vDomNode.node) {
-      vDomNode.node = createElement(tag, props as any, childNodes)
+      vDomNode.node = createElement(
+        tag,
+        props as any,
+        childNodes,
+      ) as unknown as IShrioNode
       vDomNode.props = props
     } else {
-      setAttrs(vDomNode.node as HTMLElement, props, vDomNode.props)
+      setAttrs(vDomNode.node as unknown as HTMLElement, props, vDomNode.props)
       vDomNode.props = props
       arrangeChildren(vDomNode.node, childNodes)
     }
@@ -31,7 +35,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
     return vDomNode.node
   } else {
     if (!props?.keepAlive && vDomNode.node) {
-      ;(vDomNode.node as ChildNode).remove()
+      ;(vDomNode.node as unknown as ChildNode).remove()
       vDomNode.node = null
       if ('ref' in props) {
         props.ref.current = null

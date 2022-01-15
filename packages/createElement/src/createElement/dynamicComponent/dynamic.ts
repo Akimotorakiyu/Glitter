@@ -1,7 +1,4 @@
-import {
-  getCurrentContext,
-  TElementValue,
-} from '../createComponent/componentContext'
+import { getCurrentContext } from '../createComponent/componentContext'
 import { setKey } from '../createComponent/componentContext/setDynamicContentNodeKey'
 
 export const dynamic = <T>(

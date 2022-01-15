@@ -11,7 +11,7 @@ export function createElement<K extends keyof TElementTagNameMap>(
 
   setAttrs(element, attrs, {})
 
-  arrangeChildren(element, childNodes)
+  arrangeChildren(element as unknown as IShrioNode, childNodes)
 
   return element as unknown as TElementTagNameMap[K]
 }
