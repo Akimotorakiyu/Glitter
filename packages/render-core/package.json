@@ -1,0 +1,9 @@
+{
+  "name": "render-core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@shrio/core": "^1.0.0"
+  }
+}

@@ -1,7 +1,4 @@
-import {
-  IFunctionComponent,
-  IFactoryComponent,
-} from '../createElement/createComponent/componentContext/type'
+import { IFunctionComponent, IFactoryComponent } from '@shiro/create-element'
 import { ShrioProps, IStateFactory } from './type'
 import { IStateSuite, defineStateSuite } from './defineStateSuite'
 

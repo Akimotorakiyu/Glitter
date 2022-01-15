@@ -1,14 +1,15 @@
 import {
   Context,
   createElement,
-  defineFactoryComponent,
+  definePortal,
   Fragment,
   getCurrentContext,
   IFunctionComponent,
+  IPortal,
   _provide,
-} from '..'
+} from '@shiro/create-element'
+import { defineFactoryComponent } from './defineFactoryComponent'
 import { IStateFactory } from './type'
-import { definePortal, IPortal, KeyType } from '..'
 
 const suiteKey = Symbol('suiteKey')
 

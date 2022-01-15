@@ -1,4 +1,4 @@
-import { defineView, IStateSuite } from '@shiro/create-element'
+import { defineView, IStateSuite } from '@shrio/shrio'
 import { getTypedRadioSuite, IRadioSuiteProps, IRadioSuiteState } from './state'
 import { TextView } from '../text'
 const key = Symbol('xxxxx')

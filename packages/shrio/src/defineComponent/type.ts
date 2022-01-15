@@ -1,4 +1,4 @@
-import { Context } from '../createElement/createComponent/componentContext/type'
+import { Context } from '@shiro/create-element'
 
 export interface ShrioProps {
   if?: any

@@ -1,4 +1,4 @@
-import { IFunctionComponent } from '../createElement/createComponent/componentContext/type'
+import { IFunctionComponent } from '@shiro/create-element'
 import { ShrioProps } from './type'
 
 /**
