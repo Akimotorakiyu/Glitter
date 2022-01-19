@@ -3,7 +3,6 @@ import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
 import { getCurrentElementCreator } from './elementCreator'
-import { setAttrs } from './setAttrs'
 import { shouldShowComponent } from './tool'
 
 export const createIntrinsicElement = <P extends Record<string, any>>(
@@ -24,7 +23,11 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
       arrangeChildren(vDomNode.node, childNodes)
       vDomNode.props = props
     } else {
-      setAttrs(vDomNode.node, props, vDomNode.props)
+      getCurrentElementCreator().setAttribute(
+        vDomNode.node,
+        props,
+        vDomNode.props,
+      )
       vDomNode.props = props
       arrangeChildren(vDomNode.node, childNodes)
     }

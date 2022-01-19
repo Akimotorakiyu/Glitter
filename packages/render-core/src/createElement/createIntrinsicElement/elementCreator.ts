@@ -6,8 +6,6 @@ export type TSetAttribute = (
   oldProps: Record<string, any>,
 ) => void
 
-import { setAttrs } from './setAttrs'
-
 export interface IElementCreator {
   createElement: TCreateElement
   createTextElement: TCreateTextElement
@@ -35,16 +33,3 @@ export function addElementCreator(
 export function setCurrentElementCreator(key: string | symbol) {
   currentElementCreator.currentElementCreator = elementCreatorMap.get(key)
 }
-
-addElementCreator('dom', {
-  createElement(tag: string) {
-    const element = document.createElement(tag)
-    return element as unknown as IShrioNode
-  },
-  createTextElement(text: string): IShrioNode {
-    return new Text(text) as unknown as IShrioNode
-  },
-  setAttribute: setAttrs,
-})
-
-setCurrentElementCreator('dom')
