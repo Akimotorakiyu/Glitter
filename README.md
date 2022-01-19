@@ -34,6 +34,10 @@
 
 - defineFactoryComponent
 
+### custome render
+
+- IElementCreator
+
 ## Philosophy
 
 ### Maintainability
