@@ -1,8 +1,8 @@
-import { markAsTextElement } from '@shrio/core'
+import { markAsIntrinsicElement, markAsTextElement } from '@shrio/core'
 import { arrangeChildren } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
-import { createElement } from './createElement'
+import { getCurrentElementCreator } from './elementCreator'
 import { setAttrs } from './setAttrs'
 import { shouldShowComponent } from './tool'
 
@@ -17,14 +17,14 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
 
   if (shouldShow) {
     if (!vDomNode.node) {
-      vDomNode.node = createElement(
-        tag,
-        props as any,
-        childNodes,
-      ) as unknown as IShrioNode
+      vDomNode.node = getCurrentElementCreator().createElement(tag)
+
+      markAsIntrinsicElement(vDomNode.node)
+      getCurrentElementCreator().setAttribute(vDomNode.node, props, {})
+      arrangeChildren(vDomNode.node, childNodes)
       vDomNode.props = props
     } else {
-      setAttrs(vDomNode.node as unknown as HTMLElement, props, vDomNode.props)
+      setAttrs(vDomNode.node, props, vDomNode.props)
       vDomNode.props = props
       arrangeChildren(vDomNode.node, childNodes)
     }
@@ -51,7 +51,7 @@ export const createTextNode = (text: string): IShrioNode => {
   const vDomNode = getCurrentVDomNode()
 
   if (!vDomNode.node) {
-    const textNode = new Text(text) as unknown as IShrioNode
+    const textNode = getCurrentElementCreator().createTextElement(text)
     markAsTextElement(textNode)
     vDomNode.node = textNode
   } else {
@@ -61,6 +61,5 @@ export const createTextNode = (text: string): IShrioNode => {
       textNode.data = text
     }
   }
-
   return vDomNode.node!
 }

@@ -2,11 +2,13 @@ import { convertObjectToAttrStringArray, kebabCase } from './util'
 import { TClassType } from './type'
 
 export const setAttrs = (
-  element: HTMLElement,
+  shrioNode: IShrioNode,
   newProps: Record<string, any>,
   oldProps: Record<string, any>,
 ) => {
   const newPropsKeys = Object.keys(newProps)
+
+  const element = shrioNode as unknown as HTMLElement
 
   Object.keys(oldProps).forEach((key) => {
     if (!newPropsKeys.includes(key)) {
