@@ -1,4 +1,4 @@
-import { Context, getCurrentContext } from './componentContext'
+import { getCurrentContext } from './componentContext'
 
 export type KeyType = number | symbol | string
 

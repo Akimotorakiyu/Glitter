@@ -1,4 +1,4 @@
-import { IFunctionComponent } from '@shiro/render-core'
+import { markAsFunctionComponent } from '@shrio/core'
 import { ShrioProps } from './type'
 
 /**
@@ -9,5 +9,6 @@ import { ShrioProps } from './type'
 export function defineView<P extends {}>(
   view: IFunctionComponent<P>,
 ): IFunctionComponent<P & ShrioProps & Record<string, unknown>> {
+  markAsFunctionComponent(view)
   return view
 }

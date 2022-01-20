@@ -1,4 +1,4 @@
-import { getCurrentContext, TContextHub, LifeCircle } from '@shiro/render-core'
+import { getCurrentContext } from '@shiro/render-core'
 
 const hubHelper = <E extends keyof LifeCircle>(
   hub: TContextHub,

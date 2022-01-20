@@ -1,5 +1,4 @@
 import { getCurrentContext } from './content'
-import { VComNode, VDomNode, VFragmentNode } from './type'
 
 const getContentNodeInfo = () => {
   const parentCtx = getCurrentContext()

@@ -10,7 +10,6 @@ import {
   popContext,
   pushContext,
 } from './componentContext'
-import { IFactoryComponent, IFunctionComponent } from './componentContext/type'
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'

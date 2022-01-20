@@ -1,10 +1,8 @@
 import {
-  Context,
   createElement,
   definePortal,
   Fragment,
   getCurrentContext,
-  IFunctionComponent,
   IPortal,
   _provide,
 } from '@shiro/render-core'

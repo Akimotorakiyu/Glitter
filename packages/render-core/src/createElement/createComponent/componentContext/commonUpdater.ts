@@ -1,5 +1,4 @@
 import { emptyNode } from '../emptyNode'
-import { Context } from './type'
 import { FakeRootComponent } from './rootComponent'
 
 export const commonUpdater = (contextStack: Context[], comCtx: Context) => {

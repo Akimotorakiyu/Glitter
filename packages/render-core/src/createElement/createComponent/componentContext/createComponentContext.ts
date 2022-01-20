@@ -1,5 +1,4 @@
 import { createContext, getCurrentContext } from './content'
-import { IFactoryComponent, IFunctionComponent } from './type'
 
 export function createComponentContext<P extends Record<string, unknown>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,

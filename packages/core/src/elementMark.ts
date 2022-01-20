@@ -1,6 +1,8 @@
 export const intrinsicElementMark = Symbol('intrinsicElementMark')
 export const fragmentElementMark = Symbol('fragmentElementMark')
 export const structElementMark = Symbol('structElementMark')
+export const factoryComponentMark = Symbol('structElementFactoryMark')
+export const functionComponentMark = Symbol('elementFactoryMark')
 export const textElementMark = Symbol('textElementMark')
 
 function elementTypeJudge<T>(
@@ -61,6 +63,33 @@ export function isStructElement(
 export function markAsStructElement(element: Record<any, any>) {
   return markElementType(element, structElementMark)
 }
+/**
+ * structElementFactory
+ */
+
+export function isFactoryComponent(
+  element: Record<any, any>,
+): element is IFactoryComponent {
+  return elementTypeJudge<IElementStruct>(element, factoryComponentMark)
+}
+
+export function markAsFactoryComponent(element: Record<any, any>) {
+  return markElementType(element, factoryComponentMark)
+}
+/**
+ * elementFactory
+ */
+
+export function isFunctionComponent(
+  element: Record<any, any>,
+): element is IFunctionComponent {
+  return elementTypeJudge<IElementStruct>(element, functionComponentMark)
+}
+
+export function markAsFunctionComponent(element: Record<any, any>) {
+  return markElementType(element, functionComponentMark)
+}
+
 /**
  * textElement
  */

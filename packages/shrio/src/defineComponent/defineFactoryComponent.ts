@@ -1,6 +1,6 @@
-import { IFunctionComponent, IFactoryComponent } from '@shiro/render-core'
 import { ShrioProps, IStateFactory } from './type'
 import { IStateSuite, defineStateSuite } from './defineStateSuite'
+import { markAsStructElement, markAsFactoryComponent } from '@shrio/core'
 
 export function defineFactoryComponent<
   P extends Record<string, any>,
@@ -30,8 +30,12 @@ export function defineFactoryComponent<
         return view(_state, children, context)
       },
     })
+
+    markAsStructElement(com)
     return com
   }
+
+  markAsFactoryComponent(factory)
 
   Reflect.set(factory, 'stateFactory', suite)
 

@@ -1,7 +1,4 @@
-import {
-  getCurrentContext,
-  TCompontentType,
-} from '../createComponent/componentContext'
+import { getCurrentContext } from '../createComponent/componentContext'
 import { setKey } from '../createComponent/componentContext/setDynamicContentNodeKey'
 import { createElement } from '../createElement'
 

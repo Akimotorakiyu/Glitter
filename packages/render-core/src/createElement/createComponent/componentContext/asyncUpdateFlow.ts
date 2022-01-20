@@ -1,5 +1,3 @@
-import { Context } from './type'
-
 export const updateStatus = {
   plan: new Map<Context, (() => void)[]>(),
   pending: new Map<Context, (() => void)[]>(),

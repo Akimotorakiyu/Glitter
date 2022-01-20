@@ -1,6 +1,5 @@
 import { createContextWithUpdater } from './createContext'
 import { FakeRootComponent } from './rootComponent'
-import { Context, IFactoryComponent, IFunctionComponent } from './type'
 
 const ctxStack: Context[] = []
 Reflect.set(window, 'ctxStack', ctxStack)

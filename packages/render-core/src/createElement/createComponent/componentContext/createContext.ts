@@ -1,10 +1,4 @@
 import { commonUpdater } from './commonUpdater'
-import {
-  ContentNodeInfo,
-  Context,
-  IFactoryComponent,
-  IFunctionComponent,
-} from './type'
 import { createContextHub } from './event/eventTarget'
 import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
 import { FakeRootComponent } from './rootComponent'

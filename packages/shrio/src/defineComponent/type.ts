@@ -1,5 +1,3 @@
-import { Context } from '@shiro/render-core'
-
 export interface ShrioProps {
   if?: any
   keepAlive?: any
