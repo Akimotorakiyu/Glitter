@@ -6,6 +6,7 @@ import {
   IPortal,
   _provide,
 } from '@shiro/render-core'
+import { markAsFunctionComponent } from '@shrio/core'
 
 import { defineFactoryComponent } from './defineFactoryComponent'
 import { IStateFactory } from './type'
@@ -67,6 +68,10 @@ export const ViewContext = defineFactoryComponent(
     }
   },
   (props, children, ctx) => {
+    if (props.rawProps.scope) {
+      markAsFunctionComponent(props.rawProps.scope)
+    }
+
     return createElement(
       props.rawProps.scope ?? (Fragment as any),
       { state: props.state },
@@ -74,3 +79,5 @@ export const ViewContext = defineFactoryComponent(
     )
   },
 )
+
+markAsFunctionComponent(ViewContext)

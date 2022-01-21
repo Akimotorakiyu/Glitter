@@ -1,3 +1,4 @@
+import { markAsFunctionComponent } from '@shrio/core'
 import { getCurrentContext } from '../createComponent/componentContext'
 import { setKey } from '../createComponent/componentContext/setDynamicContentNodeKey'
 import { createElement } from '../createElement'
@@ -20,3 +21,4 @@ export const Component = <P extends Record<string, unknown>>(
   parentCtx.dynamicContentNodeInfo.depth--
   return ele
 }
+markAsFunctionComponent(Component)
