@@ -1,4 +1,4 @@
-import { arrangeChildren } from '../arrangeChildren'
+import { arrangeChildrenInner } from '../arrangeChildren'
 import { getCurrentVFragmentNode } from '../createComponent/componentContext'
 import { ShrioFragment } from './shrioFragment/shrioFragment'
 export const Fragment = (props: null, childNodes: TElementValue[]) => {
@@ -15,11 +15,11 @@ export const Fragment = (props: null, childNodes: TElementValue[]) => {
     shrioFragmentChildrenNodes.forEach((fragment) => {
       fragment.reloadChildren!()
     })
-    arrangeChildren(vFragmentNode.node!, childNodes)
+    arrangeChildrenInner(vFragmentNode.node!, childNodes)
     return vFragmentNode.node as unknown as any
   }
 
-  arrangeChildren(vFragmentNode.node, childNodes)
+  arrangeChildrenInner(vFragmentNode.node, childNodes)
 
   return vFragmentNode.node
 }

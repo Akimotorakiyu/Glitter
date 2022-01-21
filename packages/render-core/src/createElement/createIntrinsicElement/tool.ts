@@ -1,10 +1,3 @@
-export const isElementStructInstance = (
-  com: TElementValue | IElementStruct,
-): com is IElementStruct => {
-  const _ = com as any
-  return typeof _.render === 'function' ? true : false
-}
-
 export const updateProps = (
   targetProps: Record<string, any>,
   newProps: Record<string, any>,

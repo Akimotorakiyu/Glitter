@@ -1,12 +1,8 @@
-import { isFragmentElement } from '@shrio/core'
+import { isFragmentElement, isStructElement } from '@shrio/core'
 import { generateAndApplyReMounter } from './fragment/shrioFragment/generateAndApplyReMounter'
 
-function isElementStruct(node: TElementValue): node is IElementStruct {
-  return 'render' in node && typeof node.render === 'function' ? true : false
-}
-
 export const getShrioNode = (element: TElementValue): IShrioNode => {
-  return isElementStruct(element) ? getShrioNode(element.render()) : element
+  return isStructElement(element) ? getShrioNode(element.render()) : element
 }
 
 export const getChildren = (childNodes: TElementValue[]): IShrioNode[] => {
@@ -17,14 +13,21 @@ export const getChildren = (childNodes: TElementValue[]): IShrioNode[] => {
 }
 
 export const arrangeChildren = (
-  parentElement: TElementValue,
+  parentElement: IShrioNode,
   childNodes: TElementValue[],
 ) => {
-  const parent = getShrioNode(parentElement)
+  const parent = parentElement
   const children = getChildren(childNodes)
 
   generateAndApplyReMounter(parent, children)
   replaceChildren(parent, children)
+}
+
+export const arrangeChildrenInner = (
+  parentElement: TElementValue,
+  childNodes: TElementValue[],
+) => {
+  arrangeChildren(getShrioNode(parentElement), childNodes)
 }
 
 export const replaceChildren = (

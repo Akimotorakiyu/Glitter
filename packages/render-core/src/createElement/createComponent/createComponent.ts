@@ -1,5 +1,4 @@
 import {
-  isElementStructInstance,
   shouldShowComponent,
   updateProps,
   updateChildNodes,
@@ -13,7 +12,7 @@ import {
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
-import { isFragmentElement } from '@shrio/core'
+import { isFragmentElement, isStructElement } from '@shrio/core'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -32,7 +31,7 @@ export const createComponent = <P extends Record<string, any>>(
       pushContext(context)
 
       const res = tag(props, childNodes, context)
-      const isElementClassInstanceRes = isElementStructInstance(res)
+      const isElementClassInstanceRes = isStructElement(res)
       const ele = isElementClassInstanceRes ? res.render() : res
       vComNode.node.element = ele
 

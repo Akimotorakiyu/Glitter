@@ -1,5 +1,5 @@
 import { markAsIntrinsicElement, markAsTextElement } from '@shrio/core'
-import { arrangeChildren } from '../arrangeChildren'
+import { arrangeChildrenInner } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
 import { getCurrentElementCreator } from './elementCreator'
@@ -20,7 +20,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
 
       markAsIntrinsicElement(vDomNode.node)
       getCurrentElementCreator().setAttribute(vDomNode.node, props, {})
-      arrangeChildren(vDomNode.node, childNodes)
+      arrangeChildrenInner(vDomNode.node, childNodes)
       vDomNode.props = props
     } else {
       getCurrentElementCreator().setAttribute(
@@ -29,7 +29,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
         vDomNode.props,
       )
       vDomNode.props = props
-      arrangeChildren(vDomNode.node, childNodes)
+      arrangeChildrenInner(vDomNode.node, childNodes)
     }
 
     if ('ref' in props) {
