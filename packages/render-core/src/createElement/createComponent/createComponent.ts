@@ -12,7 +12,12 @@ import {
 import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
-import { isFragmentElement, isStructElement } from '@shrio/core'
+import {
+  isFactoryComponent,
+  isFragmentElement,
+  isStructElement,
+} from '@shrio/core'
+import { getShrioNode } from '../arrangeChildren'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -30,32 +35,55 @@ export const createComponent = <P extends Record<string, any>>(
       context.childNodes = childNodes
       pushContext(context)
 
-      const res = tag(props, childNodes, context)
-      const isElementClassInstanceRes = isStructElement(res)
-      const ele = isElementClassInstanceRes ? res.render() : res
-      vComNode.node.element = ele
+      if (isFactoryComponent(tag)) {
+        const res = tag(props, childNodes, context)
+        const isElementClassInstanceRes = isStructElement(res)
+        const ele = getShrioNode(res)
+        vComNode.node.element = ele
 
-      if (isElementClassInstanceRes) {
         context.render = () => {
-          return res.render()
+          vComNode.node!.element = getShrioNode(res.render())
+          return vComNode.node!.element
         }
+
+        if (isElementClassInstanceRes && 'ref' in props) {
+          props.ref.current = res
+        }
+
+        popContext()
+        vComNode.node.created = true
+
+        vComNode.node.active = true
+        vComNode.node.hub.dispatch('created')
+        vComNode.node.hub.dispatch('active')
+        console.log('factory', ele, res)
+
+        const proxyedRes = Object.assign(Object.create(res), {
+          render() {
+            return vComNode.node!.element!
+          },
+        })
+
+        return proxyedRes
       } else {
+        const res = tag(props, childNodes, context)
+
+        vComNode.node.element = res
+
         context.render = () => {
-          return tag(props, childNodes, context) as TElementValue
+          vComNode.node!.element = getShrioNode(
+            tag(props, childNodes, context) as TElementValue,
+          )
+          return vComNode.node!.element
         }
+        popContext()
+        vComNode.node.created = true
+
+        vComNode.node.active = true
+        vComNode.node.hub.dispatch('created')
+        vComNode.node.hub.dispatch('active')
+        return res
       }
-
-      popContext()
-      vComNode.node.created = true
-
-      if (isElementClassInstanceRes && 'ref' in props) {
-        props.ref.current = res
-      }
-
-      vComNode.node.active = true
-      vComNode.node.hub.dispatch('created')
-      vComNode.node.hub.dispatch('active')
-      return ele
     } else {
       removeFromUpdateRootList(vComNode.node)
 
