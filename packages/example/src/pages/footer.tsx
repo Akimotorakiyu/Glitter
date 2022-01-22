@@ -13,7 +13,7 @@ export const Footer = defineView(() => {
           </span>
         </p>
         <p>
-          <span class="text-gray-600 text-sm">Power by Shrio</span>
+          <span class="text-gray-600 text-sm">Power by Gillter</span>
         </p>
         <p>
           <span class="text-gray-600 text-sm">Copyright © 2021-2021 湫曗</span>

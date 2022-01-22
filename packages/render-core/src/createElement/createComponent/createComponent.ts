@@ -56,7 +56,6 @@ export const createComponent = <P extends Record<string, any>>(
         vComNode.node.active = true
         vComNode.node.hub.dispatch('created')
         vComNode.node.hub.dispatch('active')
-        console.log('factory', ele, res)
 
         const proxyedRes = Object.assign(Object.create(res), {
           render() {
