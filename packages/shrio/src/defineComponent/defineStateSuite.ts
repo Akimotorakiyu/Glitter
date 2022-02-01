@@ -88,3 +88,29 @@ export const ViewContext = defineFactoryComponent(
 )
 
 markAsFunctionComponent(ViewContext)
+
+export const DomainView = defineFactoryComponent(
+  (props: {
+    stateSuite: () => void
+    scope: IFunctionComponent<Record<string, unknown>>
+  }) => {
+    const state = props.stateSuite()
+    return {
+      state,
+      rawProps: props,
+    }
+  },
+  (props, children) => {
+    if (props.rawProps.scope) {
+      markAsFunctionComponent(props.rawProps.scope)
+    }
+
+    return createElement(
+      props.rawProps.scope ?? (Fragment as any),
+      { state: props.state },
+      ...children,
+    )
+  },
+)
+
+markAsFunctionComponent(DomainView)
