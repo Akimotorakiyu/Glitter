@@ -9,7 +9,7 @@ export function defineFactoryComponent<
   stateFactory: IStateFactory<P, S>,
   view: IFunctionComponent<S | (S & ShrioProps)>,
 ): IFactoryComponent<P & ShrioProps> {
-  let suite = defineStateSuite(stateFactory)
+  const suite = defineStateSuite(stateFactory)
 
   const factory = (props: any, children: any, context: any) => {
     const _state = suite(props, children, context)

@@ -32,23 +32,30 @@ export const defineStateSuite = <
 
   const portal = definePortal<S, KeyType>(key)
 
+  const stateSuite = (props: P, children: TElementValue[], ctx: Context) => {
+    const state = stateFactory(props, children, ctx)
+    portal.provide(state)
+    return state
+  }
+
   const inject = () => {
     let state = portal.inject()
     if (state) {
       return state
     } else {
-      const state = stateFactory(defaultProps! ?? {}, [], undefined!)
-
       const ctx = getCurrentContext()
+      const state = stateFactory(defaultProps! ?? {}, [], ctx)
+
       _provide(ctx.parent!, portal.key, state)
 
       return state
     }
   }
 
-  Object.assign(stateFactory, { ...portal, inject, suiteKey: true })
+  Object.assign(stateFactory, { ...portal, inject, suiteKey: stateSuite })
+  Object.assign(stateSuite, { ...portal, inject, suiteKey: stateSuite })
 
-  return stateFactory as IStateSuite<P, S>
+  return stateSuite as IStateSuite<P, S>
 }
 
 export const ViewContext = defineFactoryComponent(
