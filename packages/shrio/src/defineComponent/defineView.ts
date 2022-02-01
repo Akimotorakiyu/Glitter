@@ -12,3 +12,9 @@ export function defineView<P extends {}>(
   markAsFunctionComponent(view)
   return view
 }
+
+export const View = defineView(
+  (props: { view: IFunctionComponent<{}> }, children, ctx) => {
+    return props.view(props, children, ctx)
+  },
+)
