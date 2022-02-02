@@ -94,7 +94,7 @@ export const TodoAppView = defineView((props) => {
 export const TodoApp = defineView((props: { title: string }, children, ctx) => {
   return (
     <ViewContext
-      stateSuite={stateSuite}
+      componentStateFactoryProto={stateSuite}
       {...props}
       scope={() => {
         return <TodoAppView></TodoAppView>

@@ -1,49 +1,53 @@
-import {
-  createElement,
-  definePortal,
-  Fragment,
-  IPortal,
-  KeyType,
-  _provide,
-} from '@shiro/render-core'
-import { markAsFunctionComponent } from '@shrio/core'
+import { definePortal, IPortal, KeyType, _provide } from '@shiro/render-core'
 
-import { defineFactoryComponent } from './defineFactoryComponent'
-import { IStateFactory } from './type'
+import { IComponentStateFactoryProto } from './type'
 
 const suiteKey = Symbol('suiteKey')
 
-export type IStateSuite<
+export type IStateFactory<
   P extends Record<string, any>,
   S extends Record<string, any>,
-> = IStateFactory<P, S> & IPortal<S>
+> = IComponentStateFactoryProto<P, S> & IPortal<S>
 
-export const defineStateSuite = <
+/**
+ * 仅为 工厂组件 使用的 defineStateFactory 为 defineComponentStateFactory
+ * 日常 组合式开发 应使用 defineStateFactory
+ * @param stateFactoryProto
+ * @param key
+ * @returns
+ */
+export const defineComponentStateFactory = <
   P extends Record<string, any>,
   S extends Record<string, any>,
 >(
-  stateFactory: IStateFactory<P, S>,
+  stateFactoryProto: IComponentStateFactoryProto<P, S>,
   key?: KeyType,
-): IStateSuite<P, S> => {
-  if (Reflect.get(stateFactory, suiteKey)) {
-    return stateFactory as IStateSuite<P, S>
+): IStateFactory<P, S> => {
+  if (Reflect.get(stateFactoryProto, suiteKey)) {
+    return stateFactoryProto as IStateFactory<P, S>
   }
 
   const portal = definePortal<S, KeyType>(key)
 
   const stateSuite = (props: P, children: TElementValue[], ctx: Context) => {
-    const state = stateFactory(props, children, ctx)
+    const state = stateFactoryProto(props, children, ctx)
     portal.provide(state)
     return state
   }
 
-  Object.assign(stateFactory, { ...portal, suiteKey: stateSuite })
+  Object.assign(stateFactoryProto, { ...portal, suiteKey: stateSuite })
   Object.assign(stateSuite, { ...portal, suiteKey: stateSuite })
 
-  return stateSuite as IStateSuite<P, S>
+  return stateSuite as IStateFactory<P, S>
 }
 
-export const defineStateSuite2 = <
+/**
+ * 日常 组合式开发 应使用的 defineStateFactory
+ * @param stateFactory
+ * @param key
+ * @returns
+ */
+export const defineStateFactory = <
   Args extends unknown[],
   S extends Record<string, any>,
 >(
@@ -67,60 +71,3 @@ export const defineStateSuite2 = <
 
   return stateSuite as (...args: Args) => S & IPortal<S>
 }
-
-export const ViewContext = defineFactoryComponent(
-  <P extends Record<string, any>, S extends Record<string, any>>(
-    props: {
-      stateSuite: IStateSuite<P, S>
-      scope: IFunctionComponent<Record<string, unknown>>
-    } & P,
-    children: TElementValue[],
-    ctx: Context,
-  ) => {
-    const state = props.stateSuite(props, children, ctx)
-    props.stateSuite.provide(state)
-    return {
-      state,
-      rawProps: props,
-    }
-  },
-  (props, children, ctx) => {
-    if (props.rawProps.scope) {
-      markAsFunctionComponent(props.rawProps.scope)
-    }
-
-    return createElement(
-      props.rawProps.scope ?? (Fragment as any),
-      { state: props.state },
-      ...children,
-    )
-  },
-)
-
-markAsFunctionComponent(ViewContext)
-
-export const DomainView = defineFactoryComponent(
-  (props: {
-    stateSuite: () => void
-    scope: IFunctionComponent<Record<string, unknown>>
-  }) => {
-    const state = props.stateSuite()
-    return {
-      state,
-      rawProps: props,
-    }
-  },
-  (props, children) => {
-    if (props.rawProps.scope) {
-      markAsFunctionComponent(props.rawProps.scope)
-    }
-
-    return createElement(
-      props.rawProps.scope ?? (Fragment as any),
-      { state: props.state },
-      ...children,
-    )
-  },
-)
-
-markAsFunctionComponent(DomainView)

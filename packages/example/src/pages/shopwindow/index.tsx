@@ -141,7 +141,7 @@ export const ShopWindowView = defineView(() => {
       <div class=" max-w-5xl  p-8 m-auto">
         <div class="flex justify-center">
           <ViewContext
-            stateSuite={numberRadioSuite}
+            componentStateFactoryProto={numberRadioSuite}
             defaultValue={1}
             onchange={logger}
             scope={() => {
@@ -164,7 +164,7 @@ export const ShopWindowView = defineView(() => {
             }}
           ></ViewContext>
           <ViewContext
-            stateSuite={stringRadioSuite}
+            componentStateFactoryProto={stringRadioSuite}
             defaultValue={''}
             onchange={logger}
             scope={() => {

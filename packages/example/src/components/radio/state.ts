@@ -1,7 +1,7 @@
 import {
-  defineStateSuite,
+  defineComponentStateFactory,
   KeyType,
-  IStateSuite,
+  IStateFactory,
   shrioReactive,
 } from '@shrio/shrio'
 
@@ -21,7 +21,7 @@ export interface IRadioSuiteState<T> {
 export const getTypedRadioSuite = <T>(
   defaultValue?: T,
   key?: KeyType,
-): IStateSuite<IRadioSuiteProps<T>, IRadioSuiteState<T>> => {
+): IStateFactory<IRadioSuiteProps<T>, IRadioSuiteState<T>> => {
   const state = (
     props: IRadioSuiteProps<T>,
     children: TElementValue[],
@@ -39,7 +39,7 @@ export const getTypedRadioSuite = <T>(
     return state
   }
 
-  const radioSuite = defineStateSuite(state, key)
+  const radioSuite = defineComponentStateFactory(state, key)
 
   return radioSuite
 }

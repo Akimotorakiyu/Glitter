@@ -1,16 +1,15 @@
-import { defineView, IStateSuite } from '@shrio/shrio'
+import { defineView, IStateFactory } from '@shrio/shrio'
 import { IRadioSuiteProps, IRadioSuiteState } from './state'
 import { TextView } from '../text'
 
 export const RadioView = defineView(
   <T extends unknown>(props: {
     value: T
-    suit?: IStateSuite<IRadioSuiteProps<T>, IRadioSuiteState<T>>
+    suit?: IStateFactory<IRadioSuiteProps<T>, IRadioSuiteState<T>>
     label: string
     onchange?: (value?: T) => void
   }) => {
     const state = props.suit!.inject()
-
     return (
       <label
         onclick={() => {

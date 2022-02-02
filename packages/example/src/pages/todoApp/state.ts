@@ -1,9 +1,9 @@
-import { defineStateSuite, shrioReactive } from '@shrio/shrio'
+import { defineComponentStateFactory, shrioReactive } from '@shrio/shrio'
 import { lifeCycleTest } from './lifeCycleTest'
 import { ITodoItem } from './type'
 import { genTempData } from './tempData'
 
-export const stateSuite = defineStateSuite(
+export const stateSuite = defineComponentStateFactory(
   (props: { title: string }, children, context) => {
     const todoList: ITodoItem[] = shrioReactive(genTempData())
 

@@ -1,20 +1,18 @@
-import { ShrioProps, IStateFactory } from './type'
-import { IStateSuite, defineStateSuite } from './defineStateSuite'
+import { ShrioProps, IComponentStateFactoryProto } from './type'
 import { markAsStructElement, markAsFactoryComponent } from '@shrio/core'
+
+import { createElement, Fragment, _provide } from '@shiro/render-core'
+import { markAsFunctionComponent } from '@shrio/core'
 
 export function defineFactoryComponent<
   P extends Record<string, any>,
   S extends Record<string, any>,
 >(
-  stateFactory: IStateFactory<P, S>,
+  stateFactory: IComponentStateFactoryProto<P, S>,
   view: IFunctionComponent<S | (S & ShrioProps)>,
 ): IFactoryComponent<P & ShrioProps> {
-  const suite = defineStateSuite(stateFactory)
-
   const factory = (props: any, children: any, context: any) => {
-    const _state = suite(props, children, context)
-
-    suite.provide(_state)
+    const _state = stateFactory(props, children, context)
 
     if (typeof _state !== 'object') {
       throw new Error('state should be an object')
@@ -37,9 +35,39 @@ export function defineFactoryComponent<
 
   markAsFactoryComponent(factory)
 
-  Reflect.set(factory, 'stateFactory', suite)
-
-  return factory as IFactoryComponent<P & ShrioProps> & {
-    stateFactory: IStateSuite<P, S>
-  }
+  return factory as IFactoryComponent<P & ShrioProps>
 }
+
+/**
+ * 对标 defineFactoryComponent 的 view 实现
+ */
+export const ViewContext = defineFactoryComponent(
+  <P extends Record<string, any>, S extends Record<string, any>>(
+    props: {
+      componentStateFactoryProto: IComponentStateFactoryProto<P, S>
+      scope: IFunctionComponent<{ state: S }>
+    } & P,
+    children: TElementValue[],
+    ctx: Context,
+  ) => {
+    const componentStateFactoryProto = props.componentStateFactoryProto
+    const state = componentStateFactoryProto(props, children, ctx)
+    return {
+      state,
+      rawProps: props,
+    }
+  },
+  (props, children, ctx) => {
+    if (props.rawProps.scope) {
+      markAsFunctionComponent(props.rawProps.scope)
+    }
+
+    return createElement(
+      props.rawProps.scope ?? (Fragment as any),
+      { state: props.state },
+      ...children,
+    )
+  },
+)
+
+markAsFunctionComponent(ViewContext)

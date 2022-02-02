@@ -4,7 +4,10 @@ export interface ShrioProps {
   ref?: any
 }
 
-export interface IStateFactory<P, S extends Record<string, unknown>> {
+export interface IComponentStateFactoryProto<
+  P,
+  S extends Record<string, unknown>,
+> {
   (props: P, children: TElementValue[], ctx: Context): S
 }
 
