@@ -2,8 +2,8 @@ import {
   createElement,
   definePortal,
   Fragment,
-  getCurrentContext,
   IPortal,
+  KeyType,
   _provide,
 } from '@shiro/render-core'
 import { markAsFunctionComponent } from '@shrio/core'
@@ -23,7 +23,6 @@ export const defineStateSuite = <
   S extends Record<string, any>,
 >(
   stateFactory: IStateFactory<P, S>,
-  defaultProps?: P,
   key?: KeyType,
 ): IStateSuite<P, S> => {
   if (Reflect.get(stateFactory, suiteKey)) {
@@ -38,24 +37,35 @@ export const defineStateSuite = <
     return state
   }
 
-  const inject = () => {
-    let state = portal.inject()
-    if (state) {
-      return state
-    } else {
-      const ctx = getCurrentContext()
-      const state = stateFactory(defaultProps! ?? {}, [], ctx)
-
-      _provide(ctx.parent!, portal.key, state)
-
-      return state
-    }
-  }
-
-  Object.assign(stateFactory, { ...portal, inject, suiteKey: stateSuite })
-  Object.assign(stateSuite, { ...portal, inject, suiteKey: stateSuite })
+  Object.assign(stateFactory, { ...portal, suiteKey: stateSuite })
+  Object.assign(stateSuite, { ...portal, suiteKey: stateSuite })
 
   return stateSuite as IStateSuite<P, S>
+}
+
+export const defineStateSuite2 = <
+  Args extends unknown[],
+  S extends Record<string, any>,
+>(
+  stateFactory: (...args: Args) => S,
+  key?: KeyType,
+): ((...args: Args) => S & IPortal<S>) => {
+  if (Reflect.get(stateFactory, suiteKey)) {
+    return stateFactory as (...args: Args) => S & IPortal<S>
+  }
+
+  const portal = definePortal<S, KeyType>(key)
+
+  const stateSuite = (...args: Args) => {
+    const state = stateFactory(...args)
+    portal.provide(state)
+    return state
+  }
+
+  Object.assign(stateFactory, { ...portal, suiteKey: stateSuite })
+  Object.assign(stateSuite, { ...portal, suiteKey: stateSuite })
+
+  return stateSuite as (...args: Args) => S & IPortal<S>
 }
 
 export const ViewContext = defineFactoryComponent(

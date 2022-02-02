@@ -140,13 +140,6 @@ export const ShopWindowView = defineView(() => {
 
       <div class=" max-w-5xl  p-8 m-auto">
         <div class="flex justify-center">
-          <RadioView value={666} label="666" onchange={logger}></RadioView>
-          <RadioView value="泛影" label="你好" onchange={logger}></RadioView>
-          <RadioView value="幻光" label="幻光" onchange={logger}></RadioView>
-          <RadioView value={888} label="888" onchange={logger}></RadioView>
-        </div>
-
-        <div class="flex justify-center">
           <ViewContext
             stateSuite={numberRadioSuite}
             defaultValue={1}

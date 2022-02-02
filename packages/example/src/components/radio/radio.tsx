@@ -1,7 +1,6 @@
 import { defineView, IStateSuite } from '@shrio/shrio'
-import { getTypedRadioSuite, IRadioSuiteProps, IRadioSuiteState } from './state'
+import { IRadioSuiteProps, IRadioSuiteState } from './state'
 import { TextView } from '../text'
-const key = Symbol('xxxxx')
 
 export const RadioView = defineView(
   <T extends unknown>(props: {
@@ -10,7 +9,7 @@ export const RadioView = defineView(
     label: string
     onchange?: (value?: T) => void
   }) => {
-    const state = (props.suit ?? getTypedRadioSuite<T>(undefined, key)).inject()
+    const state = props.suit!.inject()
 
     return (
       <label

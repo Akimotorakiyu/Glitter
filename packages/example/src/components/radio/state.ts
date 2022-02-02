@@ -24,7 +24,7 @@ export const getTypedRadioSuite = <T>(
 ): IStateSuite<IRadioSuiteProps<T>, IRadioSuiteState<T>> => {
   const state = (
     props: IRadioSuiteProps<T>,
-    children: IShrioNode[],
+    children: TElementValue[],
     context: Context,
   ) => {
     const state = {
@@ -39,7 +39,7 @@ export const getTypedRadioSuite = <T>(
     return state
   }
 
-  const radioSuite = defineStateSuite(state, defaultValue, key)
+  const radioSuite = defineStateSuite(state, key)
 
   return radioSuite
 }
