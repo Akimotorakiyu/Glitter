@@ -2,7 +2,7 @@
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Akimotorakiyu/glitter) ![license](https://img.shields.io/github/license/Akimotorakiyu/shrio)
 
-✨Glitter is a modern vanilla front-end framework, for building UI on the web.
+✨Glitter is a modern vanilla mvvm framework
 
 [Netlify](https://clever-rosalind-9cee08.netlify.app/) | [国内网站](https://shrio-8gz68v9mba15d6fa-1259330986.ap-shanghai.app.tcloudbase.com/)
 
@@ -19,20 +19,27 @@
 
 ### Component
 
+### Composition-Api
+
+- provide-inject / definePortal
+- lifecycle(WIP)
+
+### features component
+
 - fragment
 - dynamic list
 - dynamic component
 - if condition
 - keep alive
 
-### Composition-Api
+### function component
 
-- provide-inject / definePortal
-- lifecycle(WIP)
+- defineView
 
 ### factory component
 
 - defineFactoryComponent
+- defineFactoryComponentStateFactory
 
 ### custome render
 
@@ -45,9 +52,11 @@
 #### Isolate
 
 - defineView
-- defineStateSuite
+- defineStateFactory
+- defineFactoryComponent
+- defineFactoryComponentStateFactory
 
 #### Compose
 
-- ViewContext
-- defineFactoryComponent
+- View (defineView in view level)
+- ViewContext (defineFactoryComponent in view level )

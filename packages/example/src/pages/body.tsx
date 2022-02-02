@@ -27,12 +27,11 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
         <h1 class=" text-center text-5xl font-extrabold my-4">Gillter</h1>
         <h2 class=" text-center text-2xl font-light my-4">
           A <strong class="font-semibold">modern</strong>{' '}
-          <strong class="font-semibold">vanilla</strong> front-end framework,
-          for{' '}
+          <strong class="font-semibold">vanilla</strong>{' '}
           <Component is="strong" class="font-semibold">
-            building UI
+            mvvm
           </Component>{' '}
-          on the web.
+          framework
         </h2>
         <div class="text-center">
           <button

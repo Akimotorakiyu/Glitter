@@ -45,9 +45,7 @@ export const ShopWindowView = defineView(() => {
             alt="netlify"
             class=" inline-block  w-4 h-4"
           />
-          <TextViewBlack>
-            A modern vanilla front-end framework, for building UI on the web.
-          </TextViewBlack>
+          <TextViewBlack>A modern vanilla mvvm framework</TextViewBlack>
           <ImageView
             src="/star.svg"
             alt="netlify"
@@ -61,9 +59,7 @@ export const ShopWindowView = defineView(() => {
             class=" inline-block  w-4 h-4"
           />
 
-          <TextViewGray>
-            A modern vanilla front-end framework, for building UI on the web.
-          </TextViewGray>
+          <TextViewGray>A modern vanilla mvvm framework</TextViewGray>
           <ImageView
             src="/star.svg"
             alt="netlify"
@@ -77,9 +73,7 @@ export const ShopWindowView = defineView(() => {
             class=" inline-block  w-4 h-4"
           />
 
-          <TextViewBlue>
-            A modern vanilla front-end framework, for building UI on the web.
-          </TextViewBlue>
+          <TextViewBlue>A modern vanilla mvvm framework</TextViewBlue>
           <ImageView
             src="/star.svg"
             alt="netlify"
@@ -93,9 +87,7 @@ export const ShopWindowView = defineView(() => {
             class=" inline-block  w-4 h-4"
           />
 
-          <TextViewOrange>
-            A modern vanilla front-end framework, for building UI on the web.
-          </TextViewOrange>
+          <TextViewOrange>A modern vanilla mvvm framework</TextViewOrange>
           <ImageView
             src="/star.svg"
             alt="netlify"
@@ -109,9 +101,7 @@ export const ShopWindowView = defineView(() => {
             class=" inline-block  w-4 h-4"
           />
 
-          <TextViewGreen>
-            A modern vanilla front-end framework, for building UI on the web.
-          </TextViewGreen>
+          <TextViewGreen>A modern vanilla mvvm framework</TextViewGreen>
           <ImageView
             src="/star.svg"
             alt="netlify"
@@ -125,9 +115,7 @@ export const ShopWindowView = defineView(() => {
             class=" inline-block  w-4 h-4"
           />
 
-          <TextViewRed>
-            A modern vanilla front-end framework, for building UI on the web.{' '}
-          </TextViewRed>
+          <TextViewRed>A modern vanilla mvvm framework </TextViewRed>
           <ImageView
             src="/star.svg"
             alt="netlify"
