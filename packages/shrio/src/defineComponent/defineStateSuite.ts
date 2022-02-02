@@ -10,38 +10,6 @@ export type IStateFactory<
 > = IComponentStateFactoryProto<P, S> & IPortal<S>
 
 /**
- * 仅为 工厂组件 使用的 defineStateFactory 为 defineComponentStateFactory
- * 日常 组合式开发 应使用 defineStateFactory
- * @param stateFactoryProto
- * @param key
- * @returns
- */
-export const defineComponentStateFactory = <
-  P extends Record<string, any>,
-  S extends Record<string, any>,
->(
-  stateFactoryProto: IComponentStateFactoryProto<P, S>,
-  key?: KeyType,
-): IStateFactory<P, S> => {
-  if (Reflect.get(stateFactoryProto, suiteKey)) {
-    return stateFactoryProto as IStateFactory<P, S>
-  }
-
-  const portal = definePortal<S, KeyType>(key)
-
-  const stateSuite = (props: P, children: TElementValue[], ctx: Context) => {
-    const state = stateFactoryProto(props, children, ctx)
-    portal.provide(state)
-    return state
-  }
-
-  Object.assign(stateFactoryProto, { ...portal, suiteKey: stateSuite })
-  Object.assign(stateSuite, { ...portal, suiteKey: stateSuite })
-
-  return stateSuite as IStateFactory<P, S>
-}
-
-/**
  * 日常 组合式开发 应使用的 defineStateFactory
  * @param stateFactory
  * @param key
@@ -53,9 +21,9 @@ export const defineStateFactory = <
 >(
   stateFactory: (...args: Args) => S,
   key?: KeyType,
-): ((...args: Args) => S & IPortal<S>) => {
+): ((...args: Args) => S) & IPortal<S> => {
   if (Reflect.get(stateFactory, suiteKey)) {
-    return stateFactory as (...args: Args) => S & IPortal<S>
+    return stateFactory as ((...args: Args) => S) & IPortal<S>
   }
 
   const portal = definePortal<S, KeyType>(key)
@@ -69,5 +37,27 @@ export const defineStateFactory = <
   Object.assign(stateFactory, { ...portal, suiteKey: stateSuite })
   Object.assign(stateSuite, { ...portal, suiteKey: stateSuite })
 
-  return stateSuite as (...args: Args) => S & IPortal<S>
+  return stateSuite as ((...args: Args) => S) & IPortal<S>
+}
+
+/**
+ * 仅为工厂组件使用的
+ * @param stateFactoryProto
+ * @param key
+ * @returns
+ */
+export function defineFactoryComponentStateFactory<
+  P extends Record<string, any>,
+  S extends Record<string, any>,
+>(
+  stateFactoryProto: IComponentStateFactoryProto<P, S>,
+  key?: KeyType,
+): IStateFactory<P, S> {
+  const s = defineStateFactory<[P, TElementValue[], Context], S>(
+    (p, children, ctx) => {
+      return stateFactoryProto(p, children, ctx)
+    },
+    key,
+  )
+  return s
 }

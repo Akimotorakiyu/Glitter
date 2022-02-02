@@ -2,12 +2,12 @@ import {
   createRef,
   Component,
   useUpdater,
-  defineComponentStateFactory,
+  defineFactoryComponentStateFactory,
   defineFactoryComponent,
 } from '@shrio/shrio'
 import { TodoApp } from './todoApp/todoList'
 
-const bodyStateFactory = defineComponentStateFactory(
+const bodyStateFactory = defineFactoryComponentStateFactory(
   (props, children, context) => {
     const updater = useUpdater()
     const buttonRef = createRef<HTMLButtonElement>()

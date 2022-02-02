@@ -1,5 +1,5 @@
 import {
-  defineComponentStateFactory,
+  defineFactoryComponentStateFactory,
   KeyType,
   IStateFactory,
   shrioReactive,
@@ -39,7 +39,7 @@ export const getTypedRadioSuite = <T>(
     return state
   }
 
-  const radioSuite = defineComponentStateFactory(state, key)
+  const radioSuite = defineFactoryComponentStateFactory(state, key)
 
   return radioSuite
 }
