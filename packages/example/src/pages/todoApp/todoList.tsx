@@ -1,4 +1,4 @@
-import { dynamic, defineView, ViewContext } from '@shrio/shrio'
+import { dynamic, defineView, ViewContext } from '@glitter/glitter'
 import { stateSuite } from './state'
 import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'

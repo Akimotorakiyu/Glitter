@@ -16,8 +16,8 @@ import {
   isFactoryComponent,
   isFragmentElement,
   isStructElement,
-} from '@shrio/core'
-import { getShrioNode } from '../arrangeChildren'
+} from '@glitter/core'
+import { getGlitterNode } from '../arrangeChildren'
 export const createComponent = <P extends Record<string, any>>(
   tag: IFunctionComponent<P> | IFactoryComponent<P>,
   props: P,
@@ -38,11 +38,11 @@ export const createComponent = <P extends Record<string, any>>(
       if (isFactoryComponent(tag)) {
         const res = tag(props, childNodes, context)
         const isElementClassInstanceRes = isStructElement(res)
-        const ele = getShrioNode(res)
+        const ele = getGlitterNode(res)
         vComNode.node.element = ele
 
         context.render = () => {
-          vComNode.node!.element = getShrioNode(res.render())
+          vComNode.node!.element = getGlitterNode(res.render())
           return vComNode.node!.element
         }
 
@@ -70,7 +70,7 @@ export const createComponent = <P extends Record<string, any>>(
         vComNode.node.element = res
 
         context.render = () => {
-          vComNode.node!.element = getShrioNode(
+          vComNode.node!.element = getGlitterNode(
             tag(props, childNodes, context) as TElementValue,
           )
           return vComNode.node!.element

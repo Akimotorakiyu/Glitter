@@ -1,4 +1,4 @@
-import { defineView } from '@shrio/shrio'
+import { defineView } from '@glitter/glitter'
 
 export const Footer = defineView(() => {
   return (

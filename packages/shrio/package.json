@@ -1,11 +1,11 @@
 {
-  "name": "@shrio/shrio",
+  "name": "@glitter/glitter",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "@glitter/reactive": "workspace:*",
     "@glitter/render-core": "workspace:*",
-    "@shrio/core": "workspace:*"
+    "@glitter/core": "workspace:*"
   }
 }

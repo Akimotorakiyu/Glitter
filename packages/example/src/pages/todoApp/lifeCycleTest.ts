@@ -5,7 +5,7 @@ import {
   onDestory,
   onInactive,
   onUpdated,
-} from '@shrio/shrio'
+} from '@glitter/glitter'
 
 export const lifeCycleTest = () => {
   onCreated(() => {

@@ -1,19 +1,19 @@
-import { isFragmentElement, isStructElement } from '@shrio/core'
-import { generateAndApplyReMounter } from './fragment/shrioFragment/generateAndApplyReMounter'
+import { isFragmentElement, isStructElement } from '@glitter/core'
+import { generateAndApplyReMounter } from './fragment/glitterFragment/generateAndApplyReMounter'
 
-export const getShrioNode = (element: TElementValue): IShrioNode => {
-  return isStructElement(element) ? getShrioNode(element.render()) : element
+export const getGlitterNode = (element: TElementValue): IGlitterNode => {
+  return isStructElement(element) ? getGlitterNode(element.render()) : element
 }
 
-export const getChildren = (childNodes: TElementValue[]): IShrioNode[] => {
+export const getChildren = (childNodes: TElementValue[]): IGlitterNode[] => {
   const realchildNodes = childNodes.map((child) => {
-    return getShrioNode(child)
+    return getGlitterNode(child)
   })
   return realchildNodes
 }
 
 export const arrangeChildren = (
-  parentElement: IShrioNode,
+  parentElement: IGlitterNode,
   childNodes: TElementValue[],
 ) => {
   const parent = parentElement
@@ -27,12 +27,12 @@ export const arrangeChildrenInner = (
   parentElement: TElementValue,
   childNodes: TElementValue[],
 ) => {
-  arrangeChildren(getShrioNode(parentElement), childNodes)
+  arrangeChildren(getGlitterNode(parentElement), childNodes)
 }
 
 export const replaceChildren = (
-  parentElement: IShrioNode,
-  childNodes: IShrioNode[],
+  parentElement: IGlitterNode,
+  childNodes: IGlitterNode[],
 ) => {
   const flatedChildNodes = childNodes.reduce((acc, child) => {
     if (isFragmentElement(child)) {
@@ -43,7 +43,7 @@ export const replaceChildren = (
       acc.push(child)
     }
     return acc
-  }, [] as IShrioNode[])
+  }, [] as IGlitterNode[])
 
   const childNodesSet = new Set(flatedChildNodes)
 

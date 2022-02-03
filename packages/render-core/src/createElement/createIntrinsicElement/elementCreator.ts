@@ -1,7 +1,7 @@
-export type TCreateElement = (tag: string) => IShrioNode
-export type TCreateTextElement = (tag: string) => IShrioNode
+export type TCreateElement = (tag: string) => IGlitterNode
+export type TCreateTextElement = (tag: string) => IGlitterNode
 export type TSetAttribute = (
-  shrioNode: IShrioNode,
+  glitterNode: IGlitterNode,
   newProps: Record<string, any>,
   oldProps: Record<string, any>,
 ) => void

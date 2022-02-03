@@ -61,7 +61,7 @@ declare interface HTSX {
     props: JSX.IntrinsicElements[Tag],
     ...children: JSX.Element[]
   ): JSX.Element
-  Fragment(props: null, children: JSX.Element[]): IShrioFragment
+  Fragment(props: null, children: JSX.Element[]): IGlitterFragment
 }
 
 declare const htsx: HTSX

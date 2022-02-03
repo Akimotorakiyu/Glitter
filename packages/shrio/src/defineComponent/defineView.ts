@@ -1,5 +1,5 @@
-import { markAsFunctionComponent } from '@shrio/core'
-import { ShrioProps } from './type'
+import { markAsFunctionComponent } from '@glitter/core'
+import { GlitterProps } from './type'
 
 /**
  * for define pure function component
@@ -8,7 +8,7 @@ import { ShrioProps } from './type'
  */
 export function defineView<P extends {}>(
   view: IFunctionComponent<P>,
-): IFunctionComponent<P & ShrioProps & Record<string, unknown>> {
+): IFunctionComponent<P & GlitterProps & Record<string, unknown>> {
   markAsFunctionComponent(view)
   return view
 }

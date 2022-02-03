@@ -4,7 +4,7 @@ import {
   useUpdater,
   defineFactoryComponentStateFactory,
   defineFactoryComponent,
-} from '@shrio/shrio'
+} from '@glitter/glitter'
 import { TodoApp } from './todoApp/todoList'
 
 const bodyStateFactory = defineFactoryComponentStateFactory(

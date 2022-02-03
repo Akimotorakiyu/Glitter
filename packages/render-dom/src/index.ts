@@ -6,8 +6,8 @@ import { createHtmlElement } from './html'
 import { createSvgElement } from './svg'
 import { setAttrs } from './setAttrs'
 
-function createTextElement(text: string): IShrioNode {
-  return new Text(text) as unknown as IShrioNode
+function createTextElement(text: string): IGlitterNode {
+  return new Text(text) as unknown as IGlitterNode
 }
 
 addElementCreator('html', {

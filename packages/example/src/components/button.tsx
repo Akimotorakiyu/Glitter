@@ -1,4 +1,4 @@
-import { defineView } from '@shrio/shrio'
+import { defineView } from '@glitter/glitter'
 
 interface IButtonProps {
   onclick?: () => void | Promise<void>

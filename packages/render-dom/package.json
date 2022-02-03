@@ -1,5 +1,5 @@
 {
-  "name": "@shrio/render-dom",
+  "name": "@glitter/render-dom",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",

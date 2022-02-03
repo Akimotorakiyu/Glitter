@@ -1,4 +1,4 @@
-import { defineView, ViewContext } from '@shrio/shrio'
+import { defineView, ViewContext } from '@glitter/glitter'
 import {
   ButtonViewLight,
   ButtonViewBlue,

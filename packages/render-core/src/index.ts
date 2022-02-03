@@ -1,4 +1,4 @@
-import '@shrio/core'
+import '@glitter/core'
 export * from './createElement/arrangeChildren'
 export * from './createElement/createElement'
 export * from './createElement/createIntrinsicElement/elementCreator'

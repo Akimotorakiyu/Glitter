@@ -1,16 +1,16 @@
-import { ShrioProps, IComponentStateFactoryProto } from './type'
-import { markAsStructElement, markAsFactoryComponent } from '@shrio/core'
+import { GlitterProps, IComponentStateFactoryProto } from './type'
+import { markAsStructElement, markAsFactoryComponent } from '@glitter/core'
 
 import { createElement, Fragment, _provide } from '@glitter/render-core'
-import { markAsFunctionComponent } from '@shrio/core'
+import { markAsFunctionComponent } from '@glitter/core'
 
 export function defineFactoryComponent<
   P extends Record<string, any>,
   S extends Record<string, any>,
 >(
   stateFactory: IComponentStateFactoryProto<P, S>,
-  view: IFunctionComponent<S | (S & ShrioProps)>,
-): IFactoryComponent<P & ShrioProps> {
+  view: IFunctionComponent<S | (S & GlitterProps)>,
+): IFactoryComponent<P & GlitterProps> {
   const factory = (props: any, children: any, context: any) => {
     const _state = stateFactory(props, children, context)
 
@@ -35,7 +35,7 @@ export function defineFactoryComponent<
 
   markAsFactoryComponent(factory)
 
-  return factory as IFactoryComponent<P & ShrioProps>
+  return factory as IFactoryComponent<P & GlitterProps>
 }
 
 /**

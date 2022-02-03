@@ -1,4 +1,4 @@
-import { markAsFunctionComponent } from '@shrio/core'
+import { markAsFunctionComponent } from '@glitter/core'
 import { getCurrentContext } from '../createComponent/componentContext'
 import { setKey } from '../createComponent/componentContext/setDynamicContentNodeKey'
 import { createElement } from '../createElement'
@@ -9,7 +9,7 @@ export const Component = <P extends Record<string, unknown>>(
     key?: string
     keepAlive?: boolean
   } & P,
-  children: IShrioNode[],
+  children: IGlitterNode[],
 ): TElementValue => {
   const parentCtx = getCurrentContext()
   parentCtx.dynamicContentNodeInfo.depth++

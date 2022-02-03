@@ -1,4 +1,4 @@
-import { defineView } from '@shrio/shrio'
+import { defineView } from '@glitter/glitter'
 import { stateSuite } from './state'
 
 const portal = stateSuite

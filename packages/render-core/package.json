@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@shrio/core": "workspace:*",
-    "@shrio/shrio": "workspace:*"
+    "@glitter/core": "workspace:*",
+    "@glitter/glitter": "workspace:*"
   }
 }

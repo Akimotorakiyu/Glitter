@@ -2,7 +2,7 @@ import { commonUpdater } from './commonUpdater'
 import { createContextHub } from './event/eventTarget'
 import { addAndScheduleAsyncUpdateTask } from './asyncUpdateFlow'
 import { FakeRootComponent } from './rootComponent'
-import { isFragmentElement } from '@shrio/core'
+import { isFragmentElement } from '@glitter/core'
 
 const isContain = (parent: Context, ctx: Context): boolean => {
   if (ctx.parent === parent) {

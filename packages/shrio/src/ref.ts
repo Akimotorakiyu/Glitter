@@ -1,13 +1,13 @@
-export interface ShrioRef<T> {
+export interface GlitterRef<T> {
   current: null | T
 }
 
-export type ShrioRefType<T> = T extends (...arg: any[]) => infer R
-  ? ShrioRef<R>
-  : ShrioRef<T>
+export type GlitterRefType<T> = T extends (...arg: any[]) => infer R
+  ? GlitterRef<R>
+  : GlitterRef<T>
 
-export const createRef = <T>(t?: T): ShrioRefType<T> => {
+export const createRef = <T>(t?: T): GlitterRefType<T> => {
   return {
     current: null,
-  } as ShrioRefType<T>
+  } as GlitterRefType<T>
 }

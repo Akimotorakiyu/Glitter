@@ -1,6 +1,6 @@
 # Glitter (WIP)
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Akimotorakiyu/glitter) ![license](https://img.shields.io/github/license/Akimotorakiyu/shrio)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Akimotorakiyu/glitter) ![license](https://img.shields.io/github/license/Akimotorakiyu/glitter)
 
 ✨Glitter is a modern vanilla mvvm framework
 
@@ -10,7 +10,7 @@
 
 ### Reactive
 
-- shrioReactive, inspired by `@vue/reactive`
+- glitterReactive, inspired by `@vue/reactive`
 
 ### Vanilla
 

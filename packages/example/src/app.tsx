@@ -1,4 +1,4 @@
-import { onCreated, Component, defineView } from '@shrio/shrio'
+import { onCreated, Component, defineView } from '@glitter/glitter'
 import { Header } from './pages/header'
 import { Body } from './pages/body'
 import { Footer } from './pages/footer'

@@ -1,4 +1,4 @@
-import { defineView } from '@shrio/shrio'
+import { defineView } from '@glitter/glitter'
 
 interface ITextProps {
   onclick?: () => void | Promise<void>

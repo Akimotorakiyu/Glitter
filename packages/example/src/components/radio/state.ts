@@ -2,8 +2,8 @@ import {
   defineFactoryComponentStateFactory,
   KeyType,
   IStateFactory,
-  shrioReactive,
-} from '@shrio/shrio'
+  glitterReactive,
+} from '@glitter/glitter'
 
 export interface IRadioSuiteProps<T> {
   defaultValue?: T
@@ -31,7 +31,7 @@ export const getTypedRadioSuite = <T>(
       props,
       value: props.defaultValue,
 
-      reactive: shrioReactive({
+      reactive: glitterReactive({
         value: props.defaultValue,
       }),
     }

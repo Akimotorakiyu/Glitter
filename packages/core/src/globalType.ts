@@ -1,11 +1,14 @@
-interface IShrioNode {
-  insertBefore<T extends IShrioNode>(newNode: T, refChild: IShrioNode | null): T
-  childNodes: IShrioNode[]
+interface IGlitterNode {
+  insertBefore<T extends IGlitterNode>(
+    newNode: T,
+    refChild: IGlitterNode | null,
+  ): T
+  childNodes: IGlitterNode[]
   remove: () => void
 }
 
-interface IShrioFragment extends IShrioNode {
-  reMount: (shrioFragment?: IShrioFragment) => void
+interface IGlitterFragment extends IGlitterNode {
+  reMount: (glitterFragment?: IGlitterFragment) => void
   reloadChildren: () => void
 }
 
@@ -13,7 +16,7 @@ interface IElementStruct {
   render: () => TElementValue
 }
 
-type TElementValue = IShrioNode | IElementStruct
+type TElementValue = IGlitterNode | IElementStruct
 
 interface IFunctionComponent<P extends Record<string, unknown> = {}> {
   (props: P, children: TElementValue[], ctx: Context): TElementValue
@@ -99,16 +102,16 @@ interface Context {
 }
 
 interface VDomNode {
-  node: IShrioNode | null
+  node: IGlitterNode | null
   props: Record<string, unknown>
 }
 interface VComNode {
   node: Context | null
 }
 interface VFragmentNode {
-  node: IShrioFragment | null
-  reloadChildren?: () => IShrioFragment
-  reMount?: () => IShrioFragment
+  node: IGlitterFragment | null
+  reloadChildren?: () => IGlitterFragment
+  reMount?: () => IGlitterFragment
 }
 
 interface ContentNodeInfo {

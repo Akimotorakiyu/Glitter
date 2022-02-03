@@ -1,2 +1,2 @@
-export * from './shrioFragment/shrioFragment'
+export * from './glitterFragment/glitterFragment'
 export * from './fragment'

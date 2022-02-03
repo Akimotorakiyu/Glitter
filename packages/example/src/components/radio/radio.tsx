@@ -1,4 +1,4 @@
-import { defineView, IStateFactory } from '@shrio/shrio'
+import { defineView, IStateFactory } from '@glitter/glitter'
 import { IRadioSuiteProps, IRadioSuiteState } from './state'
 import { TextView } from '../text'
 

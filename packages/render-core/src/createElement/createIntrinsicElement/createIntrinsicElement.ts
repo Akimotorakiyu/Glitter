@@ -1,4 +1,4 @@
-import { markAsIntrinsicElement, markAsTextElement } from '@shrio/core'
+import { markAsIntrinsicElement, markAsTextElement } from '@glitter/core'
 import { arrangeChildrenInner } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
@@ -9,7 +9,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
   tag: keyof HTMLElementTagNameMap,
   props: P,
   childNodes: TElementValue[],
-): IShrioNode => {
+): IGlitterNode => {
   // create and push
   const shouldShow = shouldShowComponent(props)
   const vDomNode = getCurrentVDomNode()
@@ -49,7 +49,7 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
   }
 }
 
-export const createTextNode = (text: string): IShrioNode => {
+export const createTextNode = (text: string): IGlitterNode => {
   // create and push
   const vDomNode = getCurrentVDomNode()
 

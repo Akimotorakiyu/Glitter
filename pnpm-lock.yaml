@@ -22,14 +22,14 @@ importers:
 
   packages/example:
     specifiers:
-      '@shrio/render-dom': workspace:*
-      '@shrio/shrio': workspace:*
+      '@glitter/glitter': workspace:*
+      '@glitter/render-dom': workspace:*
       vite: ^2.5.6
       vite-plugin-windicss: ^1.4.5
       windicss: ^3.1.7
     dependencies:
-      '@shrio/render-dom': link:../render-dom
-      '@shrio/shrio': link:../shrio
+      '@glitter/glitter': link:../shrio
+      '@glitter/render-dom': link:../render-dom
       windicss: 3.4.3
     devDependencies:
       vite: 2.7.13
@@ -40,11 +40,11 @@ importers:
 
   packages/render-core:
     specifiers:
-      '@shrio/core': workspace:*
-      '@shrio/shrio': workspace:*
+      '@glitter/core': workspace:*
+      '@glitter/glitter': workspace:*
     dependencies:
-      '@shrio/core': link:../core
-      '@shrio/shrio': link:../shrio
+      '@glitter/core': link:../core
+      '@glitter/glitter': link:../shrio
 
   packages/render-dom:
     specifiers:
@@ -54,13 +54,13 @@ importers:
 
   packages/shrio:
     specifiers:
+      '@glitter/core': workspace:*
       '@glitter/reactive': workspace:*
       '@glitter/render-core': workspace:*
-      '@shrio/core': workspace:*
     dependencies:
+      '@glitter/core': link:../core
       '@glitter/reactive': link:../reactive
       '@glitter/render-core': link:../render-core
-      '@shrio/core': link:../core
 
 packages:
   /@antfu/utils/0.4.0:

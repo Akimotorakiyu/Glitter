@@ -27,8 +27,8 @@ function markElementType(element: Record<any, any>, key: symbol) {
  */
 export function isIntrinsicElement(
   element: Record<any, any>,
-): element is IShrioNode {
-  return elementTypeJudge<IShrioNode>(element, intrinsicElementMark)
+): element is IGlitterNode {
+  return elementTypeJudge<IGlitterNode>(element, intrinsicElementMark)
 }
 
 export function markAsIntrinsicElement(element: Record<any, any>) {
@@ -42,8 +42,8 @@ export function markAsIntrinsicElement(element: Record<any, any>) {
  */
 export function isFragmentElement(
   element: Record<any, any>,
-): element is IShrioFragment {
-  return elementTypeJudge<IShrioFragment>(element, fragmentElementMark)
+): element is IGlitterFragment {
+  return elementTypeJudge<IGlitterFragment>(element, fragmentElementMark)
 }
 
 export function markAsFragmentElement(element: Record<any, any>) {
@@ -96,8 +96,8 @@ export function markAsFunctionComponent(element: Record<any, any>) {
 
 export function isTextElement(
   element: Record<any, any>,
-): element is IShrioNode {
-  return elementTypeJudge<IShrioNode>(element, textElementMark)
+): element is IGlitterNode {
+  return elementTypeJudge<IGlitterNode>(element, textElementMark)
 }
 
 export function markAsTextElement(element: Record<any, any>) {

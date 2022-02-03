@@ -3,7 +3,7 @@ import {
   isIntrinsicElement,
   isStructElement,
   isTextElement,
-} from '@shrio/core'
+} from '@glitter/core'
 
 import { Fragment } from './fragment/fragment'
 import {

@@ -1,4 +1,4 @@
-export interface ShrioProps {
+export interface GlitterProps {
   if?: any
   keepAlive?: any
   ref?: any
