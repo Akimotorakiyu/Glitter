@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@shiro/reactive": "workspace:*",
-    "@shiro/render-core": "workspace:*",
+    "@glitter/reactive": "workspace:*",
+    "@glitter/render-core": "workspace:*",
     "@shrio/core": "workspace:*"
   }
 }

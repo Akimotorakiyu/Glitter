@@ -1,4 +1,4 @@
-import { definePortal, IPortal, KeyType, _provide } from '@shiro/render-core'
+import { definePortal, IPortal, KeyType, _provide } from '@glitter/render-core'
 
 import { IComponentStateFactoryProto } from './type'
 

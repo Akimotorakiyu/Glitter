@@ -1,4 +1,4 @@
-import { getCurrentContext } from '@shiro/render-core'
+import { getCurrentContext } from '@glitter/render-core'
 
 const hubHelper = <E extends keyof LifeCircle>(
   hub: TContextHub,

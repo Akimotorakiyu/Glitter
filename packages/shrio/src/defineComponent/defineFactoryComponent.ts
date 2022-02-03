@@ -1,7 +1,7 @@
 import { ShrioProps, IComponentStateFactoryProto } from './type'
 import { markAsStructElement, markAsFactoryComponent } from '@shrio/core'
 
-import { createElement, Fragment, _provide } from '@shiro/render-core'
+import { createElement, Fragment, _provide } from '@glitter/render-core'
 import { markAsFunctionComponent } from '@shrio/core'
 
 export function defineFactoryComponent<

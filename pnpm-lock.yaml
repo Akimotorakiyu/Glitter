@@ -48,18 +48,18 @@ importers:
 
   packages/render-dom:
     specifiers:
-      '@shiro/render-core': workspace:*
+      '@glitter/render-core': workspace:*
     dependencies:
-      '@shiro/render-core': link:../render-core
+      '@glitter/render-core': link:../render-core
 
   packages/shrio:
     specifiers:
-      '@shiro/reactive': workspace:*
-      '@shiro/render-core': workspace:*
+      '@glitter/reactive': workspace:*
+      '@glitter/render-core': workspace:*
       '@shrio/core': workspace:*
     dependencies:
-      '@shiro/reactive': link:../reactive
-      '@shiro/render-core': link:../render-core
+      '@glitter/reactive': link:../reactive
+      '@glitter/render-core': link:../render-core
       '@shrio/core': link:../core
 
 packages:

@@ -1,4 +1,4 @@
-import { createElement, Fragment } from '@shiro/render-core'
+import { createElement, Fragment } from '@glitter/render-core'
 
 export const htsx = <HTSX>{
   createElement,

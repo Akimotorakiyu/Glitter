@@ -1,4 +1,7 @@
-import { setCurrentElementCreator, addElementCreator } from '@shiro/render-core'
+import {
+  setCurrentElementCreator,
+  addElementCreator,
+} from '@glitter/render-core'
 import { createHtmlElement } from './html'
 import { createSvgElement } from './svg'
 import { setAttrs } from './setAttrs'

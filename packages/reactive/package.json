@@ -1,5 +1,5 @@
 {
-  "name": "@shiro/reactive",
+  "name": "@glitter/reactive",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT"

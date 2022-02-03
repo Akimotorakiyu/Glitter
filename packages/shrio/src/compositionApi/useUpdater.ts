@@ -1,4 +1,4 @@
-import { useSyncUpdater } from '@shiro/render-core'
+import { useSyncUpdater } from '@glitter/render-core'
 export function useUpdater() {
   return useSyncUpdater()
 }
