@@ -12,8 +12,8 @@
     "vite-plugin-windicss": "^1.4.5"
   },
   "dependencies": {
-    "@shrio/render-dom": "^1.0.0",
-    "@shrio/shrio": "^1.0.0",
+    "@shrio/render-dom": "workspace:*",
+    "@shrio/shrio": "workspace:*",
     "windicss": "^3.1.7"
   }
 }

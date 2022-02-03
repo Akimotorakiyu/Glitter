@@ -4,6 +4,6 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@shiro/render-core": "^1.0.0"
+    "@shiro/render-core": "workspace:*"
   }
 }

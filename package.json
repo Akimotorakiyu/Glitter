@@ -5,14 +5,10 @@
   "repository": "https://github.com/Akimotorakiyu/shrio.git",
   "author": "湫曗 <autumnsilverleaves@gmail.com>",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "prepare": "husky install",
-    "serve": "yarn workspace example serve",
-    "build": "yarn workspace example build"
+    "serve": "pnpm --filter=./packages/example run serve",
+    "build": "pnpm --filter=./packages/example run build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

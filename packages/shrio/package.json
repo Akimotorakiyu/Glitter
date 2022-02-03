@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@shiro/reactive": "^1.0.0",
-    "@shiro/render-core": "^1.0.0",
-    "@shrio/core": "^1.0.0"
+    "@shiro/reactive": "workspace:*",
+    "@shiro/render-core": "workspace:*",
+    "@shrio/core": "workspace:*"
   }
 }
