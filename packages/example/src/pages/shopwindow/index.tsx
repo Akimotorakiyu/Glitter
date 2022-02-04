@@ -18,7 +18,7 @@ import {
 } from '../../components/text'
 
 import { ImageView, getTypedRadioSuite, RadioView } from '../../components'
-
+import { SvgStar } from './svg'
 function logger<T>(value: T) {
   console.log('value', value)
 }
@@ -29,6 +29,10 @@ export const ShopWindowView = defineView(() => {
 
   return (
     <div>
+      <h2 class=" text-center text-xl ">Custom Render</h2>
+      <div class="flex justify-center max-w-5xl  p-8 m-auto">
+        <SvgStar></SvgStar>
+      </div>
       <h2 class=" text-center text-xl ">Button</h2>
       <div class="flex justify-center max-w-5xl  p-8 m-auto">
         <ButtonViewLight class=" m-4">Button</ButtonViewLight>

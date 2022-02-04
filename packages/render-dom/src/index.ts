@@ -5,7 +5,8 @@ import {
 import { createHtmlElement } from './html'
 import { createSvgElement } from './svg'
 import { setAttrs } from './setAttrs'
-
+import './globalType.ts/htmlType'
+import './globalType.ts/svgType'
 function createTextElement(text: string): IGlitterNode {
   return new Text(text) as unknown as IGlitterNode
 }

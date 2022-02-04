@@ -129,3 +129,9 @@ interface ContentNodeInfo {
     current: 0
   }
 }
+
+interface GlitterIntrinsicElementsMap {}
+
+type TSXIntrinsicElements =
+  GlitterIntrinsicElementsMap[keyof GlitterIntrinsicElementsMap] &
+    Record<string, Record<string, unknown>>

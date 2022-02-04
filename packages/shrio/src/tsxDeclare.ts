@@ -1,25 +1,6 @@
-type TElementTagNameMap = HTMLElementTagNameMap
-
-type TClassType = string | { [key: string]: boolean }
-
-declare type JsxElementTagNameMap = {
-  [tag in keyof TElementTagNameMap]: Partial<
-    {
-      [key in keyof TElementTagNameMap[tag]]:
-        | Partial<TElementTagNameMap[tag][key]>
-        | string
-    } & {
-      class: TClassType | TClassType[]
-      style: Partial<TElementTagNameMap[tag]['style']>
-      if: any
-      ref: { current: null | TElementTagNameMap[tag] }
-    }
-  >
-}
-
 declare namespace JSX {
   // The Intrinsic Elements Type Map
-  type IntrinsicElements = JsxElementTagNameMap
+  type IntrinsicElements = TSXIntrinsicElements
 
   // The Class Component Instance Type or Factory Return Value Type
   interface ElementClass {
@@ -32,7 +13,7 @@ declare namespace JSX {
 declare type JsxTagType<P> =
   | JsxFunctionComponent<P>
   | JsxFactoryComponent<P>
-  | keyof TElementTagNameMap
+  | keyof TSXIntrinsicElements
 
 declare type JsxFunctionComponent<P> = (
   props: P,
