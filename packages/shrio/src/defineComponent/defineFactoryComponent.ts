@@ -1,7 +1,12 @@
-import { GlitterProps, IComponentStateFactoryProto } from './type'
+import { IComponentStateFactoryProto } from './type'
 import { markAsStructElement, markAsFactoryComponent } from '@glitter/core'
 
-import { createElement, Fragment, _provide } from '@glitter/render-core'
+import {
+  createElement,
+  Fragment,
+  GlitterProps,
+  _provide,
+} from '@glitter/render-core'
 import { markAsFunctionComponent } from '@glitter/core'
 
 export function defineFactoryComponent<

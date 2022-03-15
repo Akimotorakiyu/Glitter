@@ -1,9 +1,3 @@
-export interface GlitterProps {
-  if?: any
-  keepAlive?: any
-  ref?: any
-}
-
 export interface IComponentStateFactoryProto<
   P,
   S extends Record<string, unknown>,

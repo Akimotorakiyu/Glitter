@@ -1,5 +1,5 @@
 import { markAsFunctionComponent } from '@glitter/core'
-import { GlitterProps } from './type'
+import { GlitterProps } from '@glitter/render-core'
 
 /**
  * for define pure function component
