@@ -3,6 +3,7 @@ import { Header } from './pages/header'
 import { Body } from './pages/body'
 import { Footer } from './pages/footer'
 import { ShopWindowView } from './pages/shopwindow/index'
+import { router } from './pages/router'
 export const Welcome = defineView(() => {
   onCreated(() => {
     console.log('Welcome created!')
@@ -14,7 +15,9 @@ export const Welcome = defineView(() => {
 
         <Component is={Body}></Component>
 
-        <ShopWindowView></ShopWindowView>
+        <ShopWindowView
+          if={router.router.home.children.component.matched}
+        ></ShopWindowView>
 
         <Footer></Footer>
       </div>

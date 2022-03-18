@@ -1,0 +1,10 @@
+{
+  "name": "@glitter/router",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "path-to-regexp": "^6.2.0",
+    "@glitter/glitter": "workspace:*"
+  }
+}

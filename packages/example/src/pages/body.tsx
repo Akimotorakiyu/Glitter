@@ -6,7 +6,7 @@ import {
   defineFactoryComponent,
 } from '@glitter/glitter'
 import { TodoApp } from './todoApp/todoList'
-
+import { router } from './router'
 const bodyStateFactory = defineFactoryComponentStateFactory(
   (props, children, context) => {
     const updater = useUpdater()
@@ -37,16 +37,29 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
           <button
             ref={buttonRef}
             onclick={() => {
-              props.show = !props.show
-              updater()
+              // props.show = !props.show
+              // updater()
+              if (router.router.home.children.example.matched) {
+                router.router.home.push({})
+              } else {
+                router.router.home.children.example.push({})
+              }
             }}
             class="text-lg my-8 animate-pulse transition-colors duration-300 ease hover:(bg-green-600) shadow-lg rounded-full bg-green-500  px-4 py-2 text-white"
           >
-            Get Started
+            <span if={router.router.home.children.example.matched}>Home</span>
+            <span if={!router.router.home.children.example.matched}>
+              Get Started
+            </span>
           </button>
         </div>
         <div class="flex  flex-col items-center">
-          <TodoApp if={show} title="☃️" keepAlive ref={todoAppRef}></TodoApp>
+          <TodoApp
+            if={router.router.home.children.example.matched}
+            title="☃️"
+            keepAlive
+            ref={todoAppRef}
+          ></TodoApp>
         </div>
       </div>
     </div>

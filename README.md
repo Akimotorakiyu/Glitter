@@ -4,13 +4,19 @@
 
 ✨Glitter is a modern vanilla mvvm framework
 
-[Netlify](https://clever-rosalind-9cee08.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.ap-shanghai.app.tcloudbase.com/)
+[Netlify](https://glitter-work.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.ap-shanghai.app.tcloudbase.com/)
 
 ## Features
 
-### Reactive
+### Router(WIP)
 
-- glitterReactive, inspired by `@vue/reactive`
+- Router(WIP)
+
+### Reactive(WIP)
+
+- Reactive
+- Computed (Pending)
+- Watch (Pending)
 
 ### Vanilla
 
@@ -19,7 +25,7 @@
 
 ### Component
 
-### Composition-Api
+### Composition-Api(WIP
 
 - provide-inject / definePortal
 - lifecycle(WIP)
