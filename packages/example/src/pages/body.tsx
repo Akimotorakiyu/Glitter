@@ -24,13 +24,16 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
   return (
     <div class=" mx-4">
       <div class=" py-16">
-        <h1 class=" text-center text-5xl font-extrabold my-4">Gillter</h1>
+        <h1 class=" text-center text-5xl font-extrabold my-4 ">
+          <span class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+            Gillter
+          </span>
+        </h1>
         <h2 class=" text-center text-2xl font-light my-4">
           A <strong class="font-semibold">modern</strong>{' '}
-          <strong class="font-semibold">vanilla</strong>{' '}
-          <Component is="strong" class="font-semibold">
-            mvvm
-          </Component>{' '}
+          <strong class="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+            vanilla
+          </strong>{' '}
           framework
         </h2>
         <div class="text-center">
