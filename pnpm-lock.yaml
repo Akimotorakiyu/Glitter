@@ -29,13 +29,23 @@ importers:
       vite-plugin-windicss: ^1.4.5
       windicss: ^3.1.7
     dependencies:
-      '@glitter/glitter': link:../shrio
+      '@glitter/glitter': link:../glitter
       '@glitter/render-dom': link:../render-dom
       '@glitter/router': link:../router
       windicss: 3.4.3
     devDependencies:
       vite: 2.7.13
       vite-plugin-windicss: 1.6.3_vite@2.7.13
+
+  packages/glitter:
+    specifiers:
+      '@glitter/core': workspace:*
+      '@glitter/reactive': workspace:*
+      '@glitter/render-core': workspace:*
+    dependencies:
+      '@glitter/core': link:../core
+      '@glitter/reactive': link:../reactive
+      '@glitter/render-core': link:../render-core
 
   packages/reactive:
     specifiers: {}
@@ -46,7 +56,7 @@ importers:
       '@glitter/glitter': workspace:*
     dependencies:
       '@glitter/core': link:../core
-      '@glitter/glitter': link:../shrio
+      '@glitter/glitter': link:../glitter
 
   packages/render-dom:
     specifiers:
@@ -59,18 +69,8 @@ importers:
       '@glitter/glitter': workspace:*
       path-to-regexp: ^6.2.0
     dependencies:
-      '@glitter/glitter': link:../shrio
+      '@glitter/glitter': link:../glitter
       path-to-regexp: 6.2.0
-
-  packages/shrio:
-    specifiers:
-      '@glitter/core': workspace:*
-      '@glitter/reactive': workspace:*
-      '@glitter/render-core': workspace:*
-    dependencies:
-      '@glitter/core': link:../core
-      '@glitter/reactive': link:../reactive
-      '@glitter/render-core': link:../render-core
 
 packages:
   /@antfu/utils/0.4.0:
