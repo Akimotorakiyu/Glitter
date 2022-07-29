@@ -9,7 +9,7 @@ export const TodoItemAdd = defineView(() => {
   return (
     <div class="flex items-center">
       <input
-        class="outline-none text-gray-700 w-full"
+        class="w-full text-gray-700 outline-none"
         placeholder="Add a task"
         maxLength="16"
         onkeydown={(e: KeyboardEvent) => {

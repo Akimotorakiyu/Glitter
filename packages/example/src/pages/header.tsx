@@ -3,7 +3,7 @@ import { router } from './router'
 
 export const Header = defineView(() => {
   return (
-    <div class=" z-10 text-gray-600 font-medium   shadow px-12 py-4 flex justify-around sticky top-0 bg-gray-50">
+    <div class="sticky top-0 z-10 flex justify-around px-12 py-4 font-medium text-gray-600 shadow  bg-gray-50">
       <div class="flex-1">
         <span
           class="hover:(text-green-600) mr-4 cursor-pointer"
@@ -14,7 +14,7 @@ export const Header = defineView(() => {
           Glitter
         </span>
         <span
-          class="hover:text-green-600 mr-2 cursor-pointer"
+          class="mr-2 cursor-pointer hover:text-green-600"
           onclick={() => {
             router.router.home.children.example.push({})
           }}
@@ -22,7 +22,7 @@ export const Header = defineView(() => {
           Example
         </span>
         <span
-          class="hover:text-green-600 mr-2 cursor-pointer"
+          class="mr-2 cursor-pointer hover:text-green-600"
           onclick={() => {
             router.router.home.children.component.push({})
           }}
@@ -30,7 +30,7 @@ export const Header = defineView(() => {
           Component
         </span>
       </div>
-      <div class="flex-1 flex justify-end">
+      <div class="flex justify-end flex-1">
         <span class="hover:(text-green-600)">
           <a
             href="https://github.com/Akimotorakiyu/glitter.git"

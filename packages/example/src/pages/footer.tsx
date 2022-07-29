@@ -8,15 +8,15 @@ export const Footer = defineView(() => {
           <img src="/netlify.svg" alt="netlify" />
         </div>
         <p>
-          <span class="text-gray-600 text-sm">
+          <span class="text-sm text-gray-600">
             Released under the MIT License
           </span>
         </p>
         <p>
-          <span class="text-gray-600 text-sm">Power by Gillter</span>
+          <span class="text-sm text-gray-600">Power by Gillter</span>
         </p>
         <p>
-          <span class="text-gray-600 text-sm">Copyright © 2021-2021 湫曗</span>
+          <span class="text-sm text-gray-600">Copyright © 2021-2021 湫曗</span>
         </p>
       </div>
     </div>

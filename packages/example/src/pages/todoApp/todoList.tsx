@@ -8,7 +8,7 @@ const portal = stateSuite
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
   const operation = portal.inject()
   return (
-    <div class="flex items-center justify-between hover:bg-gray-100 px-4 rounded transition-colors duration-300 ease">
+    <div class="flex items-center justify-between px-4 rounded hover:bg-gray-100 transition-colors duration-300 ease">
       <div class="flex items-center ">
         <button
           class={[
@@ -75,11 +75,11 @@ export const TodoAppView = defineView((props) => {
 
   return (
     <>
-      <div class=" w-80 shadow-lg p-6 rounded-lg">
+      <div class="p-6 rounded-lg shadow-lg  w-80">
         <h1 class="my-4 select-none">
           {operation.props.title} A simple todo list.
         </h1>
-        <div class="h-50 overflow-y-auto shadow-inner px-4 py-2 rounded-md">
+        <div class="px-4 py-2 overflow-y-auto shadow-inner h-50 rounded-md">
           <Kanban status="Pending"></Kanban>
           <Kanban status="Completed"></Kanban>
         </div>
