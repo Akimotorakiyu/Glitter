@@ -44,18 +44,23 @@ export function toRouter<T extends TNamedRouterInfo>(
     const curPath = value.path ? path.concat(value.path) : path
     const fullPath = '/' + curPath.join('/')
 
+    const matcher = match(fullPath)
+    const compiler = compile(fullPath)
+
     Reflect.set(router, key, {
       path: value.path,
       fullPath,
       children: toRouter(value.children, routerHistory, path),
       get matched() {
-        const matcher = match(fullPath)
         const result = matcher(routerHistory.path)
         return result
       },
       push(data: Record<string, string>) {
-        const compiler = compile(fullPath)
+        if (matcher(routerHistory.path)) {
+          return
+        }
         const realPath = compiler(data)
+        console.log(realPath, location)
         history.pushState(data, '', location.origin + realPath)
         routerHistory.path = realPath
       },

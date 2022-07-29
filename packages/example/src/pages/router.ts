@@ -1,4 +1,3 @@
-import { glitterReactive } from '@glitter/glitter'
 import { defineRouterInfo, defineRouter } from '@glitter/router'
 
 const root = defineRouterInfo({
@@ -17,5 +16,5 @@ const root = defineRouterInfo({
   },
 })
 
-export const router = glitterReactive(defineRouter(root))
+export const router = defineRouter(root)
 console.log(router)
