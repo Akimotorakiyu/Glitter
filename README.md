@@ -4,7 +4,7 @@
 
 Glitter is a modern vanilla framework
 
-[Netlify](https://glitter-work.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.ap-shanghai.app.tcloudbase.com/) | [Open in Visual Studio Code](https://open.vscode.dev/Akimotorakiyu/glitter)
+[Netlify](https://glitter-work.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.tcloudbaseapp.com/) | [Open in Visual Studio Code](https://open.vscode.dev/Akimotorakiyu/glitter)
 
 ## Features
 
