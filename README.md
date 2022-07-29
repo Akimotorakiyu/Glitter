@@ -1,16 +1,16 @@
 # ✨Glitter (WIP)
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Akimotorakiyu/glitter) ![license](https://img.shields.io/github/license/Akimotorakiyu/glitter)
+![license](https://img.shields.io/github/license/Akimotorakiyu/glitter)
 
-✨Glitter is a modern vanilla framework
+Glitter is a modern vanilla framework
 
-[Netlify](https://glitter-work.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.ap-shanghai.app.tcloudbase.com/)
+[Netlify](https://glitter-work.netlify.app/) | [国内网站](https://glitter-5g2wqb7gd1e49cc0-1259330986.ap-shanghai.app.tcloudbase.com/) | [Open in Visual Studio Code](https://open.vscode.dev/Akimotorakiyu/glitter)
 
 ## Features
 
-### Router(WIP)
+### Router
 
-- Router(WIP)
+- Router
 
 ### Reactive(WIP)
 
@@ -25,7 +25,7 @@
 
 ### Component
 
-### Composition-Api(WIP
+### Composition-Api
 
 - provide-inject / definePortal
 - lifecycle(WIP)
