@@ -34,7 +34,7 @@ export const ShopWindowView = defineView(() => {
         <SvgStar></SvgStar>
       </div>
       <h2 class="text-xl text-center ">Button</h2>
-      <div class="flex justify-center max-w-5xl p-8 m-auto ">
+      <div class="flex justify-center max-w-5xl p-8 m-auto gap-2">
         <ButtonViewLight class="m-4 ">Button</ButtonViewLight>
         <ButtonViewBlue class="m-4 ">Button</ButtonViewBlue>
         <ButtonViewOrange class="m-4 ">Button</ButtonViewOrange>
