@@ -4,6 +4,6 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@glitter/render-core": "workspace:*"
+    "@glitter/render-core": "workspace:1.0.0"
   }
 }

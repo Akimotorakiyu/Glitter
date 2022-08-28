@@ -8,13 +8,13 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^2.5.6",
-    "vite-plugin-windicss": "^1.4.5"
+    "vite": "^3.0.9",
+    "vite-plugin-windicss": "^1.8.7"
   },
   "dependencies": {
-    "@glitter/render-dom": "workspace:*",
-    "@glitter/router": "workspace:*",
-    "@glitter/glitter": "workspace:*",
-    "windicss": "^3.1.7"
+    "@glitter/glitter": "workspace:1.0.0",
+    "@glitter/render-dom": "workspace:1.0.0",
+    "@glitter/router": "workspace:1.0.0",
+    "windicss": "^3.5.6"
   }
 }
