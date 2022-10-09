@@ -5,10 +5,7 @@ export const factoryComponentMark = Symbol('structElementFactoryMark')
 export const functionComponentMark = Symbol('elementFactoryMark')
 export const textElementMark = Symbol('textElementMark')
 
-function elementTypeJudge<T>(
-  element: Record<any, any>,
-  key: symbol,
-): element is T {
+function elementTypeJudge<T>(element: any, key: symbol): element is T {
   return (typeof element === 'object' || typeof element === 'function') &&
     Reflect.get(element, key)
     ? true
