@@ -43,6 +43,8 @@ export const updateChildNodes = (
       targetChildNodes.push(child)
     })
   }
+
+  return childrenChanged
 }
 
 export const shouldShowComponent = <P>(props: P) => {
