@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@glitter/glitter": "workspace:1.0.0",
+    "@glitter/glitter": "workspace:*",
     "path-to-regexp": "^6.2.1"
   }
 }
