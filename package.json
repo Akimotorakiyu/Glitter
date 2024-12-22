@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "serve": "pnpm --filter=./packages/example run serve",
     "build": "pnpm --filter=./packages/example run build",
-    "update": "pnpm --recursive update"
+    "update-dependencies": "pnpm --recursive update",
+    "update-dependencies-latest": "pnpm --recursive update --latest"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",

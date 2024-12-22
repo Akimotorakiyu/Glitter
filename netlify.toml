@@ -1,4 +1,5 @@
 [build.environment]
   NPM_FLAGS = "--version"
+  NODE_VERSION = "--lts"
 [build]
   command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build"
