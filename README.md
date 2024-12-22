@@ -14,9 +14,7 @@ Glitter is a modern vanilla framework
 
 ### Reactive(WIP)
 
-- Reactive
-- Computed (Pending)
-- Watch (Pending)
+Current impl will change.
 
 ### Vanilla
 

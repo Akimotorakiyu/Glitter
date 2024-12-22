@@ -17,16 +17,6 @@ export const Header = defineView(() => {
         </button>
         <button
           class={`mr-2 cursor-pointer hover:text-green-400 ${
-            router.router.home.children.example.matched ? `text-green-600` : ``
-          }`}
-          onclick={() => {
-            router.router.home.children.example.push({})
-          }}
-        >
-          Example
-        </button>
-        <button
-          class={`mr-2 cursor-pointer hover:text-green-400 ${
             router.router.home.children.component.matched
               ? `text-green-600`
               : ``

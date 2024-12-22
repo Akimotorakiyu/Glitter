@@ -36,29 +36,9 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
           </strong>{' '}
           framework
         </h2>
-        <div class="text-center">
-          <button
-            ref={buttonRef}
-            onclick={() => {
-              // props.show = !props.show
-              // updater()
-              if (router.router.home.children.example.matched) {
-                router.router.home.push({})
-              } else {
-                router.router.home.children.example.push({})
-              }
-            }}
-            class="text-lg my-8 animate-pulse transition-colors duration-300 ease hover:(bg-green-600) shadow-lg rounded-full bg-green-500  px-4 py-2 text-white"
-          >
-            <span if={router.router.home.children.example.matched}>Home</span>
-            <span if={!router.router.home.children.example.matched}>
-              Get Started
-            </span>
-          </button>
-        </div>
         <div class="flex flex-col items-center ">
           <TodoApp
-            if={router.router.home.children.example.matched}
+            if={router.router.home.matched}
             title="☃️"
             keepAlive
             ref={todoAppRef}
