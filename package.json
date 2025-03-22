@@ -6,18 +6,19 @@
   "author": "湫曗 <autumnsilverleaves@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "serve": "pnpm --filter=./packages/example run serve",
     "build": "pnpm --filter=./packages/example run build",
     "update-dependencies": "pnpm --recursive update",
     "update-dependencies-latest": "pnpm --recursive update --latest"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-conventional": "^13.2.0",
-    "husky": "^7.0.4",
-    "prettier": "^2.8.8",
-    "pretty-quick": "^3.1.3",
-    "typescript": "^4.9.5"
-  }
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2",
+    "pretty-quick": "^4.2.2",
+    "typescript": "^5.9.2"
+  },
+  "packageManager": "pnpm@10.15.0"
 }
