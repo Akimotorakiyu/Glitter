@@ -1,7 +1,4 @@
-declare namespace JSX {
-  // The Intrinsic Elements Type Map
-  type IntrinsicElements = TSXIntrinsicElements
-
+export declare namespace JSX {
   // The Class Component Instance Type or Factory Return Value Type
   interface ElementClass {
     render: () => TElementValue
@@ -10,10 +7,7 @@ declare namespace JSX {
   type Element = TElementValue
 }
 
-declare type JsxTagType<P> =
-  | JsxFunctionComponent<P>
-  | JsxFactoryComponent<P>
-  | keyof TSXIntrinsicElements
+declare type JsxTagType<P> = JsxFunctionComponent<P> | JsxFactoryComponent<P>
 
 declare type JsxFunctionComponent<P> = (
   props: P,
@@ -31,15 +25,12 @@ declare type JsxFactoryComponent<P> = (
   },
 ) => JSX.ElementClass
 
-declare interface HTSX {
+import { IGlitterFragment, TElementValue } from '@glitter/core' // The Intrinsic Elements Type Map
+
+export declare interface HTSX {
   createElement<P>(
     tag: JsxFunctionComponent<P> | JsxFactoryComponent<P>,
     props: P,
-    ...children: JSX.Element[]
-  ): JSX.Element
-  createElement<Tag extends keyof JSX.IntrinsicElements>(
-    tag: Tag,
-    props: JSX.IntrinsicElements[Tag],
     ...children: JSX.Element[]
   ): JSX.Element
   Fragment(props: null, children: JSX.Element[]): IGlitterFragment

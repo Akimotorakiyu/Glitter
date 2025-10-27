@@ -1,3 +1,5 @@
+import { TElementValue } from '@glitter/core'
+
 export const updateProps = (
   targetProps: Record<string, any>,
   newProps: Record<string, any>,
@@ -47,6 +49,6 @@ export const updateChildNodes = (
   return childrenChanged
 }
 
-export const shouldShowComponent = <P>(props: P) => {
+export const shouldShowComponent = <P extends {}>(props: P) => {
   return !('if' in props && !Boolean((props as { if?: any })?.if))
 }

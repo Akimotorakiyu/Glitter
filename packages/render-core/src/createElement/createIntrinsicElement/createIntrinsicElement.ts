@@ -1,12 +1,19 @@
-import { markAsIntrinsicElement, markAsTextElement } from '@glitter/core'
+import {
+  childNodesSymbol,
+  IGlitterNode,
+  insertBeforeSymbol,
+  markAsIntrinsicElement,
+  markAsTextElement,
+  removeSymbol,
+  TElementValue,
+} from '@glitter/core'
 import { arrangeChildrenInner } from '../arrangeChildren'
 import { getCurrentVDomNode } from '../createComponent/componentContext'
 import { emptyNode } from '../createComponent/emptyNode'
-import { getCurrentElementCreator } from './elementCreator'
 import { shouldShowComponent } from './tool'
 
 export const createIntrinsicElement = <P extends Record<string, any>>(
-  tag: keyof HTMLElementTagNameMap,
+  tag: () => IGlitterNode,
   props: P,
   childNodes: TElementValue[],
 ): IGlitterNode => {
@@ -16,18 +23,14 @@ export const createIntrinsicElement = <P extends Record<string, any>>(
 
   if (shouldShow) {
     if (!vDomNode.node) {
-      vDomNode.node = getCurrentElementCreator().createElement(tag)
+      vDomNode.node = tag()
 
       markAsIntrinsicElement(vDomNode.node)
-      getCurrentElementCreator().setAttribute(vDomNode.node, props, {})
+      props.setAttribute?.(vDomNode.node, props, {})
       arrangeChildrenInner(vDomNode.node, childNodes)
       vDomNode.props = props
     } else {
-      getCurrentElementCreator().setAttribute(
-        vDomNode.node,
-        props,
-        vDomNode.props,
-      )
+      props.setAttribute?.(vDomNode.node, props, vDomNode.props)
       vDomNode.props = props
       arrangeChildrenInner(vDomNode.node, childNodes)
     }
@@ -54,7 +57,14 @@ export const createTextNode = (text: string): IGlitterNode => {
   const vDomNode = getCurrentVDomNode()
 
   if (!vDomNode.node) {
-    const textNode = getCurrentElementCreator().createTextElement(text)
+    const textNode: IGlitterNode = {
+      value: text,
+      [childNodesSymbol]: [],
+      [insertBeforeSymbol]() {},
+      [removeSymbol]() {
+        throw new Error('Shpould not call remove on raw text node')
+      },
+    } as IGlitterNode
     markAsTextElement(textNode)
     vDomNode.node = textNode
   } else {

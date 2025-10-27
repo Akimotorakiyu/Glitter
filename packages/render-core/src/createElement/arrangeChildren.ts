@@ -1,4 +1,12 @@
-import { isFragmentElement, isStructElement } from '@glitter/core'
+import {
+  childNodesSymbol,
+  IGlitterNode,
+  insertBeforeSymbol,
+  isFragmentElement,
+  isStructElement,
+  removeSymbol,
+  TElementValue,
+} from '@glitter/core'
 import { generateAndApplyReMounter } from './fragment/glitterFragment/generateAndApplyReMounter'
 
 export const getGlitterNode = (element: TElementValue): IGlitterNode => {
@@ -36,8 +44,8 @@ export const replaceChildren = (
 ) => {
   const flatedChildNodes = childNodes.reduce((acc, child) => {
     if (isFragmentElement(child)) {
-      const concated = acc.concat(...child.childNodes)
-      child.childNodes.length = 0
+      const concated = acc.concat(...child[childNodesSymbol])
+      child[childNodesSymbol].length = 0
       return concated
     } else {
       acc.push(child)
@@ -47,17 +55,17 @@ export const replaceChildren = (
 
   const childNodesSet = new Set(flatedChildNodes)
 
-  for (let index = 0; parentElement.childNodes[index]; index++) {
-    const element = parentElement.childNodes[index]
+  for (let index = 0; parentElement[childNodesSymbol][index]; index++) {
+    const element = parentElement[childNodesSymbol][index]
     if (!childNodesSet.has(element)) {
-      element.remove()
+      element[removeSymbol]()
     }
   }
 
   flatedChildNodes.forEach((child, index) => {
-    const nIndexChildInParent = parentElement.childNodes[index]
+    const nIndexChildInParent = parentElement[childNodesSymbol][index]
     if (!(nIndexChildInParent === child)) {
-      parentElement.insertBefore(child, nIndexChildInParent)
+      parentElement[insertBeforeSymbol](child, nIndexChildInParent)
     }
   })
 }

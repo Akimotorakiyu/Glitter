@@ -5,6 +5,8 @@ interface ITextProps {
   class?: string
 }
 
+import { htmlElements as h, htsx } from '@glitter/render-dom'
+
 export const TextViewWhite = defineView((props: ITextProps, children) => {
   return (
     <TextView class={` text-white ${props.class ?? ''}`}>{children}</TextView>
@@ -65,16 +67,16 @@ export const defalutInlineStyle = 'inline-flex items-center'
  */
 export const TextView = defineView((props: ITextProps, children) => {
   return (
-    <span class={`inline-flex items-center leading-6 ${props.class ?? ''}`}>
+    <h.span class={`inline-flex items-center leading-6 ${props.class ?? ''}`}>
       {children}
-    </span>
+    </h.span>
   )
 })
 
 export const ParagraphView = defineView((props: ITextProps, children) => {
   return (
-    <p class={`flex items-center leading-6  flex-wrap ${props.class ?? ''}`}>
+    <h.p class={`flex items-center leading-6  flex-wrap ${props.class ?? ''}`}>
       {children}
-    </p>
+    </h.p>
   )
 })

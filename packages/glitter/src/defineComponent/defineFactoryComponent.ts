@@ -1,5 +1,12 @@
 import { IComponentStateFactoryProto } from './type'
-import { markAsStructElement, markAsFactoryComponent } from '@glitter/core'
+import {
+  markAsStructElement,
+  markAsFactoryComponent,
+  IFunctionComponent,
+  IFactoryComponent,
+  TElementValue,
+  Context,
+} from '@glitter/core'
 
 import {
   createElement,

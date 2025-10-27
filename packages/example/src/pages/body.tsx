@@ -7,6 +7,8 @@ import {
 } from '@glitter/glitter'
 import { TodoApp } from './todoApp/todoList'
 import { router } from './router'
+import { htmlElements as h, htsx } from '@glitter/render-dom'
+
 const bodyStateFactory = defineFactoryComponentStateFactory(
   (props, children, context) => {
     const updater = useUpdater()
@@ -22,30 +24,30 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
   const { todoAppRef, updater, show, buttonRef } = props
 
   return (
-    <div class="mx-4 ">
-      <div class="py-16 ">
-        <h1 class="my-4 text-5xl font-extrabold text-center ">
-          <span class="text-transparent bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text">
+    <h.div class="mx-4 ">
+      <h.div class="py-16 ">
+        <h.h1 class="my-4 text-5xl font-extrabold text-center ">
+          <h.span class="text-transparent bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text">
             Gillter
-          </span>
-        </h1>
-        <h2 class="my-4 text-2xl font-light text-center ">
-          A <strong class="font-semibold">modern</strong>{' '}
-          <strong class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
+          </h.span>
+        </h.h1>
+        <h.h2 class="my-4 text-2xl font-light text-center ">
+          A <h.strong class="font-semibold">modern</h.strong>{' '}
+          <h.strong class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
             vanilla
-          </strong>{' '}
+          </h.strong>{' '}
           framework
-        </h2>
-        <div class="flex flex-col items-center ">
+        </h.h2>
+        <h.div class="flex flex-col items-center ">
           <TodoApp
             if={router.router.home.matched}
             title="☃️"
             keepAlive
             ref={todoAppRef}
           ></TodoApp>
-        </div>
-      </div>
-    </div>
+        </h.div>
+      </h.div>
+    </h.div>
   )
 })
 

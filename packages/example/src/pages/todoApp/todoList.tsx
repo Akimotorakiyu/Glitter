@@ -4,13 +4,14 @@ import { TodoItemAdd } from './addTodoItem'
 import { ITodoItem, ITodoItemStatus } from './type'
 
 const portal = stateSuite
+import { htmlElements as h, htsx } from '@glitter/render-dom'
 
 const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
   const operation = portal.inject()
   return (
-    <div class="flex items-center justify-between px-4 rounded hover:bg-gray-100 transition-colors duration-300 ease">
-      <div class="flex items-center ">
-        <button
+    <h.div class="flex items-center justify-between px-4 rounded hover:bg-gray-100 transition-colors duration-300 ease">
+      <h.div class="flex items-center ">
+        <h.button
           class={[
             `w-4 h-4 rounded-full outline-none border-none hover:shadow`,
             {
@@ -21,31 +22,31 @@ const TodoItemView = defineView(({ todoItem }: { todoItem: ITodoItem }) => {
           onclick={() => {
             operation.methods.toggleTaskStatus(todoItem)
           }}
-        ></button>
-        <span class="ml-4 text-gray-700">{todoItem.desc}</span>
-      </div>
-      <button
+        ></h.button>
+        <h.span class="ml-4 text-gray-700">{todoItem.desc}</h.span>
+      </h.div>
+      <h.button
         class={[
           `w-4 h-4 rounded-full bg-red-200 outline-none border-none hover:shadow`,
         ]}
         onclick={() => {
           operation.methods.deleteTask(todoItem)
         }}
-      ></button>
-    </div>
+      ></h.button>
+    </h.div>
   )
 })
 
 const KanbanContainer = defineView(
-  ({ title }: { title: string }, childNodes: JSX.Element[]) => {
+  ({ title }: { title: string }, childNodes) => {
     return (
       <>
-        <div class="my-2">
+        <h.div class="my-2">
           <>
-            <h2 class="text-gray-500 select-none">{title}</h2>
-            <div class="mx-2">{childNodes}</div>
+            <h.h2 class="text-gray-500 select-none">{title}</h.h2>
+            <h.div class="mx-2">{childNodes}</h.div>
           </>
-        </div>
+        </h.div>
       </>
     )
   },
@@ -75,18 +76,18 @@ export const TodoAppView = defineView((props) => {
 
   return (
     <>
-      <div class="p-6 rounded-lg shadow-lg  w-80">
-        <h1 class="my-4 select-none">
+      <h.div class="p-6 rounded-lg shadow-lg  w-80">
+        <h.h1 class="my-4 select-none">
           {operation.props.title} A simple todo list.
-        </h1>
-        <div class="px-4 py-2 overflow-y-auto shadow-inner h-50 rounded-md">
+        </h.h1>
+        <h.div class="px-4 py-2 overflow-y-auto shadow-inner h-50 rounded-md">
           <Kanban status="Pending"></Kanban>
           <Kanban status="Completed"></Kanban>
-        </div>
-        <div class="my-4">
+        </h.div>
+        <h.div class="my-4">
           <TodoItemAdd></TodoItemAdd>
-        </div>
-      </div>
+        </h.div>
+      </h.div>
     </>
   )
 })

@@ -1,4 +1,11 @@
-import { markAsFragmentElement } from '@glitter/core'
+import {
+  childNodesSymbol,
+  IGlitterFragment,
+  IGlitterNode,
+  insertBeforeSymbol,
+  markAsFragmentElement,
+  removeSymbol,
+} from '@glitter/core'
 
 export class GlitterFragment implements IGlitterFragment {
   constructor() {
@@ -9,25 +16,25 @@ export class GlitterFragment implements IGlitterFragment {
   }
   reloadChildren: () => void = () => {
     throw new Error('尚未 给 GlitterFragment reloadChildren 赋值')
-  }
-  insertBefore<T extends IGlitterNode>(
+  };
+  [insertBeforeSymbol]<T extends IGlitterNode>(
     newNode: T,
     refChild: IGlitterNode | null,
   ): T {
     if (refChild) {
-      const index = this.childNodes.findIndex((child) => {
+      const index = this[childNodesSymbol].findIndex((child) => {
         return child === refChild
       })
 
-      this.childNodes.splice(index, 0, newNode)
+      this[childNodesSymbol].splice(index, 0, newNode)
     } else {
-      this.childNodes.push(newNode)
+      this[childNodesSymbol].push(newNode)
     }
 
     return newNode
   }
-  childNodes: IGlitterNode[] = []
-  remove: () => void = () => {
+  [childNodesSymbol]: IGlitterNode[] = [];
+  [removeSymbol] = () => {
     throw new Error('GlitterFragment 尚未实现 remove')
   }
 }

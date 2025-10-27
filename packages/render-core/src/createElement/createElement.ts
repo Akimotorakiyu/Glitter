@@ -1,8 +1,12 @@
 import {
+  IGlitterNode,
   isFragmentElement,
+  isIntrinsicComponentMark,
   isIntrinsicElement,
   isStructElement,
   isTextElement,
+  TCompontentType,
+  TElementValue,
 } from '@glitter/core'
 
 import { Fragment } from './fragment/fragment'
@@ -31,17 +35,19 @@ export const createElement = <P extends Record<string, unknown>>(
   })
 
   if (typeof tag === 'function') {
-    if ((tag as unknown) === Fragment) {
+    if (isIntrinsicComponentMark(tag)) {
+      // tag maybe is unknown tag
+      return createIntrinsicElement(
+        tag as unknown as () => IGlitterNode,
+        props ?? {},
+        childNodes,
+      )
+    } else if ((tag as unknown) === Fragment) {
       return Fragment(null, childNodes)
     } else {
       return createComponent(tag, props ?? {}, childNodes)
     }
-  } else {
-    // tag maybe is unknown tag
-    return createIntrinsicElement(
-      tag as keyof HTMLElementTagNameMap,
-      props ?? {},
-      childNodes,
-    )
   }
+
+  throw new Error('Unsupport tag', { cause: tag })
 }

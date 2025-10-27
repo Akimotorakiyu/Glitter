@@ -1,16 +1,21 @@
-import { onCreated, Component, defineView } from '@glitter/glitter'
+import { onCreated, Component, defineView, htsx } from '@glitter/glitter'
 import { Header } from './pages/header'
 import { Body } from './pages/body'
 import { Footer } from './pages/footer'
 import { ShopWindowView } from './pages/shopwindow/index'
 import { router } from './pages/router'
+
+import { htmlElements } from '@glitter/render-dom'
+
+const { div: Div } = htmlElements
+
 export const Welcome = defineView(() => {
   onCreated(() => {
     console.log('Welcome created!')
   })
   return (
     <>
-      <div class="">
+      <Div class="">
         <Header></Header>
 
         <Component is={Body}></Component>
@@ -20,7 +25,7 @@ export const Welcome = defineView(() => {
         ></ShopWindowView>
 
         <Footer></Footer>
-      </div>
+      </Div>
     </>
   )
 })

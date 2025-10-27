@@ -1,2 +1,2 @@
-import './globalType'
+export * from './globalType'
 export * from './elementMark'
