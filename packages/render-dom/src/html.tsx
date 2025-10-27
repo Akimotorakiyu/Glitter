@@ -48,17 +48,19 @@ export const htmlElements: THTMLElements = new Proxy({} as THTMLElements, {
         Object.defineProperty(ele, insertBeforeSymbol, {
           get() {
             return function insertBefore(node, nIndexChildInParent) {
-              if (node instanceof HTMLElement) {
+              if (node instanceof Node) {
                 this.insertBefore(node, nIndexChildInParent)
               } else {
                 const newNode = node.key || new Text(node.value)
                 node.key = newNode
 
-                Object.defineProperty(newNode, removeSymbol, {
-                  get() {
-                    return this.remove
-                  },
-                })
+                if (!(removeSymbol in newNode)) {
+                  Object.defineProperty(newNode, removeSymbol, {
+                    get() {
+                      return this.remove
+                    },
+                  })
+                }
 
                 this.insertBefore(newNode, nIndexChildInParent)
               }

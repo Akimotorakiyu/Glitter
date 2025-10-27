@@ -38,7 +38,8 @@ export const svgElements: TSVGElements = new Proxy({} as TSVGElements, {
   get(obj, key) {
     return (props: {}, children: IGlitterNode) => {
       const Ele = () => {
-        const ele = document.createElement(
+        const ele = document.createElementNS(
+          'http://www.w3.org/2000/svg',
           key as string,
         ) as unknown as IGlitterNode
         Object.defineProperty(ele, childNodesSymbol, {
@@ -54,17 +55,19 @@ export const svgElements: TSVGElements = new Proxy({} as TSVGElements, {
         Object.defineProperty(ele, insertBeforeSymbol, {
           get() {
             return function insertBefore(node, nIndexChildInParent) {
-              if (node instanceof HTMLElement) {
+              if (node instanceof Node) {
                 this.insertBefore(node, nIndexChildInParent)
               } else {
                 const newNode = node.key || new Text(node.value)
                 node.key = newNode
 
-                Object.defineProperty(newNode, removeSymbol, {
-                  get() {
-                    return this.remove
-                  },
-                })
+                if (!(removeSymbol in newNode)) {
+                  Object.defineProperty(newNode, removeSymbol, {
+                    get() {
+                      return this.remove
+                    },
+                  })
+                }
 
                 this.insertBefore(newNode, nIndexChildInParent)
               }

@@ -19,6 +19,9 @@ import {
 
 import { ImageView, getTypedRadioSuite, RadioView } from '../../components'
 import { SvgStar } from './svg'
+
+import { htmlElements as h, htsx } from '@glitter/render-dom'
+
 function logger<T>(value: T) {
   console.log('value', value)
 }
@@ -28,21 +31,21 @@ export const ShopWindowView = defineView(() => {
   const stringRadioSuite = getTypedRadioSuite('')
 
   return (
-    <div>
-      <h2 class="text-xl text-center ">Custom Render</h2>
-      <div class="flex justify-center max-w-5xl p-8 m-auto ">
+    <h.div>
+      <h.h2 class="text-xl text-center ">Custom Render</h.h2>
+      <h.div class="flex justify-center max-w-5xl p-8 m-auto ">
         <SvgStar></SvgStar>
-      </div>
-      <h2 class="text-xl text-center ">Button</h2>
-      <div class="flex justify-center max-w-5xl p-8 m-auto gap-2">
+      </h.div>
+      <h.h2 class="text-xl text-center ">Button</h.h2>
+      <h.div class="flex justify-center max-w-5xl p-8 m-auto gap-2">
         <ButtonViewLight class="m-4 ">Button</ButtonViewLight>
         <ButtonViewBlue class="m-4 ">Button</ButtonViewBlue>
         <ButtonViewOrange class="m-4 ">Button</ButtonViewOrange>
         <ButtonViewRed class="m-4 ">Button</ButtonViewRed>
         <ButtonViewGray class="m-4 ">Button</ButtonViewGray>
-      </div>
-      <h2 class="text-xl text-center ">Text</h2>
-      <div class="max-w-5xl p-8 m-auto ">
+      </h.div>
+      <h.h2 class="text-xl text-center ">Text</h.h2>
+      <h.div class="max-w-5xl p-8 m-auto ">
         <ParagraphView class="justify-center">
           <ImageView
             src="/laugh.svg"
@@ -126,19 +129,19 @@ export const ShopWindowView = defineView(() => {
             class="inline-block w-4 h-4 "
           />
         </ParagraphView>
-      </div>
+      </h.div>
 
-      <h2 class="text-xl text-center ">Radio</h2>
+      <h.h2 class="text-xl text-center ">Radio</h.h2>
 
-      <div class="max-w-5xl p-8 m-auto ">
-        <div class="flex justify-center">
+      <h.div class="max-w-5xl p-8 m-auto ">
+        <h.div class="flex justify-center">
           <ViewContext
             componentStateFactoryProto={numberRadioSuite}
             defaultValue={1}
             onchange={logger}
             scope={() => {
               return (
-                <div>
+                <h.div>
                   <RadioView
                     value={666}
                     label="666"
@@ -151,7 +154,7 @@ export const ShopWindowView = defineView(() => {
                     suit={numberRadioSuite}
                     onchange={logger}
                   ></RadioView>
-                </div>
+                </h.div>
               )
             }}
           ></ViewContext>
@@ -161,7 +164,7 @@ export const ShopWindowView = defineView(() => {
             onchange={logger}
             scope={() => {
               return (
-                <div>
+                <h.div>
                   <RadioView
                     value={'幻光'}
                     label="幻光"
@@ -174,12 +177,12 @@ export const ShopWindowView = defineView(() => {
                     suit={stringRadioSuite}
                     onchange={logger}
                   ></RadioView>
-                </div>
+                </h.div>
               )
             }}
           ></ViewContext>
-        </div>
-      </div>
-    </div>
+        </h.div>
+      </h.div>
+    </h.div>
   )
 })
