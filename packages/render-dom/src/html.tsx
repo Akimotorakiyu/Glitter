@@ -35,8 +35,6 @@ export const htmlElements: THTMLElements = new Proxy({} as THTMLElements, {
           key as string,
         ) as unknown as IGlitterNode
 
-        console.log(key)
-
         Object.defineProperty(ele, childNodesSymbol, {
           get() {
             return this.childNodes
@@ -63,7 +61,6 @@ export const htmlElements: THTMLElements = new Proxy({} as THTMLElements, {
                 })
 
                 this.insertBefore(newNode, nIndexChildInParent)
-                console.log(this.childNodes)
               }
             }
           },

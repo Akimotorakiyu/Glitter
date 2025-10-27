@@ -67,7 +67,6 @@ export const svgElements: TSVGElements = new Proxy({} as TSVGElements, {
                 })
 
                 this.insertBefore(newNode, nIndexChildInParent)
-                console.log(this.childNodes)
               }
             }
           },
