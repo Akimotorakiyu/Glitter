@@ -1,9 +1,22 @@
+import {
+  IElementStruct,
+  IFactoryComponent,
+  IFunctionComponent,
+  IGlitterFragment,
+  IGlitterNode,
+  IGlitterTextNode,
+  IIntrinsicComponent,
+} from './globalType'
+
 export const intrinsicElementMark = Symbol('intrinsicElementMark')
 export const fragmentElementMark = Symbol('fragmentElementMark')
 export const structElementMark = Symbol('structElementMark')
+
+export const textElementMark = Symbol('textElementMark')
+
+export const intrinsicComponentMark = Symbol('intrinsicComponentMark')
 export const factoryComponentMark = Symbol('structElementFactoryMark')
 export const functionComponentMark = Symbol('elementFactoryMark')
-export const textElementMark = Symbol('textElementMark')
 
 function elementTypeJudge<T>(element: any, key: symbol): element is T {
   return (typeof element === 'object' || typeof element === 'function') &&
@@ -61,7 +74,21 @@ export function markAsStructElement(element: Record<any, any>) {
   return markElementType(element, structElementMark)
 }
 /**
- * structElementFactory
+ * IIntrinsicComponent
+ */
+
+export function isIntrinsicComponentMark(
+  element: Record<any, any>,
+): element is IIntrinsicComponent {
+  return elementTypeJudge<IElementStruct>(element, intrinsicComponentMark)
+}
+
+export function markAsIntrinsicComponentMark(element: Record<any, any>) {
+  return markElementType(element, intrinsicComponentMark)
+}
+
+/**
+ * IFactoryComponent
  */
 
 export function isFactoryComponent(
@@ -73,8 +100,9 @@ export function isFactoryComponent(
 export function markAsFactoryComponent(element: Record<any, any>) {
   return markElementType(element, factoryComponentMark)
 }
+
 /**
- * elementFactory
+ * IFunctionComponent
  */
 
 export function isFunctionComponent(
@@ -88,12 +116,12 @@ export function markAsFunctionComponent(element: Record<any, any>) {
 }
 
 /**
- * textElement
+ * IGlitterTextNode
  */
 
 export function isTextElement(
   element: Record<any, any>,
-): element is IGlitterNode {
+): element is IGlitterTextNode {
   return elementTypeJudge<IGlitterNode>(element, textElementMark)
 }
 

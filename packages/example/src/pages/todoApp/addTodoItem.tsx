@@ -1,14 +1,14 @@
 import { defineView } from '@glitter/glitter'
 import { stateSuite } from './state'
-
+import { htmlElements as h, htsx } from '@glitter/render-dom'
 const portal = stateSuite
 
 export const TodoItemAdd = defineView(() => {
   const operation = portal.inject()
 
   return (
-    <div class="flex items-center">
-      <input
+    <h.div class="flex items-center">
+      <h.input
         class="w-full text-gray-700 outline-none"
         placeholder="Add a task"
         maxLength="16"
@@ -28,7 +28,7 @@ export const TodoItemAdd = defineView(() => {
             )
           }
         }}
-      ></input>
-    </div>
+      ></h.input>
+    </h.div>
   )
 })

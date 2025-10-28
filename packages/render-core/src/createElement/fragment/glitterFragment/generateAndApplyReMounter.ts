@@ -1,3 +1,4 @@
+import { IGlitterNode } from '@glitter/core'
 import { replaceChildren } from '../../arrangeChildren'
 import { GlitterFragment } from './glitterFragment'
 

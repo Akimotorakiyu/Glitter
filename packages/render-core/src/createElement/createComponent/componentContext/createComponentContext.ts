@@ -1,3 +1,4 @@
+import { IFactoryComponent, IFunctionComponent } from '@glitter/core'
 import { createContext, getCurrentContext } from './content'
 
 export function createComponentContext<P extends Record<string, unknown>>(

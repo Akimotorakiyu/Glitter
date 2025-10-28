@@ -1,6 +1,7 @@
 import { definePortal, IPortal, KeyType, _provide } from '@glitter/render-core'
 
 import { IComponentStateFactoryProto } from './type'
+import { Context, TElementValue } from '@glitter/core'
 
 const suiteKey = Symbol('suiteKey')
 

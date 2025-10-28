@@ -1,3 +1,4 @@
+import { LifeCircle, TContextHub } from '@glitter/core'
 import { getCurrentContext } from '@glitter/render-core'
 
 const hubHelper = <E extends keyof LifeCircle>(
@@ -41,7 +42,7 @@ const lifecycleHelper = <
   )
 }
 
-export const onCreated = (fn: () => void | (() => void)) => {
+export const onCreated = (fn: () => any) => {
   lifecycleHelper('created', 'destory', fn, true)
 }
 

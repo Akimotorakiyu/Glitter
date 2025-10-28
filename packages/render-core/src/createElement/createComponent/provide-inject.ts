@@ -1,3 +1,4 @@
+import { Context } from '@glitter/core'
 import { getCurrentContext } from './componentContext'
 
 export type KeyType = number | symbol | string

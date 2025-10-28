@@ -1,32 +1,53 @@
-interface IGlitterNode {
-  insertBefore<T extends IGlitterNode>(
+export const removeSymbol = Symbol('remove')
+export const insertBeforeSymbol = Symbol('insertBefore')
+export const childNodesSymbol = Symbol('childNodes')
+
+/**
+ * Common Node Interface
+ */
+export interface IGlitterNode {
+  [insertBeforeSymbol]<T extends IGlitterNode>(
     newNode: T,
     refChild: IGlitterNode | null,
   ): T
-  childNodes: IGlitterNode[]
-  remove: () => void
+  [childNodesSymbol]: IGlitterNode[]
+  [removeSymbol]: () => void
 }
 
-interface IGlitterFragment extends IGlitterNode {
+/**
+ * Text Node Interface
+ * insertBefore and remove will do nothing on text node, until you customize it.
+ * key is used for identifying the text node, you should set it when you insert and create text nodes dynamically.
+ */
+export interface IGlitterTextNode extends IGlitterNode {
+  value: string
+  key?: unknown
+}
+
+export interface IGlitterFragment extends IGlitterNode {
   reMount: (glitterFragment?: IGlitterFragment) => void
   reloadChildren: () => void
 }
 
-interface IElementStruct {
+export interface IElementStruct {
   render: () => TElementValue
 }
 
-type TElementValue = IGlitterNode | IElementStruct
+export type TElementValue = IGlitterNode | IElementStruct
 
-interface IFunctionComponent<P extends Record<string, unknown> = {}> {
+export interface IIntrinsicComponent<P extends Record<string, unknown> = {}> {
+  (props: P, children: TElementValue[], ctx: Context): TElementValue
+}
+export interface IFunctionComponent<P extends Record<string, unknown> = {}> {
   (props: P, children: TElementValue[], ctx: Context): TElementValue
 }
 
-interface IFactoryComponent<P extends Record<string, unknown> = {}> {
+export interface IFactoryComponent<P extends Record<string, unknown> = {}> {
   (props: P, children: TElementValue[], ctx: Context): IElementStruct
 }
 
-type TCompontentType<P extends Record<string, unknown>> =
+export type TCompontentType<P extends Record<string, unknown>> =
+  | IIntrinsicComponent<P>
   | IFunctionComponent<P>
   | IFactoryComponent<P>
 
@@ -34,16 +55,16 @@ type TCompontentType<P extends Record<string, unknown>> =
  *
  */
 
-type Listenner<E extends string | number | symbol, Args extends unknown[]> = (
-  event: E,
-  ...args: Args
-) => void | Promise<void>
+export type Listenner<
+  E extends string | number | symbol,
+  Args extends unknown[],
+> = (event: E, ...args: Args) => void | Promise<void>
 
-interface MessageProtcol {
+export interface MessageProtcol {
   [props: string]: unknown[]
 }
 
-interface MessageCenter<Protcol extends MessageProtcol> {
+export interface MessageCenter<Protcol extends MessageProtcol> {
   removeAction: <E extends keyof Protcol, Args extends Protcol[E]>(
     event: E,
     listenner: Listenner<E, Args>,
@@ -58,7 +79,7 @@ interface MessageCenter<Protcol extends MessageProtcol> {
   ) => (void | Promise<void>)[]
 }
 
-type LifeCircle = {
+export type LifeCircle = {
   created: []
   beforeUpdated: []
   updated: []
@@ -67,13 +88,13 @@ type LifeCircle = {
   active: []
 }
 
-type TContextHub = MessageCenter<LifeCircle>
+export type TContextHub = MessageCenter<LifeCircle>
 
 /**
  *
  */
 
-interface Context {
+export interface Context {
   tag: IFunctionComponent<any> | IFactoryComponent<any>
   element: TElementValue | null
   active: boolean
@@ -101,20 +122,20 @@ interface Context {
   contains: (ctx: Context) => boolean
 }
 
-interface VDomNode {
+export interface VDomNode {
   node: IGlitterNode | null
-  props: Record<string, unknown>
+  props: Record<string, any>
 }
-interface VComNode {
+export interface VComNode {
   node: Context | null
 }
-interface VFragmentNode {
+export interface VFragmentNode {
   node: IGlitterFragment | null
   reloadChildren?: () => IGlitterFragment
   reMount?: () => IGlitterFragment
 }
 
-interface ContentNodeInfo {
+export interface ContentNodeInfo {
   isDynamic: boolean
   domNodeInfo: {
     list: VDomNode[]
@@ -129,9 +150,3 @@ interface ContentNodeInfo {
     current: 0
   }
 }
-
-interface GlitterIntrinsicElementsMap {}
-
-type TSXIntrinsicElements =
-  GlitterIntrinsicElementsMap[keyof GlitterIntrinsicElementsMap] &
-    Record<string, Record<string, unknown>>

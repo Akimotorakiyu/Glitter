@@ -1,5 +1,5 @@
 export interface GlitterRef<T> {
-  current: null | T
+  current: undefined | T
 }
 
 export type GlitterRefType<T> = T extends (...arg: any[]) => infer R

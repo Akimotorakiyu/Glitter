@@ -13,9 +13,12 @@ import { emptyNode } from './emptyNode'
 import { removeFromUpdateRootList } from './componentContext/asyncUpdateFlow'
 import { shouldDeep } from './componentRenderMode'
 import {
+  IFactoryComponent,
+  IFunctionComponent,
   isFactoryComponent,
   isFragmentElement,
   isStructElement,
+  TElementValue,
 } from '@glitter/core'
 import { getGlitterNode } from '../arrangeChildren'
 export const createComponent = <P extends Record<string, any>>(

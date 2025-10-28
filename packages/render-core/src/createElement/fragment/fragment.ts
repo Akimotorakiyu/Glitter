@@ -1,3 +1,4 @@
+import { TElementValue } from '@glitter/core'
 import { arrangeChildrenInner } from '../arrangeChildren'
 import { getCurrentVFragmentNode } from '../createComponent/componentContext'
 import { GlitterFragment } from './glitterFragment/glitterFragment'

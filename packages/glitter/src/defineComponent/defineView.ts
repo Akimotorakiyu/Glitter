@@ -1,4 +1,4 @@
-import { markAsFunctionComponent } from '@glitter/core'
+import { IFunctionComponent, markAsFunctionComponent } from '@glitter/core'
 import { GlitterProps } from '@glitter/render-core'
 
 /**

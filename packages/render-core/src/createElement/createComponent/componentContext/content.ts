@@ -1,3 +1,4 @@
+import { Context, IFactoryComponent, IFunctionComponent } from '@glitter/core'
 import { createContextWithUpdater } from './createContext'
 import { FakeRootComponent } from './rootComponent'
 

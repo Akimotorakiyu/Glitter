@@ -1,3 +1,5 @@
+import { Context } from '@glitter/core'
+
 export const updateStatus = {
   plan: new Map<Context, (() => void)[]>(),
   pending: new Map<Context, (() => void)[]>(),

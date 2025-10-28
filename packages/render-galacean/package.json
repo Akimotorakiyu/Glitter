@@ -1,9 +1,11 @@
 {
-  "name": "@glitter/render-dom",
+  "name": "@glitter/render-galacean",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
+    "@galacean/engine": "^1.6.7",
+    "@galacean/engine-toolkit-controls": "^1.6.0",
     "@glitter/core": "workspace:*",
     "@glitter/render-core": "workspace:*"
   }

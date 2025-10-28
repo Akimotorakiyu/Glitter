@@ -1,3 +1,4 @@
+import { TElementValue } from '@glitter/core'
 import { getCurrentContext } from '../createComponent/componentContext'
 import { setKey } from '../createComponent/componentContext/setDynamicContentNodeKey'
 

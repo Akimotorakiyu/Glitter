@@ -1,3 +1,4 @@
+import { Context } from '@glitter/core'
 import { emptyNode } from '../emptyNode'
 import { FakeRootComponent } from './rootComponent'
 

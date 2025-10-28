@@ -1,3 +1,4 @@
+import { VComNode, VDomNode, VFragmentNode } from '@glitter/core'
 import { getCurrentContext } from './content'
 
 const getContentNodeInfo = () => {

@@ -38,7 +38,7 @@ export function toRouter<T extends TNamedRouterInfo>(
 ) {
   const router = {} as TNamedRouter<T>
   Object.entries(routerConfig).forEach(([key, value]) => {
-    if (value.path.startsWith('/' || value.path.endsWith('/'))) {
+    if (value.path.startsWith('/') || value.path.endsWith('/')) {
       throw new Error("path should'nt start or end with slash - /")
     }
     const curPath = value.path ? path.concat(value.path) : path

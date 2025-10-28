@@ -1,24 +1,27 @@
 import { defineView } from '@glitter/glitter'
+import { htmlElements as h, htsx } from '@glitter/render-dom'
 
 export const Footer = defineView(() => {
   return (
-    <div class="mb-16">
-      <div class="text-center">
-        <div class="flex justify-center mb-8">
-          <img src="/netlify.svg" alt="netlify" />
-        </div>
-        <p>
-          <span class="text-sm text-gray-600">
+    <h.div class="mb-16">
+      <h.div class="text-center">
+        <h.div class="flex justify-center mb-8">
+          <h.img src="/netlify.svg" alt="netlify" />
+        </h.div>
+        <h.p>
+          <h.span class="text-sm text-gray-600">
             Released under the MIT License
-          </span>
-        </p>
-        <p>
-          <span class="text-sm text-gray-600">Power by Gillter</span>
-        </p>
-        <p>
-          <span class="text-sm text-gray-600">Copyright © 2021-2025 湫曗</span>
-        </p>
-      </div>
-    </div>
+          </h.span>
+        </h.p>
+        <h.p>
+          <h.span class="text-sm text-gray-600">Power by Gillter</h.span>
+        </h.p>
+        <h.p>
+          <h.span class="text-sm text-gray-600">
+            Copyright © 2021-2025 湫曗
+          </h.span>
+        </h.p>
+      </h.div>
+    </h.div>
   )
 })
