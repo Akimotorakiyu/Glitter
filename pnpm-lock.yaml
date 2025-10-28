@@ -30,12 +30,21 @@ importers:
 
   packages/example:
     dependencies:
+      '@galacean/engine':
+        specifier: ^1.6.7
+        version: 1.6.7
+      '@galacean/engine-toolkit-controls':
+        specifier: ^1.6.0
+        version: 1.6.0(@galacean/engine@1.6.7)
       '@glitter/glitter':
         specifier: workspace:*
         version: link:../glitter
       '@glitter/render-dom':
         specifier: workspace:*
         version: link:../render-dom
+      '@glitter/render-galacean':
+        specifier: workspace:*
+        version: link:../render-galacean
       '@glitter/router':
         specifier: workspace:*
         version: link:../router
@@ -72,6 +81,21 @@ importers:
 
   packages/render-dom:
     dependencies:
+      '@glitter/core':
+        specifier: workspace:*
+        version: link:../core
+      '@glitter/render-core':
+        specifier: workspace:*
+        version: link:../render-core
+
+  packages/render-galacean:
+    dependencies:
+      '@galacean/engine':
+        specifier: ^1.6.7
+        version: 1.6.7
+      '@galacean/engine-toolkit-controls':
+        specifier: ^1.6.0
+        version: 1.6.0(@galacean/engine@1.6.7)
       '@glitter/core':
         specifier: workspace:*
         version: link:../core
@@ -462,6 +486,44 @@ packages:
     engines: { node: '>=18' }
     cpu: [x64]
     os: [win32]
+
+  '@galacean/engine-core@1.6.7':
+    resolution:
+      {
+        integrity: sha512-PIyPq8oP0bFRJHG7FmJzZhpSIBWoM7YpL76DaEIFD3aM8b9ShP3/HzesXMGXeb5c02UtOgPM4B1thnHi+3sijg==,
+      }
+
+  '@galacean/engine-loader@1.6.7':
+    resolution:
+      {
+        integrity: sha512-KXO/fzZJ5D/GcWC8GlsASebC/Bli9rAAuOuUJNByiRXAZ235rE+zmvHhpSMknx7dwrgjpuNXKOM3dMXx6zSX2A==,
+      }
+
+  '@galacean/engine-math@1.6.7':
+    resolution:
+      {
+        integrity: sha512-NmHhweJof/p922I025DFuyTQeSOPkLsmZYnWFjkgNTNnjbC+FpZkiazhL9jrMUjaCjZPbKzT1xuQVEzNJzEV0Q==,
+      }
+
+  '@galacean/engine-rhi-webgl@1.6.7':
+    resolution:
+      {
+        integrity: sha512-/xQ+mCt2cc/Q9WlHUitEt20JVBncuNjiqtFJAW2XrwhZ0sl6X+HZj7uiGN9ZV2isq6TlwK2t3JYU38ydrtasKA==,
+      }
+
+  '@galacean/engine-toolkit-controls@1.6.0':
+    resolution:
+      {
+        integrity: sha512-qqbxHStb+SsRjKAOol6m42KYC2Ma0GaiZ8zWOBjq8plCcZQNenX22u01ViAiqh+pbYcLqkslNuE3R20pPi53Eg==,
+      }
+    peerDependencies:
+      '@galacean/engine': '>=1.6.0-0'
+
+  '@galacean/engine@1.6.7':
+    resolution:
+      {
+        integrity: sha512-CKNRJvToHChtB8NQwBCP8ZuH4Oal7is8oybJw1hsf4we8svz9DxTN32vTVEHl8+a6kbMeNqXIMz2lIVk9tAqjA==,
+      }
 
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution:
@@ -1784,6 +1846,34 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.11':
     optional: true
+
+  '@galacean/engine-core@1.6.7':
+    dependencies:
+      '@galacean/engine-math': 1.6.7
+
+  '@galacean/engine-loader@1.6.7':
+    dependencies:
+      '@galacean/engine-core': 1.6.7
+      '@galacean/engine-math': 1.6.7
+      '@galacean/engine-rhi-webgl': 1.6.7
+
+  '@galacean/engine-math@1.6.7': {}
+
+  '@galacean/engine-rhi-webgl@1.6.7':
+    dependencies:
+      '@galacean/engine-core': 1.6.7
+      '@galacean/engine-math': 1.6.7
+
+  '@galacean/engine-toolkit-controls@1.6.0(@galacean/engine@1.6.7)':
+    dependencies:
+      '@galacean/engine': 1.6.7
+
+  '@galacean/engine@1.6.7':
+    dependencies:
+      '@galacean/engine-core': 1.6.7
+      '@galacean/engine-loader': 1.6.7
+      '@galacean/engine-math': 1.6.7
+      '@galacean/engine-rhi-webgl': 1.6.7
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 

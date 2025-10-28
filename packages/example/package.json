@@ -12,8 +12,11 @@
     "vite-plugin-windicss": "^1.9.4"
   },
   "dependencies": {
+    "@galacean/engine": "^1.6.7",
+    "@galacean/engine-toolkit-controls": "^1.6.0",
     "@glitter/glitter": "workspace:*",
     "@glitter/render-dom": "workspace:*",
+    "@glitter/render-galacean": "workspace:*",
     "@glitter/router": "workspace:*",
     "windicss": "^3.5.6"
   }

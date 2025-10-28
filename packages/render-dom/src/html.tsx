@@ -21,7 +21,7 @@ export type THTMLElements = {
         class: TClassType | TClassType[]
         style: Partial<HTMLElementTagNameMap[tag]['style']>
         if: any
-        ref: { current: null | HTMLElementTagNameMap[tag] }
+        ref: { current: undefined | HTMLElementTagNameMap[tag] }
       }
     >,
   ) => JSX.Element

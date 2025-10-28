@@ -21,6 +21,7 @@ import { ImageView, getTypedRadioSuite, RadioView } from '../../components'
 import { SvgStar } from './svg'
 
 import { htmlElements as h, htsx } from '@glitter/render-dom'
+import { Galacean } from './galacean'
 
 function logger<T>(value: T) {
   console.log('value', value)
@@ -35,6 +36,10 @@ export const ShopWindowView = defineView(() => {
       <h.h2 class="text-xl text-center ">Custom Render</h.h2>
       <h.div class="flex justify-center max-w-5xl p-8 m-auto ">
         <SvgStar></SvgStar>
+      </h.div>
+      <h.h2 class="text-xl text-center ">Galacean Render</h.h2>
+      <h.div class="flex justify-center max-w-5xl p-8 m-auto ">
+        <Galacean></Galacean>
       </h.div>
       <h.h2 class="text-xl text-center ">Button</h.h2>
       <h.div class="flex justify-center max-w-5xl p-8 m-auto gap-2">
