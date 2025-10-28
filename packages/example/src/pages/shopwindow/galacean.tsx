@@ -94,7 +94,7 @@ export const Galacean = defineFactoryComponent(state, (props) => {
   }
 
   const canvas = (
-    <h.canvas ref={canvasRef}>
+    <h.canvas ref={canvasRef} class="rounded-lg">
       <g.entity
         ref={entityRef}
         name="cube"

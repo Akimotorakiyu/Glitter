@@ -8,6 +8,7 @@ import {
 import { TodoApp } from './todoApp/todoList'
 import { router } from './router'
 import { htmlElements as h, htsx } from '@glitter/render-dom'
+import { Galacean } from './shopwindow/galacean'
 
 const bodyStateFactory = defineFactoryComponentStateFactory(
   (props, children, context) => {
@@ -39,6 +40,13 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
           framework
         </h.h2>
         <h.div class="flex flex-col items-center ">
+          <h.h2 class="text-xl text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-500">
+            With Custom Render
+          </h.h2>
+          <h.div class="text-sm text-center ">Galacean Engine</h.div>
+          <h.div class="flex justify-center max-w-5xl p-8 m-auto ">
+            <Galacean></Galacean>
+          </h.div>
           <TodoApp
             if={router.router.home.matched}
             title="☃️"
