@@ -9,7 +9,7 @@ import {
 } from '@glitter/glitter'
 import { galaceanElements } from '@glitter/render-galacean'
 import { htmlElements as h } from '@glitter/render-dom'
-import { WebGLEngine, Entity, Camera, Vector3 } from '@galacean/engine'
+import { WebGLEngine, Entity, Camera, Vector3, Script } from '@galacean/engine'
 import { OrbitControl } from '@galacean/engine-toolkit-controls'
 
 const g = galaceanElements

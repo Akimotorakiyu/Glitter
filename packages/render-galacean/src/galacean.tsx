@@ -9,6 +9,7 @@ import {
   BlinnPhongMaterial,
   MeshRenderer,
   PrimitiveMesh,
+  Script,
   WebGLEngine,
 } from '@galacean/engine'
 import { Entity } from '@galacean/engine'
@@ -24,6 +25,12 @@ export type GalaceanElements = {
   ) => JSX.Element
 }
 
+class AutoRotate extends Script {
+  onUpdate(deltaTime: number): void {
+    this.entity.transform.rotate(0, 1.5, 0)
+  }
+}
+
 export const galaceanElements: GalaceanElements = new Proxy(
   {} as GalaceanElements,
   {
@@ -34,6 +41,7 @@ export const galaceanElements: GalaceanElements = new Proxy(
       ) => {
         const Ele = () => {
           const ele = new Entity(props.engine)
+          ele.addComponent(AutoRotate)
 
           const renderer = ele.addComponent(MeshRenderer)
           const mtl = new BlinnPhongMaterial(props.engine)
