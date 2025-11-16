@@ -13,8 +13,8 @@
     "update-dependencies-latest": "pnpm --recursive update --latest"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
