@@ -33,21 +33,26 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
           </h.span>
         </h.h1>
         <h.h2 class="my-4 text-2xl font-light text-center ">
-          A <h.strong class="font-semibold">modern</h.strong>{' '}
+          A{' '}
+          <h.strong class="font-semibold text-transparent bg-clip-text bg-gradient-to-r to-pink-500 from-violet-500">
+            modern
+          </h.strong>{' '}
           <h.strong class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
             vanilla
           </h.strong>{' '}
           framework
         </h.h2>
         <h.div class="flex flex-col items-center ">
-          <h.h2 class="text-xl text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-500">
+          <h.h2 class="text-xl text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-red-700">
             With Custom Render
           </h.h2>
           <h.div class="my-8">
             <h.div class="flex justify-center max-w-5xl p-0 m-1 ">
               <Galacean></Galacean>
             </h.div>
-            <h.div class="text-xs m-2 text-center">Galacean Engine demo</h.div>
+            <h.div class="text-xs m-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-600">
+              Galacean Engine demo
+            </h.div>
           </h.div>
           <TodoApp
             if={router.router.home.matched}
@@ -55,6 +60,9 @@ export const BodyView = defineFactoryComponent(bodyStateFactory, (props) => {
             keepAlive
             ref={todoAppRef}
           ></TodoApp>
+          <h.div class="text-xs m-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-600">
+            Html Render demo
+          </h.div>
         </h.div>
       </h.div>
     </h.div>
